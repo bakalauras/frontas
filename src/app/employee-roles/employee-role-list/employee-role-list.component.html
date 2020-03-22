@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+            <tr>
+                    <th>Pavadinimas</th>
+                    <th>Vidutinis atlyginimas</th>
+                    <th></th>
+            </tr></thead>
+        <tbody>
+    <tr *ngFor="let pd of service.list">
+<td (click) = "populateForm(pd)">{{pd.Title}}</td>
+<td (click) = "populateForm(pd)">{{pd.AverageWage}}</td>
+<td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeRoleId)"></i>
+</td>
+    </tr></tbody>
+</table>
