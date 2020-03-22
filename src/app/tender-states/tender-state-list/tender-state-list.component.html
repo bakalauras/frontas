@@ -1,0 +1,14 @@
+<table class="table table-hover">
+    <thead>
+            <tr>
+                    <th>Būsena</th>
+                    <th></th>
+            </tr></thead>
+        <tbody>
+    <tr *ngFor="let pd of service.list">
+<td (click) = "populateForm(pd)">{{pd.Name}}</td>
+<td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.TenderStateId)"></i>
+</td>
+    </tr></tbody>
+</table>

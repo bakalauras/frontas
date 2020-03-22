@@ -1,0 +1,8 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="ProjctStageNameId" [value]="service.formData.ProjctStageNameId">
+    <div class="form-group">
+      <label for="Type">Pavadinimas</label><label style="color: red;"> *</label>
+      <input name="StageName" #Type = "ngModel" [(ngModel)]="service.formData.StageName" type="text" class="form-control" id="StageName" placeholder="Įveskite etapo pavadinimą" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
+</form>

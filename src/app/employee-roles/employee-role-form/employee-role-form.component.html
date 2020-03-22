@@ -1,0 +1,12 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="EmployeeRoleId" [value]="service.formData.EmployeeRoleId">
+    <div class="form-group">
+      <label for="Title">Rolės pavadinimas</label><label style="color: red;"> *</label>
+      <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" class="form-control" id="Title" placeholder="Įveskite rolės pavadinimą" required>
+    </div>
+    <div class="form-group">
+        <label for="AverageWage">Vidutinis atlyginimas</label><label style="color: red;"> *</label>
+        <input name="AverageWage" #Type = "ngModel" [(ngModel)]="service.formData.AverageWage" type="number" class="form-control" id="AverageWage" required>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
+</form>
