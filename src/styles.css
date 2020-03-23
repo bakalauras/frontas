@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif}
 
 #toast-container > div {
     opacity: 1;
@@ -38,3 +38,23 @@ input.ng-valid{
     width: 40%;
     height: 40%;
   }
+
+.display-4 {
+    font-size: 30px;
+}
+
+section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.btn {
+    font-size: 20px;
+}
+
+h4 {
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}

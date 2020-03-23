@@ -1,0 +1,22 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Ar aktyvus</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.Name}}</td>
+                <td (click)="populateForm(pd)">{{pd.Surname}}</td>
+                <td (click)="populateForm(pd)">{{pd.IsActive}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeId)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

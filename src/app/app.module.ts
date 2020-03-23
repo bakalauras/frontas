@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ContestStatusesComponent } from './contest-statuses/contest-statuses.component';
 import { ContestStatusFormComponent } from './contest-statuses/contest-status-form/contest-status-form.component';
 import { ContestStatusListComponent } from './contest-statuses/contest-status-list/contest-status-list.component';
@@ -32,6 +34,19 @@ import { EmployeeRoleListComponent } from './employee-roles/employee-role-list/e
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { DutiesComponent } from './duties/duties.component';
+import { DutyComponent } from './duties/duty/duty.component';
+import { DutyListComponent } from './duties/duty-list/duty-list.component';
+import { NavComponent } from './nav/nav.component';
+import { DutyService } from './duties/shared/duty.service';
+import { CompetenciesComponent } from './competencies/competencies.component';
+import { CompetencyComponent } from './competencies/competency/competency.component';
+import { CompetencyListComponent } from './competencies/competency-list/competency-list.component';
+import { CompetencyService } from './competencies/shared/competency.service';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employees/employee/employee.component';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { EmployeeService } from './employees/shared/employee.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +69,17 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
     EmployeeRoleListComponent,
     CustomersComponent,
     CustomerFormComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    DutiesComponent,
+    DutyComponent,
+    DutyListComponent,
+    NavComponent,
+    CompetenciesComponent,
+    CompetencyComponent,
+    CompetencyListComponent,
+    EmployeesComponent,
+    EmployeeComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
@@ -68,9 +93,11 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
     HttpClientModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [DutyService, CompetencyService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

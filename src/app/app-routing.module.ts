@@ -6,6 +6,9 @@ import { TenderStatesComponent } from './tender-states/tender-states.component';
 import { CustomerTypesComponent } from './customer-types/customer-types.component';
 import { EmployeeRolesComponent } from './employee-roles/employee-roles.component';
 import { CustomersComponent } from './customers/customers.component';
+import { DutiesComponent } from './duties/duties.component';
+import { CompetenciesComponent } from './competencies/competencies.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 const routes: Routes = [
@@ -14,7 +17,11 @@ const routes: Routes = [
   {path: 'tenderStates', component: TenderStatesComponent},
   {path: 'customerTypes', component: CustomerTypesComponent},
   {path: 'employeeRoles', component: EmployeeRolesComponent},
-  {path: 'customers', component : CustomersComponent}
+  {path: 'customers', component : CustomersComponent},
+  {path: 'duties', component : DutiesComponent},
+  {path: 'competencies', component : CompetenciesComponent},
+  {path: 'employees', component : EmployeesComponent}
+  
 ];
 
 @NgModule({
