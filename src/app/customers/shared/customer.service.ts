@@ -45,7 +45,6 @@ export class CustomerService {
 
   getCustomerTypeName(id)
   {
-    name : '123';
-    return name;
+        return this.list2.find(x => x.CustomerTypeId == id).Type;
   }
 }

@@ -32,6 +32,33 @@ import { EmployeeRoleListComponent } from './employee-roles/employee-role-list/e
 import { CustomersComponent } from './customers/customers.component';
 import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { ContestsComponent } from './contests/contests.component';
+import { ContestFormComponent } from './contests/contest-form/contest-form.component';
+import { ContestListComponent } from './contests/contest-list/contest-list.component';
+import { TendersComponent } from './tenders/tenders.component';
+import { TenderFormComponent } from './tenders/tender-form/tender-form.component';
+import { TenderListComponent } from './tenders/tender-list/tender-list.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectFormComponent } from './projects/project-form/project-form.component';
+import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { ContestFilesComponent } from './contest-files/contest-files.component';
+import { ContestFileFormComponent } from './contest-files/contest-file-form/contest-file-form.component';
+import { ContestFileListComponent } from './contest-files/contest-file-list/contest-file-list.component';
+import { TenderFilesComponent } from './tender-files/tender-files.component';
+import { TenderFileFormComponent } from './tender-files/tender-file-form/tender-file-form.component';
+import { TenderFileListComponent } from './tender-files/tender-file-list/tender-file-list.component';
+import { ProjectStagesComponent } from './project-stages/project-stages.component';
+import { ProjectStageFormComponent } from './project-stages/project-stage-form/project-stage-form.component';
+import { ProjectStageListComponent } from './project-stages/project-stage-list/project-stage-list.component';
+import { WorkingTimeRegistersComponent } from './working-time-registers/working-time-registers.component';
+import { WorkingTimeRegisterFormComponent } from './working-time-registers/working-time-register-form/working-time-register-form.component';
+import { WorkingTimeRegisterListComponent } from './working-time-registers/working-time-register-list/working-time-register-list.component';
+import { StageProgressesComponent } from './stage-progresses/stage-progresses.component';
+import { StageProgressFormComponent } from './stage-progresses/stage-progress-form/stage-progress-form.component';
+import { StageProgressListComponent } from './stage-progresses/stage-progress-list/stage-progress-list.component';
+import { ResourcePlansComponent } from './resource-plans/resource-plans.component';
+import { ResourcePlanFormComponent } from './resource-plans/resource-plan-form/resource-plan-form.component';
+import { ResourcePlanListComponent } from './resource-plans/resource-plan-list/resource-plan-list.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +81,34 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
     EmployeeRoleListComponent,
     CustomersComponent,
     CustomerFormComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    ContestsComponent,
+    ContestFormComponent,
+    ContestListComponent,
+    TendersComponent,
+    TenderFormComponent,
+    TenderListComponent,
+    ProjectsComponent,
+    ProjectFormComponent,
+    ProjectListComponent,
+    ContestFilesComponent,
+    ContestFileFormComponent,
+    ContestFileListComponent,
+    TenderFilesComponent,
+    TenderFileFormComponent,
+    TenderFileListComponent,
+    ProjectStagesComponent,
+    ProjectStageFormComponent,
+    ProjectStageListComponent,
+    WorkingTimeRegistersComponent,
+    WorkingTimeRegisterFormComponent,
+    WorkingTimeRegisterListComponent,
+    StageProgressesComponent,
+    StageProgressFormComponent,
+    StageProgressListComponent,
+    ResourcePlansComponent,
+    ResourcePlanFormComponent,
+    ResourcePlanListComponent
   ],
   imports: [
     BrowserModule,
