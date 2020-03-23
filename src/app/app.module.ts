@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ContestStatusesComponent } from './contest-statuses/contest-statuses.component';
 import { ContestStatusFormComponent } from './contest-statuses/contest-status-form/contest-status-form.component';
 import { ContestStatusListComponent } from './contest-statuses/contest-status-list/contest-status-list.component';
@@ -59,6 +61,19 @@ import { StageProgressListComponent } from './stage-progresses/stage-progress-li
 import { ResourcePlansComponent } from './resource-plans/resource-plans.component';
 import { ResourcePlanFormComponent } from './resource-plans/resource-plan-form/resource-plan-form.component';
 import { ResourcePlanListComponent } from './resource-plans/resource-plan-list/resource-plan-list.component';
+import { DutiesComponent } from './duties/duties.component';
+import { DutyComponent } from './duties/duty/duty.component';
+import { DutyListComponent } from './duties/duty-list/duty-list.component';
+import { NavComponent } from './nav/nav.component';
+import { DutyService } from './duties/shared/duty.service';
+import { CompetenciesComponent } from './competencies/competencies.component';
+import { CompetencyComponent } from './competencies/competency/competency.component';
+import { CompetencyListComponent } from './competencies/competency-list/competency-list.component';
+import { CompetencyService } from './competencies/shared/competency.service';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeeComponent } from './employees/employee/employee.component';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { EmployeeService } from './employees/shared/employee.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +123,17 @@ import { ResourcePlanListComponent } from './resource-plans/resource-plan-list/r
     StageProgressListComponent,
     ResourcePlansComponent,
     ResourcePlanFormComponent,
-    ResourcePlanListComponent
+    ResourcePlanListComponent,
+    DutiesComponent,
+    DutyComponent,
+    DutyListComponent,
+    NavComponent,
+    CompetenciesComponent,
+    CompetencyComponent,
+    CompetencyListComponent,
+    EmployeesComponent,
+    EmployeeComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
@@ -122,9 +147,11 @@ import { ResourcePlanListComponent } from './resource-plans/resource-plan-list/r
     HttpClientModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [DutyService, CompetencyService, EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

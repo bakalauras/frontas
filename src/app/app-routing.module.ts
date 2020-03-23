@@ -16,6 +16,9 @@ import { ProjectStagesComponent } from './project-stages/project-stages.componen
 import { WorkingTimeRegistersComponent } from './working-time-registers/working-time-registers.component';
 import { StageProgressesComponent } from './stage-progresses/stage-progresses.component';
 import { ResourcePlansComponent } from './resource-plans/resource-plans.component';
+import { DutiesComponent } from './duties/duties.component';
+import { CompetenciesComponent } from './competencies/competencies.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 const routes: Routes = [
@@ -33,7 +36,10 @@ const routes: Routes = [
   {path: 'projectStages', component: ProjectStagesComponent},
   {path: 'workingTimeRegisters', component: WorkingTimeRegistersComponent},
   {path: 'stageProgresses', component: StageProgressesComponent},
-  {path: 'resourcePlans', component: ResourcePlansComponent}
+  {path: 'resourcePlans', component: ResourcePlansComponent},
+  {path: 'duties', component : DutiesComponent},
+  {path: 'competencies', component : CompetenciesComponent},
+  {path: 'employees', component : EmployeesComponent}
 ];
 
 @NgModule({
