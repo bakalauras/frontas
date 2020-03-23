@@ -1,0 +1,19 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="TenderFileId" [value]="service.formData.TenderFileId">
+    <div class="form-group">
+      <label for="Description">Aprašymas</label><label style="color: red;"> *</label>
+      <input name="Description" #Type = "ngModel" [(ngModel)]="service.formData.Description" type="text" class="form-control" id="Description" placeholder="Įveskite failo aprašymą" required>
+    </div>
+    <div class="form-group">
+        <label for="FileName">Failo pavadinimas</label><label style="color: red;"> *</label>
+        <input name="FileName" #Type = "ngModel" [(ngModel)]="service.formData.FileName" type="text" class="form-control" id="FileName" required>
+    </div>
+    <div class="form-group">
+        <label for="TenderId">Pasirinkite pasiūlymą</label><label style="color: red;"> *</label>
+        <hr>
+        <select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId">
+            <option *ngFor="let tender of service.list2" [value]="tender.TenderId">{{tender.TenderId}}</option> 
+        </select>
+       </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
+</form>
