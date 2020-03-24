@@ -62,3 +62,12 @@ h4 {
 .btn-group{
     background-color: #343a40!important;
 }
+
+input[type=date] 
+{
+    width: 100%;
+}
+
+select{
+    width: 100%;
+}
