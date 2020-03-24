@@ -1,0 +1,24 @@
+<table class="table table-hover">
+    <thead>
+            <tr>
+                    <th>Data nuo</th>
+                    <th>Data iki</th>
+                    <th>Valandų kiekis</th>
+                    <th>Darbuotojo rolė</th>
+                    <th>Darbuotojas</th>
+                    <th>Projekto etapo ID</th>
+                    <th></th>
+            </tr></thead>
+        <tbody>
+    <tr *ngFor="let pd of service.list">
+<td (click) = "populateForm(pd)">{{pd.DateFrom | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.DateTo | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.Hours}}</td>
+<td (click) = "populateForm(pd)">{{this.service.getEmployeeRoleName(pd.EmployeeRoleId)}}</td>
+<td (click) = "populateForm(pd)">{{this.service.getEmployeeName(pd.EmployeeId)}}</td>
+<td (click) = "populateForm(pd)">{{pd.ProjectStageId}}</td>
+<td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.WorkingTimeRegisterId)"></i>
+</td>
+    </tr></tbody>
+</table>

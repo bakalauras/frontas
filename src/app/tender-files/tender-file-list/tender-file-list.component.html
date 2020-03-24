@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+            <tr>
+                    <th>Aprašymas</th>
+                    <th>Failas</th>
+                    <th></th>
+            </tr></thead>
+        <tbody>
+    <tr *ngFor="let pd of service.list" >
+<td (click) = "populateForm(pd)">{{pd.Description}}</td>
+<td (click) = "populateForm(pd)">{{pd.FileName}}</td>
+<td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.TenderFileId)"></i>
+</td>
+    </tr></tbody>
+</table>

@@ -1,0 +1,26 @@
+<table class="table table-hover">
+    <thead>
+            <tr>
+                    <th>Projekto pavadinimas</th>  
+                    <th>Etapo pavadinimas</th>
+                    <th>Planuojama pradžios data</th>
+                    <th>Reali pradžios data</th>
+                    <th>Planuojama pabaigos data</th>
+                    <th>Reali pabaigos data</th>
+                    <th>Etapo biudžetas</th>
+                    <th></th>
+            </tr></thead>
+        <tbody>
+    <tr *ngFor="let pd of service.list" >    
+<td (click) = "populateForm(pd)">{{this.service.getProjectName(pd.ProjectId)}}</td>
+<td (click) = "populateForm(pd)">{{this.service.getProjectStageName(pd.ProjectStageNameId)}}</td>
+<td (click) = "populateForm(pd)">{{pd.ScheduledStartDate | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.StartDate | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.ScheduledEndDate | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.EndDate | date:'yyyy-MM-dd'}}</td>
+<td (click) = "populateForm(pd)">{{pd.StageBudget}}</td>
+<td>
+    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ProjectStageId)"></i>
+</td>
+    </tr></tbody>
+</table>
