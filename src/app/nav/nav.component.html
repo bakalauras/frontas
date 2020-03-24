@@ -1,8 +1,26 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/duties">Pareigos</a>
-        <a class="nav-item nav-link" routerLink="/competencies">Kompetencijos</a>
         <a class="nav-item nav-link" routerLink="/employees">Darbuotojai</a>
+        <li class="nav-item dropdown">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Klasifikatoriai
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+              <a class="dropdown-item" routerLink="/duties">Pareigos</a>
+              <a class="dropdown-item" routerLink="/competencies">Kompetencijos</a>
+              <a class="dropdown-item" routerLink="/certificates">Sertifikatai</a>
+              <a class="dropdown-item" routerLink="/exams">Egzaminai</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Darbuotojai
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
+              <a class="dropdown-item" routerLink="/employees">Darbuotojai</a>
+              <a class="dropdown-item" routerLink="/allsalaries">Atlyginimai</a>
+            </div>
+          </li>
     </div>
   </nav>
   

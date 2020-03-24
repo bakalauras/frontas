@@ -33,4 +33,10 @@ export class EmployeeListComponent implements OnInit {
         })
     }
   }
+
+  onClick(EmployeeId){
+    this.service.setSelectedEmployee(EmployeeId);
+   // open("http://localhost:4200/employeeServices");
+    window.location.href = 'salaries';
+  }
 }
