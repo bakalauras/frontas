@@ -1,0 +1,21 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Etatas</th>
+                <th>Atlyginimas</th>
+                <th>Data nuo</th>
+                <th>Data iki</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.Staff}}</td>
+                <td (click)="populateForm(pd)">{{pd.EmployeeSalary}}</td>
+                <td (click)="populateForm(pd)">{{pd.DateFrom | date:'yyyy-MM-dd' }}</td>
+                <td (click)="populateForm(pd)">{{pd.DateTo | date:'yyyy-MM-dd'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

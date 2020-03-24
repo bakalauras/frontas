@@ -31,4 +31,10 @@ export class EmployeeService {
     .toPromise()
     .then(res =>this.list=res as Employee[])
   }
+
+  setSelectedEmployee(EmployeeId){
+    //this.http.get(this.rootURL + '/Employees'+ EmployeeId).
+    return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
+   // return EmployeeId;
+  }
 }

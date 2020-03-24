@@ -9,6 +9,10 @@ import { CustomersComponent } from './customers/customers.component';
 import { DutiesComponent } from './duties/duties.component';
 import { CompetenciesComponent } from './competencies/competencies.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { ExamsComponent } from './exams/exams.component';
+import { SalariesComponent } from './salaries/salaries.component';
+import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
 
 
 const routes: Routes = [
@@ -20,7 +24,11 @@ const routes: Routes = [
   {path: 'customers', component : CustomersComponent},
   {path: 'duties', component : DutiesComponent},
   {path: 'competencies', component : CompetenciesComponent},
-  {path: 'employees', component : EmployeesComponent}
+  {path: 'employees', component : EmployeesComponent},
+  {path: 'certificates', component : CertificatesComponent},
+  {path: 'exams', component : ExamsComponent},
+  {path: 'salaries', component : SalariesComponent},
+  {path: 'allsalaries', component : AllSalaryListComponent}
   
 ];
 

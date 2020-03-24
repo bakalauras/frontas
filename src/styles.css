@@ -58,3 +58,7 @@ h4 {
     font-size: 16px;
     font-weight: normal;
 }
+
+.btn-group{
+    background-color: #343a40!important;
+}

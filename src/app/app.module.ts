@@ -47,6 +47,19 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { EmployeeService } from './employees/shared/employee.service';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { CertificateComponent } from './certificates/certificate/certificate.component';
+import { CertificateListComponent } from './certificates/certificate-list/certificate-list.component';
+import { CertificateService } from './certificates/shared/certificate.service';
+import { ExamsComponent } from './exams/exams.component';
+import { ExamComponent } from './exams/exam/exam.component';
+import { ExamListComponent } from './exams/exam-list/exam-list.component';
+import { ExamService } from './exams/shared/exam.service';
+import { SalariesComponent } from './salaries/salaries.component';
+import { SalaryComponent } from './salaries/salary/salary.component';
+import { SalaryListComponent } from './salaries/salary-list/salary-list.component';
+import { SalaryService } from './salaries/shared/salary.service';
+import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +92,17 @@ import { EmployeeService } from './employees/shared/employee.service';
     CompetencyListComponent,
     EmployeesComponent,
     EmployeeComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    CertificatesComponent,
+    CertificateComponent,
+    CertificateListComponent,
+    ExamsComponent,
+    ExamComponent,
+    ExamListComponent,
+    SalariesComponent,
+    SalaryComponent,
+    SalaryListComponent,
+    AllSalaryListComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +120,7 @@ import { EmployeeService } from './employees/shared/employee.service';
     MatCheckboxModule,
     MatSelectModule
   ],
-  providers: [DutyService, CompetencyService, EmployeeService],
+  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
