@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 #toast-container > div {
     opacity: 1;
@@ -69,5 +69,13 @@ input[type=date]
 }
 
 select{
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+  }
+
+form-group {
     width: 100%;
 }
