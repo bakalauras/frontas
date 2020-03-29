@@ -1,20 +1,30 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <input type="hidden" name="SalaryId" [value]="service.formData.SalaryId">
        <div class="form-group">
-        <input type="text" name="Staff" #Type="ngModel" [(ngModel)]="service.formData.Staff" class="form-control" placeholder="Etatas" required maxlength="4">
+        <mat-form-field class="full-width">
+            <mat-label>Etatas</mat-label>
+            <input matInput type="text" name="Staff" #Type="ngModel" [(ngModel)]="service.formData.Staff" placeholder="Įveskite etatą" required maxlength="4">
+          </mat-form-field>
     </div>
     <div class="form-group">
-        <input type="text" name="EmployeeSalary" #Type="ngModel" [(ngModel)]="service.formData.EmployeeSalary" class="form-control" placeholder="Atlyginimas" required maxlength="15">
+        <mat-form-field class="full-width">
+            <mat-label>Atlyginimas</mat-label>
+            <input matInput type="text" name="EmployeeSalary" #Type="ngModel" [(ngModel)]="service.formData.EmployeeSalary" placeholder="Įveskite atlyginimą" required maxlength="15">
+          </mat-form-field>
     </div>
     <div class="form-group">
-        <h4>Data nuo</h4><hr>
-        <input type="date" name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" class="form-control" placeholder="Data nuo" required>
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite pradžios datą</mat-label>
+            <input matInput type="date"name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" placeholder="Data nuo" required>
+          </mat-form-field>
     </div>
     <div class="form-group">
-        <h4>Data iki</h4><hr>
-        <input type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" class="form-control" placeholder="Data iki" required>
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite pabaigos datą</mat-label>
+            <input matInput type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" placeholder="Data iki" required>
+          </mat-form-field>
     </div>
-    <div class="form-group">
-        <button class=" btn-success btn-lg btn-block btn-sm" type="submit" [disabled]="form.invalid"><i class="far fa-save"></i> Saugoti</button>
-    </div>
+      <div class="form-group">
+        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
+      </div>
 </form>

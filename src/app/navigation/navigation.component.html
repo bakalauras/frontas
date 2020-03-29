@@ -2,17 +2,57 @@
   <mat-sidenav 
       #drawer 
       class="sidenav" 
-      
       fixedInViewport="false"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Meniu</mat-toolbar>
+    <mat-toolbar >Atea</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Projektai</a>
-      <a mat-list-item href="#">Sertifikatai</a>
-      <a mat-list-item href="#">Egzaminai</a>
+      <a mat-list-item href="http://localhost:4200/salaries">Pilnas dizainas</a>
     </mat-nav-list>
+    <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+      <mat-expansion-panel-header>
+          Klasifikatoriai
+      </mat-expansion-panel-header>
+      <mat-nav-list dense>
+          <a mat-list-item routerLink="/contests">Konkursai</a>
+          <a mat-list-item routerLink="/duties">Pareigos</a>
+          <a mat-list-item routerLink="/competencies">Kompetencijos</a>
+          <a mat-list-item routerLink="/certificates">Sertifikatai</a>
+          <a mat-list-item routerLink="/exams">Egzaminai</a>
+          <a mat-list-item routerLink="/contestStatuses">Konkurso būsenos</a>
+          <a mat-list-item routerLink="/tenderStates">Pasiūlymo būsenos</a>
+          <a mat-list-item routerLink="/customerTypes">Užsakovo tipai</a>
+          <a mat-list-item routerLink="/projectStageNames">Projekto etapo pavadinimai</a>
+          <a mat-list-item routerLink="/employeeRoles">Darbuotojų rolės</a>
+      </mat-nav-list>
+  </mat-expansion-panel>
+    <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+      <mat-expansion-panel-header>
+          Projektai
+      </mat-expansion-panel-header>
+      <mat-nav-list dense>
+          <a mat-list-item routerLink="/contests">Konkursai</a>
+          <a mat-list-item routerLink="/tenders">Pasiūlymai</a>
+          <a mat-list-item routerLink="/projects">Projektai</a>
+          <a mat-list-item routerLink="/customers">Užsakovai</a>
+          <a mat-list-item routerLink="/contestFiles">Konkurso dokumentai</a>
+          <a mat-list-item routerLink="/tenderFiles">Pasiūlymo dokumentai</a>
+          <a mat-list-item routerLink="/projectStages">Projekto etapai</a>
+          <a mat-list-item routerLink="/stageProgresses">Etapų įvykdymo progresai</a>
+          <a mat-list-item routerLink="/resourcePlans">Resursų planai</a>
+          <a mat-list-item routerLink="/workingTimeRegisters">Darbo laiko registrai</a>
+      </mat-nav-list>
+  </mat-expansion-panel>
+    <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+      <mat-expansion-panel-header>
+          Darbuotojai
+      </mat-expansion-panel-header>
+      <mat-nav-list dense>
+          <a mat-list-item routerLink="/employees">Darbuotojai</a>
+          <a mat-list-item routerLink="allsalaries">Atlyginimai</a>
+      </mat-nav-list>
+  </mat-expansion-panel>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -24,7 +64,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Atea</span>
+      <span>Resursų planavimo sistema</span>
     </mat-toolbar>
     <ng-content></ng-content> 
   </mat-sidenav-content>

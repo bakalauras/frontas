@@ -15,6 +15,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { ContestStatusesComponent } from './contest-statuses/contest-statuses.component';
 import { ContestStatusFormComponent } from './contest-statuses/contest-status-form/contest-status-form.component';
 import { ContestStatusListComponent } from './contest-statuses/contest-status-list/contest-status-list.component';
@@ -172,7 +176,11 @@ import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-li
     MatIconModule,
     MatListModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatExpansionModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService],
   bootstrap: [AppComponent]
