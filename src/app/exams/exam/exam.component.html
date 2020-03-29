@@ -1,19 +1,26 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <input type="hidden" name="ExamId" [value]="service.formData.ExamId">
     <div class="form-group">
-        <input type="text" name="Title" #Type="ngModel" [(ngModel)]="service.formData.Title" class="form-control" placeholder="Pavadinimas" required maxlength="100">
+        <mat-form-field class="full-width">
+            <mat-label>Pavadinimas</mat-label>
+            <input matInput type="text" name="Title" #Type="ngModel" [(ngModel)]="service.formData.Title" placeholder="Įveskite pavadinimą" required maxlength="100">
+          </mat-form-field>
     </div>
     <div class="form-group">
-        <input type="text" name="Code" #Type="ngModel" [(ngModel)]="service.formData.Code" class="form-control" placeholder="Kodas" required maxlength="100">
+        <mat-form-field class="full-width">
+            <mat-label>Kodas</mat-label>
+            <input matInput type="text" name="Code" #Type="ngModel" [(ngModel)]="service.formData.Code" placeholder="Įveskite kodą" required maxlength="100">
+          </mat-form-field>
     </div>
   <div class="form-group">
-    <h4>Pasirinkite sertifikatą</h4>
-    <hr>
-    <select [(ngModel)]="service.formData.CertificateId" name = "service.formData.CertificateId">
-        <option *ngFor="let cert of service.certificatelist" [value]="cert.CertificateId">{{cert.Title}}</option> 
-    </select>
+    <mat-form-field class="full-width">
+        <mat-label>Pasirinkite sertifikatą</mat-label>
+        <mat-select [(ngModel)]="service.formData.CertificateId" name = "service.formData.CertificateId" required>
+          <mat-option *ngFor="let cert of service.certificatelist" [value]="cert.CertificateId">{{cert.Title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
    </div>
     <div class="form-group">
-        <button class=" btn-success btn-lg btn-block btn-sm" type="submit" [disabled]="form.invalid"><i class="far fa-save"></i> Saugoti</button>
+        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
     </div>
 </form>
