@@ -1,9 +1,12 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
     <input type="hidden" name="DutyId" [value]="service.formData.DutyId">
     <div class="form-group">
-        <input type="text" name="Title" #Type="ngModel" [(ngModel)]="service.formData.Title" class="form-control" placeholder="Pavadinimas" required maxlength="100">
+        <mat-form-field class="full-width">
+            <mat-label>Pavadinimas</mat-label>
+            <input matInput type="text" name="Title" #Type="ngModel" [(ngModel)]="service.formData.Title" placeholder="Įveskite pavadinimą" required maxlength="100">
+          </mat-form-field>
     </div>
     <div class="form-group">
-        <button class=" btn-success btn-lg btn-block btn-sm" type="submit" [disabled]="form.invalid"><i class="far fa-save"></i> Saugoti</button>
+        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
     </div>
 </form>
