@@ -13,7 +13,6 @@ export class ResourcePlanService {
   formData:ResourcePlan;
   readonly rootURL = environment.rootURL;
   list : ResourcePlan[];
-  list2: ProjectStage[];
   list3: EmployeeRole[];
   readonly apiName = '/ResourcePlans';
 
@@ -31,18 +30,14 @@ export class ResourcePlanService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/ProjectStages/'+id+'/resourcePlans').
     toPromise()
     .then(res => this.list = res as ResourcePlan[]);
-  }
-
-  refreshProjectStageList()
-  {
-    this.http.get(this.rootURL+'/ProjectStages').
-    toPromise()
-    .then(res => this.list2 = res as ProjectStage[]);
+    }
   }
 
   refreshEmployeeRoleList()

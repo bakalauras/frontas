@@ -8,12 +8,5 @@
         <label for="FileName">Failo pavadinimas</label><label style="color: red;"> *</label>
         <input name="FileName" #Type = "ngModel" [(ngModel)]="service.formData.FileName" type="text" class="form-control" id="FileName" required>
     </div>
-    <div class="form-group">
-        <label for="ContestId">Pasirinkite konkursą</label><label style="color: red;"> *</label>
-        <hr>
-        <select [(ngModel)]="service.formData.ContestId" name = "service.formData.ContestId">
-            <option *ngFor="let contest of service.list2" [value]="contest.ContestId">{{contest.Title}}</option> 
-        </select>
-       </div>
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
 </form>

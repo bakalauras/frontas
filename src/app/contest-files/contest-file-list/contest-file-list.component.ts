@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContestFileService } from '../shared/contest-file.service';
 import { ToastrService } from 'ngx-toastr';
 import { ContestFile } from '../shared/contest-file.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contest-file-list',
@@ -10,11 +11,13 @@ import { ContestFile } from '../shared/contest-file.model';
 })
 export class ContestFileListComponent implements OnInit {
 
-  constructor(public service : ContestFileService, private toastr: ToastrService) { }
-
+  id = null;
+  constructor(public service : ContestFileService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
   ngOnInit() {
-    this.service.refreshContestList();
-    this.service.refreshList();
+    this.service.refreshList(this.id);
     
   }
 
@@ -30,8 +33,7 @@ export class ContestFileListComponent implements OnInit {
     .subscribe(
       res => {
         this.toastr.info('Įrašas sėkmingai ištrintas');
-        this.service.refreshContestList();
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)

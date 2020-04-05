@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WorkingTimeRegisterService } from '../shared/working-time-register.service';
 import { ToastrService } from 'ngx-toastr';
 import { WorkingTimeRegister } from '../shared/working-time-register.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-working-time-register-list',
@@ -10,13 +11,17 @@ import { WorkingTimeRegister } from '../shared/working-time-register.model';
 })
 export class WorkingTimeRegisterListComponent implements OnInit {
 
-  constructor(public service : WorkingTimeRegisterService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service : WorkingTimeRegisterService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
+    }
+
 
   ngOnInit() {
-    this.service.refreshProjectStageList();
     this.service.refreshEmployeeRoleList();
     this.service.refreshEmployeeList();
-    this.service.refreshList();
+    this.service.refreshList(this.id);
   }
 
   populateForm(pd:WorkingTimeRegister)
@@ -31,9 +36,8 @@ export class WorkingTimeRegisterListComponent implements OnInit {
     .subscribe(
       res => {
         this.toastr.info('Įrašas sėkmingai ištrintas');
-        this.service.refreshProjectStageList();
         this.service.refreshEmployeeRoleList();
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)

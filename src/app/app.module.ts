@@ -91,6 +91,8 @@ import { SalaryComponent } from './salaries/salary/salary.component';
 import { SalaryListComponent } from './salaries/salary-list/salary-list.component';
 import { SalaryService } from './salaries/shared/salary.service';
 import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
+import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
@@ -180,7 +182,10 @@ import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-li
     MatTabsModule,
     MatDatepickerModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    GridModule,
+    PDFModule,
+    ExcelModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService],
   bootstrap: [AppComponent]

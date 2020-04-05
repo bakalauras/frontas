@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StageProgressService } from '../shared/stage-progress.service';
 import { ToastrService } from 'ngx-toastr';
 import { StageProgress } from '../shared/stage-progress.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stage-progress-list',
@@ -10,11 +11,14 @@ import { StageProgress } from '../shared/stage-progress.model';
 })
 export class StageProgressListComponent implements OnInit {
 
-  constructor(public service : StageProgressService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service : StageProgressService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
+    }
 
   ngOnInit() {
-    this.service.refreshProjectStageList();
-    this.service.refreshList();
+    this.service.refreshList(this.id);
   }
 
   populateForm(pd:StageProgress)
@@ -29,8 +33,7 @@ export class StageProgressListComponent implements OnInit {
     .subscribe(
       res => {
         this.toastr.info('Įrašas sėkmingai ištrintas');
-        this.service.refreshProjectStageList();
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)

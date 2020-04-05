@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcePlanService } from '../shared/resource-plan.service';
 import { ToastrService } from 'ngx-toastr';
 import { ResourcePlan } from '../shared/resource-plan.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resource-plan-list',
@@ -10,12 +11,15 @@ import { ResourcePlan } from '../shared/resource-plan.model';
 })
 export class ResourcePlanListComponent implements OnInit {
 
-  constructor(public service : ResourcePlanService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service : ResourcePlanService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
+    }
 
   ngOnInit() {
-    this.service.refreshProjectStageList();
     this.service.refreshEmployeeRoleList();
-    this.service.refreshList();
+    this.service.refreshList(this.id);
   }
 
   populateForm(pd:ResourcePlan)
@@ -30,9 +34,8 @@ export class ResourcePlanListComponent implements OnInit {
     .subscribe(
       res => {
         this.toastr.info('Įrašas sėkmingai ištrintas');
-        this.service.refreshProjectStageList();
         this.service.refreshEmployeeRoleList();
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)

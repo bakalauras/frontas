@@ -4,18 +4,20 @@ import { environment } from 'src/environments/environment';
 import { Contest } from 'src/app/contests/shared/contest.model';
 import { HttpClient } from '@angular/common/http';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ContestFileService {
 
+
   formData:ContestFile;
   readonly rootURL = environment.rootURL;
   list : ContestFile[];
-  list2: Contest[];
   readonly apiName = '/ContestFiles';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {}
 
   postRecord(){
     return this.http.post(this.rootURL+this.apiName,this.formData);
@@ -29,22 +31,13 @@ export class ContestFileService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/contests/'+id+'/files').
     toPromise()
     .then(res => this.list = res as ContestFile[]);
-  }
-
-  refreshContestList()
-  {
-    this.http.get(this.rootURL+'/Contests').
-    toPromise()
-    .then(res => this.list2 = res as Contest[]);
-  }
-
-  getContestTitle(id)
-  {
-        return this.list2.find(x => x.ContestId == id).Title;
+    }
   }
 }

@@ -1,30 +1,49 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="ProjectId" [value]="service.formData.ProjectId">
-    <div class="form-group">
-        <label for="Title">Pavadinimas</label><label style="color: red;"> *</label>
-        <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" placeholder="Įveskite projekto pavadinimą" class="form-control" id="Title" required>
-    </div>
-    <div class="form-group">
-        <label for="ContractNumber">Sutarties numeris</label><label style="color: red;"> *</label>
-        <input name="ContractNumber" #Type = "ngModel" [(ngModel)]="service.formData.ContractNumber" type="text" placeholder="Įveskite projekto sutarties numerį" class="form-control" id="ContractNumber" required>
-    </div>
-    <div class="form-group">
-        <label for="Budget">Biudžetas</label><label style="color: red;"> *</label>
-        <input name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" class="form-control" id="Budget" required>
-    </div>
-    <div class="form-group">
-        <label for="CustomerId">Pasirinkite projekto užsakovą</label><label style="color: red;"> *</label>
-        <hr>
-        <select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId">
-            <option *ngFor="let customer of service.list2" [value]="customer.CustomerId">{{customer.Name}}</option> 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="TenderId">Pasirinkite projekto pasiūlymą</label><label style="color: red;"> *</label>
-        <hr>
-          <select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId">
-              <option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.TenderId}}</option> 
-          </select>
-      </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
-</form>
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Projekto duomenys</h1>
+    <hr>
+    <mat-tab-group>
+        <nav mat-tab-nav-bar></nav>
+        <mat-tab label="Bendra informacija">
+            <form #form="ngForm" autocomplete="off">
+                <input type="hidden" name="ProjectId" [value]="service.formData.ProjectId">
+                <div class="form-group">
+                    <label for="Title">Pavadinimas</label><label style="color: red;"> *</label>
+                    <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" placeholder="Įveskite projekto pavadinimą" class="form-control" id="Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="ContractNumber">Sutarties numeris</label><label style="color: red;"> *</label>
+                    <input name="ContractNumber" #Type = "ngModel" [(ngModel)]="service.formData.ContractNumber" type="text" placeholder="Įveskite projekto sutarties numerį" class="form-control" id="ContractNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="Budget">Biudžetas</label><label style="color: red;"> *</label>
+                    <input name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" class="form-control" id="Budget" required>
+                </div>
+                <div class="form-group">
+                    <label for="CustomerId">Pasirinkite projekto užsakovą</label><label style="color: red;"> *</label>
+                    <hr>
+                    <select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId">
+                        <option *ngFor="let customer of service.list2" [value]="customer.CustomerId">{{customer.Name}}</option> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="TenderId">Pasirinkite projekto pasiūlymą</label><label style="color: red;"> *</label>
+                    <hr>
+                      <select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId">
+                          <option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.TenderId}}</option> 
+                      </select>
+                  </div>
+                  <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
+                  <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id!=0" (click)="delete(service.formData.ProjectId)">Ištrinti projektą</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Etapai" *ngIf="this.id!=0" >
+            <app-project-stages></app-project-stages>
+        </mat-tab>
+        <mat-tab label="Rodikliai" *ngIf="this.id!=0" >
+            Kol kas nepadaryta
+        </mat-tab>
+        <mat-tab label="Grafikai" *ngIf="this.id!=0" >
+            Kol kas nepadaryta
+        </mat-tab>    
+      </mat-tab-group>
+</div>

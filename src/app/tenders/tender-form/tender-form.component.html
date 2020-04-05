@@ -1,26 +1,38 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="TenderId" [value]="service.formData.TenderId">
-    <div class="form-group">
-      <label for="ContestId">Pasirinkite pasiūlymo konkursą</label><label style="color: red;"> *</label>
-      <hr>
-        <select [(ngModel)]="service.formData.ContestId" name = "service.formData.v">
-            <option *ngFor="let contest of service.list3" [value]="contest.ContestId">{{contest.Title}}</option> 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="Price">Kaina</label><label style="color: red;"> *</label>
-        <input name="Price" #Type = "ngModel" [(ngModel)]="service.formData.Price" type="number" class="form-control" id="Price" required>
-    </div>
-    <div class="form-group">
-        <label for="FillingDate">Pateikimo data</label><label style="color: red;"> *</label>
-        <input name="FillingDate" #Type = "ngModel" [(ngModel)]="service.formData.FillingDate" type="datetime-local" class="form-control" id="FillingDate" required>
-    </div>
-    <div class="form-group">
-        <label for="TenderState">Pasirinkite pasiūlymo būseną</label><label style="color: red;"> *</label>
-        <hr>
-        <select [(ngModel)]="service.formData.TenderState" name = "service.formData.TenderState">
-            <option *ngFor="let tenderState of service.list2" [value]="tenderState.TenderStateId">{{tenderState.Name}}</option> 
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
-</form>
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Pasiūlymo duomenys</h1>
+    <hr>
+    <mat-tab-group>
+        <nav mat-tab-nav-bar></nav>
+        <mat-tab label="Bendra informacija">
+            <form #form="ngForm" autocomplete="off">
+                <input type="hidden" name="TenderId" [value]="service.formData.TenderId">
+                <div class="form-group">
+                  <label for="ContestId">Pasirinkite pasiūlymo konkursą</label><label style="color: red;"> *</label>
+                  <hr>
+                    <select [(ngModel)]="service.formData.ContestId" name = "service.formData.v">
+                        <option *ngFor="let contest of service.list3" [value]="contest.ContestId">{{contest.Title}}</option> 
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Price">Kaina</label><label style="color: red;"> *</label>
+                    <input name="Price" #Type = "ngModel" [(ngModel)]="service.formData.Price" type="number" class="form-control" id="Price" required>
+                </div>
+                <div class="form-group">
+                    <label for="FillingDate">Pateikimo data</label><label style="color: red;"> *</label>
+                    <input name="FillingDate" #Type = "ngModel" [(ngModel)]="service.formData.FillingDate" type="date" class="form-control" id="FillingDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="TenderState">Pasirinkite pasiūlymo būseną</label><label style="color: red;"> *</label>
+                    <hr>
+                    <select [(ngModel)]="service.formData.TenderState" name = "service.formData.TenderState">
+                        <option *ngFor="let tenderState of service.list2" [value]="tenderState.TenderStateId">{{tenderState.Name}}</option> 
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
+                <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id!=0" (click)="delete(service.formData.TenderId)">Ištrinti pasiūlymą</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Failai" *ngIf="this.id!=0" >
+            <app-tender-files></app-tender-files> </mat-tab>
+      </mat-tab-group>
+</div>

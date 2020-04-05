@@ -2,22 +2,15 @@
     <input type="hidden" name="StageProgressId" [value]="service.formData.StageProgressId">
     <div class="form-group">
         <label for="DateFrom">Data nuo</label><label style="color: red;"> *</label>
-        <input name="DateFrom" #Type = "ngModel" [(ngModel)]="service.formData.DateFrom" type="datetime-local" class="form-control" id="DateFrom" required>
+        <input name="DateFrom" #Type = "ngModel" [(ngModel)]="service.formData.DateFrom" type="date" class="form-control" id="DateFrom" required>
     </div>
     <div class="form-group">
         <label for="DateTo">Data iki</label><label style="color: red;"> *</label>
-        <input name="DateTo" #Type = "ngModel" [(ngModel)]="service.formData.DateTo" type="datetime-local" class="form-control" id="DateTo" required>
+        <input name="DateTo" #Type = "ngModel" [(ngModel)]="service.formData.DateTo" type="date" class="form-control" id="DateTo" required>
     </div>
     <div class="form-group">
         <label for="Percentage">Procentas</label><label style="color: red;"> *</label>
         <input name="Percentage" #Type = "ngModel" [(ngModel)]="service.formData.Percentage" type="number" class="form-control" id="Percentage" required>
-    </div>
-    <div class="form-group">
-      <label for="ProjectStageId">Pasirinkite projekto etapą</label><label style="color: red;"> *</label>
-      <hr>
-        <select [(ngModel)]="service.formData.ProjectStageId" name = "service.formData.ProjectStageId">
-            <option *ngFor="let projectStage of service.list2" [value]="projectStage.ProjectStageId">{{projectStage.ProjectStageId}}</option> 
-        </select>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
 </form>

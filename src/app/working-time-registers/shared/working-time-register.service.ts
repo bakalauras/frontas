@@ -13,8 +13,7 @@ export class WorkingTimeRegisterService {
 
   formData:WorkingTimeRegister;
   readonly rootURL = environment.rootURL;
-  list : WorkingTimeRegister[];
-  list2: ProjectStage[];
+  list : WorkingTimeRegister[];;
   list3: EmployeeRole[];
   list4: Employee[];
   readonly apiName = '/WorkingTimeRegisters';
@@ -33,18 +32,14 @@ export class WorkingTimeRegisterService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/ProjectStages/'+id+'/workingTimeRegisters').
     toPromise()
     .then(res => this.list = res as WorkingTimeRegister[]);
-  }
-
-  refreshProjectStageList()
-  {
-    this.http.get(this.rootURL+'/ProjectStages').
-    toPromise()
-    .then(res => this.list2 = res as ProjectStage[]);
+    }
   }
 
   refreshEmployeeRoleList()
