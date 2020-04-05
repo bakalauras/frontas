@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContestFileService } from '../shared/contest-file.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contest-file-form',
@@ -10,11 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class ContestFileFormComponent implements OnInit {
 
+  id = null;
   constructor(public service: ContestFileService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
 
   ngOnInit() {
-    this.service.refreshContestList();
     this.resetForm();
     
   }
@@ -27,7 +31,7 @@ export class ContestFileFormComponent implements OnInit {
       ContestFileId : 0,
       Description : '',
       FileName : '',
-      ContestId : 0
+      ContestId : this.id
     }
   }
 
@@ -44,7 +48,7 @@ export class ContestFileFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)
@@ -59,7 +63,7 @@ export class ContestFileFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err)

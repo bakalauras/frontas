@@ -12,7 +12,6 @@ export class StageProgressService {
   formData:StageProgress;
   readonly rootURL = environment.rootURL;
   list : StageProgress[];
-  list2: ProjectStage[];
   readonly apiName = '/StageProgresses';
 
   constructor(private http:HttpClient) { }
@@ -29,17 +28,13 @@ export class StageProgressService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/ProjectStages/'+id+'/stageProgresses').
     toPromise()
     .then(res => this.list = res as StageProgress[]);
-  }
-
-  refreshProjectStageList()
-  {
-    this.http.get(this.rootURL+'/ProjectStages').
-    toPromise()
-    .then(res => this.list2 = res as ProjectStage[]);
+    }
   }
 }

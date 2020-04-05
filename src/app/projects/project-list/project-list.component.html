@@ -1,20 +1,34 @@
-<table class="table table-hover">
-    <thead>
-            <tr>
-                    <th>Pavadinimas</th>
-                    <th>Sutarties numeris</th>
-                    <th>Biudžetas</th>
-                    <th>Užsakovas</th>
-                    <th></th>
-            </tr></thead>
-        <tbody>
-    <tr *ngFor="let pd of service.list">
-<td (click) = "populateForm(pd)">{{pd.Title}}</td>
-<td (click) = "populateForm(pd)">{{pd.ContractNumber}}</td>
-<td (click) = "populateForm(pd)">{{pd.Budget}}</td>
-<td (click) = "populateForm(pd)">{{this.service.getCustomerName(pd.CustomerId)}}</td>
-<td>
-    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ProjectId)"></i>
-</td>
-    </tr></tbody>
-</table>
+<kendo-grid
+[data]="gridView"
+[pageSize]="state.take"
+[skip]="state.skip"
+[filter] ="state.filter"
+[pageable]="{pageSizes: true}"
+[groupable]="true"
+[group]="state.group"
+[resizable]="true"
+filterable="menu"
+[sortable]="true"
+[sort]="state.sort"
+(dataStateChange)="dataStateChange($event)"
+(pageChange)="pageChange($event)">
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+    <button routerLink="/project/0">Pridėti projektą</button>
+</ng-template>
+    <kendo-grid-column field="Title" title="Pavadinimas" width="250"  minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a [routerLink]="['/project/', dataItem.ProjectId]" >{{dataItem.Title}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="ContractNumber" title="Sutarties numeris" minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="Budget" title="Biudžetas"   minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-excel fileName="Projektai.xlsx"></kendo-grid-excel>
+</kendo-grid>

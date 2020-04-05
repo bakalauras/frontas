@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourcePlanService } from '../shared/resource-plan.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-resource-plan-form',
@@ -10,14 +11,16 @@ import { NgForm } from '@angular/forms';
 })
 export class ResourcePlanFormComponent implements OnInit {
 
+  id2 = null;
   constructor(public service: ResourcePlanService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id2 = this.route.snapshot.paramMap.get('id2');
+    }
 
   ngOnInit() {
-    this.service.refreshProjectStageList();
     this.service.refreshEmployeeRoleList();
     this.resetForm();
-    
   }
 
   resetForm(form?: NgForm)
@@ -29,7 +32,7 @@ export class ResourcePlanFormComponent implements OnInit {
       DateFrom : null,
       DateTo : null,
       Hours : 0,
-      ProjectStageId : 0,
+      ProjectStageId : this.id2,
       EmployeeRoleId : 0
     }
   }
@@ -47,7 +50,7 @@ export class ResourcePlanFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList();
+        this.service.refreshList(this.id2);
       },
       err => {
         console.log(err)
@@ -62,7 +65,7 @@ export class ResourcePlanFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList();
+        this.service.refreshList(this.id2);
       },
       err => {
         console.log(err)

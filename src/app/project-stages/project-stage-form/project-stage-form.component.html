@@ -1,38 +1,53 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="ProjectStageId" [value]="service.formData.ProjectStageId">
-    <div class="form-group">
-        <label for="ProjectId">Pasirinkite projekto pavadinimą</label><label style="color: red;"> *</label>
-        <hr>
-        <select [(ngModel)]="service.formData.ProjectId" name = "service.formData.ProjectId">
-            <option *ngFor="let project of service.list3" [value]="project.ProjectId">{{project.Title}}</option> 
-        </select>
-       </div>
-       <div class="form-group">
-        <label for="ProjectStageNameId">Pasirinkite etapo pavadinimą</label><label style="color: red;"> *</label>
-        <hr>
-        <select [(ngModel)]="service.formData.ProjectStageNameId" name = "service.formData.ProjectStageNameId">
-            <option *ngFor="let stageName of service.list2" [value]="stageName.ProjctStageNameId">{{stageName.StageName}}</option> 
-        </select>
-       </div>
-    <div class="form-group">
-      <label for="ScheduledStartDate">Planuojama pradžios data</label><label style="color: red;"> *</label>
-      <input name="ScheduledStartDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledStartDate" type="datetime-local" class="form-control" id="ScheduledStartDate" placeholder="Įveskite failo aprašymą" required>
-    </div>
-    <div class="form-group">
-        <label for="StartDate">Reali pradžios data</label><label style="color: red;"> *</label>
-        <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="datetime-local" class="form-control" id="StartDate" required>
-    </div>
-    <div class="form-group">
-        <label for="ScheduledEndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
-        <input name="ScheduledEndDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledEndDate" type="datetime-local" class="form-control" id="ScheduledEndDate" required>
-    </div>
-    <div class="form-group">
-        <label for="EndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
-        <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="datetime-local" class="form-control" id="EndDate" required>
-    </div>
-    <div class="form-group">
-        <label for="StageBudget">Etapo biudžetas</label><label style="color: red;"> *</label>
-        <input name="StageBudget" #Type = "ngModel" [(ngModel)]="service.formData.StageBudget" type="number" class="form-control" id="StageBudget" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
-</form>
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Projekto etapo duomenys</h1>
+    <hr>
+    <mat-tab-group>
+        <nav mat-tab-nav-bar></nav>
+        <mat-tab label="Bendra informacija">
+            <form #form="ngForm" autocomplete="off">
+                <input type="hidden" name="ProjectStageId" [value]="service.formData.ProjectStageId">
+                   <div class="form-group">
+                    <label for="ProjectStageNameId">Pasirinkite etapo pavadinimą</label><label style="color: red;"> *</label>
+                    <hr>
+                    <select [(ngModel)]="service.formData.ProjectStageNameId" name = "service.formData.ProjectStageNameId">
+                        <option *ngFor="let stageName of service.list2" [value]="stageName.ProjctStageNameId">{{stageName.StageName}}</option> 
+                    </select>
+                   </div>
+                <div class="form-group">
+                  <label for="ScheduledStartDate">Planuojama pradžios data</label><label style="color: red;"> *</label>
+                  <input name="ScheduledStartDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledStartDate" type="date" class="form-control" id="ScheduledStartDate" placeholder="Įveskite failo aprašymą" required>
+                </div>
+                <div class="form-group">
+                    <label for="StartDate">Reali pradžios data</label><label style="color: red;"> *</label>
+                    <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="date" class="form-control" id="StartDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="ScheduledEndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
+                    <input name="ScheduledEndDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledEndDate" type="date" class="form-control" id="ScheduledEndDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="EndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
+                    <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="date" class="form-control" id="EndDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="StageBudget">Etapo biudžetas</label><label style="color: red;"> *</label>
+                    <input name="StageBudget" #Type = "ngModel" [(ngModel)]="service.formData.StageBudget" type="number" class="form-control" id="StageBudget" required>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
+                <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id2!=0" (click)="delete(service.formData.ProjectStageId)">Ištrinti projekto etapą</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Resursų planas" *ngIf="this.id2!=0" >
+            <app-resource-plans></app-resource-plans>
+        </mat-tab>
+        <mat-tab label="Darbo laiko registras" *ngIf="this.id2!=0" >
+            <app-working-time-registers></app-working-time-registers>
+        </mat-tab>
+        <mat-tab label="Etapo įvykdymo progresas" *ngIf="this.id2!=0" >
+            <app-stage-progresses></app-stage-progresses>
+        </mat-tab>
+        <mat-tab label="Kompetencijos" *ngIf="this.id2!=0" >
+            Reikia Skaistės Etapo kompetencijų
+        </mat-tab>
+      </mat-tab-group>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TenderService } from '../shared/tender.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tender-form',
@@ -10,18 +11,23 @@ import { NgForm } from '@angular/forms';
 })
 export class TenderFormComponent implements OnInit {
 
+  id = null;
   constructor(public service: TenderService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
 
   ngOnInit() {
     this.service.refreshContestsList();
     this.service.refreshTenderStateList();
     this.resetForm();
-    
   }
 
   resetForm(form?: NgForm)
   {
+    this.service.getRecord(this.id);
     if(form != null)
       form.resetForm();
     this.service.formData = {
@@ -40,13 +46,31 @@ export class TenderFormComponent implements OnInit {
       this.update(form);
   }
 
+  delete(TenderId)
+  {
+    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
+      this.service.deleteRecord(TenderId)
+      .subscribe(
+        res => {
+          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.router.navigateByUrl('/tenders');
+        },
+        err => {
+          console.log(err)
+          this.toastr.error('Įvyko klaida');
+        }
+      )
+      }
+    }
+
   insert(form:NgForm)
   {
     this.service.postRecord().subscribe(
       res => {
-        this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList();
+        this.router.navigateByUrl('/tender/'+res.TenderId);
+        this.id = res.TenderId;
+        this.service.formData.TenderId = res.TenderId;
       },
       err => {
         console.log(err)
@@ -61,7 +85,6 @@ export class TenderFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList();
       },
       err => {
         console.log(err)

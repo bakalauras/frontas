@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StageProgressService } from '../shared/stage-progress.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stage-progress-form',
@@ -10,11 +11,14 @@ import { NgForm } from '@angular/forms';
 })
 export class StageProgressFormComponent implements OnInit {
 
+  id2 = null;
   constructor(public service: StageProgressService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id2 = this.route.snapshot.paramMap.get('id2');
+    }
 
   ngOnInit() {
-    this.service.refreshProjectStageList();
     this.resetForm();
     
   }
@@ -28,7 +32,7 @@ export class StageProgressFormComponent implements OnInit {
       DateFrom : null,
       DateTo : null,
       Percentage : 0,
-      ProjectStageId : 0
+      ProjectStageId : this.id2
     }
   }
 
@@ -45,7 +49,7 @@ export class StageProgressFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList();
+        this.service.refreshList(this.id2);
       },
       err => {
         console.log(err)
@@ -60,7 +64,7 @@ export class StageProgressFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList();
+        this.service.refreshList(this.id2);
       },
       err => {
         console.log(err)

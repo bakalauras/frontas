@@ -14,3 +14,70 @@
 </td>
     </tr></tbody>
 </table>
+
+<kendo-grid
+[data]="gridView"
+[pageSize]="state.take"
+[skip]="state.skip"
+[filter] ="state.filter"
+[pageable]="{pageSizes: true}"
+[groupable]="true"
+[group]="state.group"
+[resizable]="true"
+filterable="menu"
+[sortable]="true"
+[sort]="state.sort"
+(dataStateChange)="dataStateChange($event)"
+(pageChange)="pageChange($event)">
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+    <button data-toggle="modal" data-target="#exampleModalCenter" type="button" >Įvesti naują įrašą</button>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Naujas failas</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form #form="ngForm" autocomplete="off" >
+                    <div class="modal-body">
+                        <input type="hidden" name="TenderFileId" [value]="service.formData.TenderFileId">
+                        <div class="form-group">
+                          <label for="Description">Aprašymas</label><label style="color: red;"> *</label>
+                          <input name="Description" #Type = "ngModel" [(ngModel)]="service.formData.Description" type="text" class="form-control" id="Description" placeholder="Įveskite failo aprašymą" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="FileName">Failo pavadinimas</label><label style="color: red;"> *</label>
+                            <input name="FileName" #Type = "ngModel" [(ngModel)]="service.formData.FileName" type="text" class="form-control" id="FileName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="TenderId">Pasirinkite pasiūlymą</label><label style="color: red;"> *</label>
+                            <hr>
+                            <select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId">
+                                <option *ngFor="let tender of service.list2" [value]="tender.TenderId">{{tender.TenderId}}</option> 
+                            </select>
+                           </div>
+                     </div>
+                     <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Įrašyti</button>
+                     </div>
+                </form>
+             </div>
+          </div>
+        </div>
+</ng-template>
+    <kendo-grid-column field="Description" title="Aprašymas" width="250"  minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="FileName" title="Failas" width="150" minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column (click)="onDelete(5)" >
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <button class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(dataItem.TenderFileId)"></button>
+            </ng-template>
+        
+    </kendo-grid-column>
+    <kendo-grid-excel fileName="Eksportas.xlsx"></kendo-grid-excel>
+</kendo-grid>
+

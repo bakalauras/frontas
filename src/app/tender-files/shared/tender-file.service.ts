@@ -3,6 +3,7 @@ import { TenderFile } from './tender-file.model';
 import { environment } from 'src/environments/environment';
 import { Tender } from 'src/app/tenders/shared/tender.model';
 import { HttpClient } from '@angular/common/http';
+import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
 
 @Injectable({
   providedIn: 'root'
@@ -29,17 +30,13 @@ export class TenderFileService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/tenders/'+id+'/files').
     toPromise()
     .then(res => this.list = res as TenderFile[]);
-  }
-
-  refreshTenderList()
-  {
-    this.http.get(this.rootURL+'/Tenders').
-    toPromise()
-    .then(res => this.list2 = res as Tender[]);
+    }
   }
 }

@@ -15,12 +15,13 @@ export class ContestService {
   list : Contest[];
   list2: ContestStatus[];
   list3 : Customer[];
+  selected : Contest;
   readonly apiName = '/Contests';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient){}
 
   postRecord(){
-    return this.http.post(this.rootURL+this.apiName,this.formData);
+    return this.http.post<{ContestId : number}>(this.rootURL+this.apiName,this.formData);
   }
 
   putRecord(){
@@ -29,6 +30,16 @@ export class ContestService {
 
   deleteRecord(id){
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
+  }
+
+  getRecord(id){
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+this.apiName+'/'+id).
+    toPromise()
+    .then(res => this.formData = res as Contest);
+    }
+    
   }
 
   refreshList()

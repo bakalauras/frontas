@@ -20,7 +20,7 @@ export class ProjectStageService {
   constructor(private http:HttpClient) { }
 
   postRecord(){
-    return this.http.post(this.rootURL+this.apiName,this.formData);
+    return this.http.post<{ProjectStageId : number}>(this.rootURL+this.apiName,this.formData);
   }
 
   putRecord(){
@@ -31,11 +31,24 @@ export class ProjectStageService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  getRecord(id){
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+this.apiName+'/'+id).
+    toPromise()
+    .then(res => this.formData = res as ProjectStage);
+    }
+    
+  }
+
+  refreshList(id)
   {
-    this.http.get(this.rootURL+this.apiName).
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/projects/'+id+'/projectStages').
     toPromise()
     .then(res => this.list = res as ProjectStage[]);
+    }
   }
 
   refreshProjectStageNamesList()
