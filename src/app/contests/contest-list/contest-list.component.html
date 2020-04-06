@@ -1,29 +1,45 @@
-
-    <table class="table table-hover">
-        <thead>
-                <tr>
-                        <th>Pavadinimas</th>
-                        <th>Biudžetas</th>
-                        <th>Paskelbimo data</th>
-                        <th>Pateikimo data</th>
-                        <th>Kainų plėšimo data</th>
-                        <th>Pretenzijų pateikimo data</th>
-                        <th>Būsena</th>
-                        <th>Užsakovas</th>
-                        <th></th>
-                </tr></thead>
-            <tbody>
-        <tr *ngFor="let pd of service.list" >
-    <td (click) = "populateForm(pd)">{{pd.Title}}</td>
-    <td (click) = "populateForm(pd)">{{pd.Budget}}</td>
-    <td (click) = "populateForm(pd)">{{pd.PublicationDate | date:'yyyy-MM-dd'}}</td>
-    <td (click) = "populateForm(pd)">{{pd.FillingDate | date:'yyyy-MM-dd'}}</td>
-    <td (click) = "populateForm(pd)">{{pd.PriceRobbingDate | date:'yyyy-MM-dd'}}</td>
-    <td (click) = "populateForm(pd)">{{pd.ClaimsFillingDate | date:'yyyy-MM-dd'}}</td>
-    <td (click) = "populateForm(pd)">{{this.service.getContestStatusName(pd.ContestStatusId)}}</td>
-    <td (click) = "populateForm(pd)">{{this.service.getCustomerName(pd.CustomerId)}}</td>
-    <td>
-        <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ContestId)"></i>
-    </td>
-        </tr></tbody>
-    </table>
+<kendo-grid
+[data]="gridView"
+[pageSize]="state.take"
+[skip]="state.skip"
+[filter] ="state.filter"
+[pageable]="{pageSizes: true}"
+[groupable]="true"
+[group]="state.group"
+[resizable]="true"
+filterable="menu"
+[sortable]="true"
+[sort]="state.sort"
+(dataStateChange)="dataStateChange($event)"
+(pageChange)="pageChange($event)">
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+    <button routerLink="/contest/0">Pridėti konkursą</button>
+</ng-template>
+    <kendo-grid-column field="Title" title="Pavadinimas" width="250"  minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a [routerLink]="['/contest/', dataItem.ContestId]" >{{dataItem.Title}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="Budget" title="Biudžetas" minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="PublicationDate" title="Paskelbimo data"   minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="FillingDate" title="Pateikimo data"  minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="PriceRobbingDate" title="Kainų plėšimo data"   minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="ClaimsFillingDate" title="Pretenzijų pateikimo data"  minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="ContestStatusId" title="Būsena"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getContestStatusName(dataItem.ContestStatusId)}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-excel fileName="Konkursai.xlsx"></kendo-grid-excel>
+</kendo-grid>

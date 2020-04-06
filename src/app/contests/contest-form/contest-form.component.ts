@@ -2,26 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { ContestService } from '../shared/contest.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contest-form',
   templateUrl: './contest-form.component.html',
-  styles: []
+  styles: [],
+  providers: [DatePipe]
 })
 export class ContestFormComponent implements OnInit {
 
+  id = null;
   constructor(public service: ContestService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private datePipe: DatePipe,
+    private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
 
   ngOnInit() {
     this.service.refreshContestStatusList();
     this.service.refreshCustomerList();
     this.resetForm();
-    
   }
 
-  resetForm(form?: NgForm)
+  resetForm(form?: NgForm, )
   {
+    this.service.getRecord(this.id);
     if(form != null)
       form.resetForm();
     this.service.formData = {
@@ -38,19 +46,37 @@ export class ContestFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    if(this.service.formData.ContestId ==0)
+      if(this.service.formData.ContestId ==0)
       this.insert(form);
     else
       this.update(form);
   }
 
+  delete(ContestId)
+  {
+    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
+      this.service.deleteRecord(ContestId)
+      .subscribe(
+        res => {
+          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.router.navigateByUrl('/contests');
+        },
+        err => {
+          console.log(err)
+          this.toastr.error('Įvyko klaida');
+        }
+      )
+      }
+    }
+
   insert(form:NgForm)
   {
     this.service.postRecord().subscribe(
       res => {
-        this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList();
+        this.router.navigateByUrl('/contest/'+res.ContestId);
+        this.id = res.ContestId;
+        this.service.formData.ContestId = res.ContestId;
       },
       err => {
         console.log(err)
@@ -65,7 +91,6 @@ export class ContestFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList();
       },
       err => {
         console.log(err)

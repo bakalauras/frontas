@@ -112,6 +112,7 @@ import { StageCompetencyListComponent } from './stage-competencies/stage-compete
 import { MatNativeDateModule } from '@angular/material/core';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import { UploadComponent } from './upload/upload.component';
+import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-grid';
 
 @NgModule({
   declarations: [
@@ -221,7 +222,10 @@ import { UploadComponent } from './upload/upload.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    GridModule,
+    PDFModule,
+    ExcelModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
      { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }],
