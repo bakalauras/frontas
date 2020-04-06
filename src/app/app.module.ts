@@ -91,6 +91,27 @@ import { SalaryComponent } from './salaries/salary/salary.component';
 import { SalaryListComponent } from './salaries/salary-list/salary-list.component';
 import { SalaryService } from './salaries/shared/salary.service';
 import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
+import { EmployeeDutiesComponent } from './employee-duties/employee-duties.component';
+import { EmployeeDutyFormComponent } from './employee-duties/employee-duty-form/employee-duty-form.component';
+import { EmployeeDutyListComponent } from './employee-duties/employee-duty-list/employee-duty-list.component';
+import { EmployeeExamsComponent } from './employee-exams/employee-exams.component';
+import { EmployeeExamFormComponent } from './employee-exams/employee-exam-form/employee-exam-form.component';
+import { EmployeeExamListComponent } from './employee-exams/employee-exam-list/employee-exam-list.component';
+import { EmployeeCertificatesComponent } from './employee-certificates/employee-certificates.component';
+import { EmployeeCertificateFormComponent } from './employee-certificates/employee-certificate-form/employee-certificate-form.component';
+import { EmployeeCertificateListComponent } from './employee-certificates/employee-certificate-list/employee-certificate-list.component';
+import { EmployeeCompetenciesComponent } from './employee-competencies/employee-competencies.component';
+import { EmployeeCompetencyFormComponent } from './employee-competencies/employee-competency-form/employee-competency-form.component';
+import { EmployeeCompetencyListComponent } from './employee-competencies/employee-competency-list/employee-competency-list.component';
+import { ContestCertificatesComponent } from './contest-certificates/contest-certificates.component';
+import { ContestCertificateFormComponent } from './contest-certificates/contest-certificate-form/contest-certificate-form.component';
+import { ContestCertificateListComponent } from './contest-certificates/contest-certificate-list/contest-certificate-list.component';
+import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
+import { StageCompetencyFormComponent } from './stage-competencies/stage-competency-form/stage-competency-form.component';
+import { StageCompetencyListComponent } from './stage-competencies/stage-competency-list/stage-competency-list.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MAT_DATE_LOCALE} from '@angular/material';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -160,7 +181,26 @@ import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-li
     SalariesComponent,
     SalaryComponent,
     SalaryListComponent,
-    AllSalaryListComponent
+    AllSalaryListComponent,
+    EmployeeDutiesComponent,
+    EmployeeDutyFormComponent,
+    EmployeeDutyListComponent,
+    EmployeeExamsComponent,
+    EmployeeExamFormComponent,
+    EmployeeExamListComponent,
+    EmployeeCertificatesComponent,
+    EmployeeCertificateFormComponent,
+    EmployeeCertificateListComponent,
+    EmployeeCompetenciesComponent,
+    EmployeeCompetencyFormComponent,
+    EmployeeCompetencyListComponent,
+    ContestCertificatesComponent,
+    ContestCertificateFormComponent,
+    ContestCertificateListComponent,
+    StageCompetenciesComponent,
+    StageCompetencyFormComponent,
+    StageCompetencyListComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -179,10 +219,12 @@ import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-li
     MatSelectModule,
     MatTabsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatInputModule,
     MatExpansionModule
   ],
-  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService],
+  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
+     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

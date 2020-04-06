@@ -23,7 +23,8 @@ export class CertificateComponent implements OnInit {
       CertificateId: 0,
       Title: '',
       Code: '',
-      Technology:''
+      Technology:'',
+      Order: 0
     }
   }
 

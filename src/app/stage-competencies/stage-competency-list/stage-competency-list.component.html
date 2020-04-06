@@ -1,0 +1,22 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Kiekis</th>
+                <th>Kompetencija</th>
+                <th>Projekto etapas</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.Amount}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getCompetencyTitle(pd.CompetencyId)}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getProjectStageName(pd.ProjectStageId)}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.StageCompetencyId)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

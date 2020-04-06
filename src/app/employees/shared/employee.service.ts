@@ -37,4 +37,11 @@ export class EmployeeService {
     return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
    // return EmployeeId;
   }
+
+  getActiveParam(id)
+  {
+    if(this.formData.IsActive == true)
+    return "Aktyvus";
+    else "Neaktyvus";
+  }
 }

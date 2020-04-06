@@ -12,6 +12,12 @@
             <input matInput type="text" name="Code" #Type="ngModel" [(ngModel)]="service.formData.Code" placeholder="Įveskite kodą" required maxlength="100">
           </mat-form-field>
     </div>
+    <div class="form-group">
+      <mat-form-field class="full-width">
+          <mat-label>Lygis</mat-label>
+          <input matInput type="text" name="Order" #Type="ngModel" [(ngModel)]="service.formData.Order" placeholder="Įveskite lygį" required maxlength="100">
+        </mat-form-field>
+  </div>
   <div class="form-group">
     <mat-form-field class="full-width">
         <mat-label>Pasirinkite sertifikatą</mat-label>

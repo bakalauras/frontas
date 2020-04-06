@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CertificateService } from '../shared/certificate.service';
 import { ToastrService } from 'ngx-toastr';
 import { Certificate } from '../shared/certificate.model';
+import { error } from '@angular/compiler/src/util';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-certificate-list',

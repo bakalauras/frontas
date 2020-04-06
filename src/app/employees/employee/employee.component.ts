@@ -5,26 +5,12 @@ import { NgForm, FormControl, Validators } from '@angular/forms';
 import { Duty } from 'src/app/duties/shared/duty.model';
 import { Employee } from '../shared/employee.model';
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styles: []
 })
 export class EmployeeComponent implements OnInit {
-
-  selectedValue: string;
-  selectedCar: string;
-  
-  foods: Food[] = [
-    {value: 'Vardenis Pavardenis', viewValue: 'Vardenis Pavardenis'},
-    {value: 'Jonas Jonaitis', viewValue: 'Jonas Jonaitis'},
-    {value: 'Ona Onaitė', viewValue: 'Ona Onaitė'}
-  ];
 
   constructor(public service:EmployeeService, private toastr: ToastrService) { }
 

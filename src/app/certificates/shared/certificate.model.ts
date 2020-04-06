@@ -3,4 +3,5 @@ export class Certificate {
     Title: string;
     Code: string;
     Technology: string;
+    Order: number;
 }
