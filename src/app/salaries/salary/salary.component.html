@@ -13,17 +13,21 @@
           </mat-form-field>
     </div>
     <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pasirinkite pradžios datą</mat-label>
-            <input matInput type="date"name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" placeholder="Data nuo" required>
-          </mat-form-field>
-    </div>
+      <mat-form-field class="full-width">
+        <mat-label>Pasirinkite pradžios datą</mat-label>
+        <input matInput [matDatepicker]="myDatePicker" name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" required>
+        <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #myDatePicker></mat-datepicker>
+        </mat-form-field>
+  </div>
     <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pasirinkite pabaigos datą</mat-label>
-            <input matInput type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" placeholder="Data iki" required>
-          </mat-form-field>
-    </div>
+      <mat-form-field class="full-width">
+        <mat-label>Pasirinkite pabaigos datą</mat-label>
+        <input matInput [matDatepicker]="myDatePicker2" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" required>
+        <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #myDatePicker2></mat-datepicker>
+        </mat-form-field>
+  </div>
       <div class="form-group">
         <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
       </div>

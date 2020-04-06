@@ -1,0 +1,30 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Planuojama laikymo data</th>
+                <th>Reali laikymo data</th>
+                <th>Ar išlaikytas</th>
+                <th>Kaina</th>
+                <th>Failas</th>
+                <th>Egzaminas</th>
+                <th>Sertifikatas</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.PlannedExamDate| date:'yyyy-MM-dd'}}</td>
+                <td (click)="populateForm(pd)">{{pd.RealExamDate| date:'yyyy-MM-dd'}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getPassedParam()}}</td>
+                <td (click)="populateForm(pd)">{{pd.Price}}</td>
+                <td (click)="populateForm(pd)">{{pd.File}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getExamTitle(pd.ExamId)}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getCertificateTitle(pd.CertificateId)}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeExamId)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

@@ -25,6 +25,7 @@ export class ExamComponent implements OnInit {
       ExamId: 0,
       Title: '',
       Code: '',
+      Order: 0,
       CertificateId: 0
     }
   }

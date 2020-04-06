@@ -1,0 +1,22 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Pradžios data</th>
+                <th>Pabaigos data</th>
+                <th>Pareigos</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.DateFrom}}</td>
+                <td (click)="populateForm(pd)">{{pd.DateTo| date:'yyyy-MM-dd'}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getDutyTitle(pd.DutyId)}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeDutyId)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>

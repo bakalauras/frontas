@@ -41,4 +41,9 @@ export class ExamService {
     toPromise()
     .then(res => this.certificatelist = res as Certificate[]);
   }
+
+  getCertificateTitle(id)
+  {
+    return this.certificatelist.find(x => x.CertificateId == id).Title;
+  }
 }

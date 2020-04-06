@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav 
+  <mat-sidenav
       #drawer 
       class="sidenav" 
       fixedInViewport="false"
@@ -7,7 +7,7 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar >Atea</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list >
       <a mat-list-item href="http://localhost:4200/salaries">Pilnas dizainas</a>
     </mat-nav-list>
     <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
@@ -44,6 +44,12 @@
       <mat-nav-list dense>
           <a mat-list-item routerLink="/employees">Darbuotojai</a>
           <a mat-list-item routerLink="allsalaries">Atlyginimai</a>
+          <a mat-list-item routerLink="/consent-certificate">Konkurso sertifikatai</a>
+          <a mat-list-item routerLink="/employee-certificate">Darbuotojo sertifikatai</a>
+          <a mat-list-item routerLink="/employee-exam">Darbuotojo egzaminai</a>
+          <a mat-list-item routerLink="/employee-competency">Darbuotojo kompetencijos</a>
+          <a mat-list-item routerLink="/employee-duty">Darbuotojo pareigos</a>
+          <a mat-list-item routerLink="/stage-competency">Etapo kompetencijos</a>
       </mat-nav-list>
   </mat-expansion-panel>
   </mat-sidenav>

@@ -4,6 +4,7 @@
             <tr>
                 <th>Pavadinimas</th>
                 <th>Kodas</th>
+                <th>Lygis</th>
                 <th>Sertifikatas</th>
                <th></th>
             </tr>
@@ -12,7 +13,8 @@
             <tr *ngFor="let pd of service.list">
                 <td (click)="populateForm(pd)">{{pd.Title}}</td>
                 <td (click)="populateForm(pd)">{{pd.Code}}</td>
-                <td (click)="populateForm(pd)">{{pd.CertificateId}}</td>
+                <td (click)="populateForm(pd)">{{pd.Order}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getCertificateTitle(pd.CertificateId)}}</td>
                 <td>
                     <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ExamId)"></i>
                 </td>

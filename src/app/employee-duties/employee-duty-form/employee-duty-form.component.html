@@ -1,0 +1,34 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="EmployeeDutyId" [value]="service.formData.EmployeeDutyId">
+    <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite pradžios datą</mat-label>
+            <input matInput type="date"name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" placeholder="Pradžios data" required>
+          </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite pabaigos datą</mat-label>
+            <input matInput type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" placeholder="Pabaigos data" required>
+          </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite darbuotoją</mat-label>
+            <mat-select [(ngModel)]="service.formData.EmployeeId" name = "service.formData.EmployeeId" required>
+              <mat-option *ngFor="let emp of service.employeeList" [value]="emp.EmployeeId">{{emp.Name +' ' + emp.Surname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div>
+       <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite pareigas</mat-label>
+            <mat-select [(ngModel)]="service.formData.DutyId" name = "service.formData.DutyId" required>
+              <mat-option *ngFor="let cert of service.dutyList" [value]="cert.DutyId">{{cert.Title}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div>
+    <div class="form-group">
+        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+<div style="overflow-x:auto;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Pradžios data</th>
+                <th>Pabaigos data</th>
+                <th>Kompetencija</th>
+               <th></th>
+            </tr>
+        </thead>
+         <tbody>
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.DateFrom| date:'yyyy-MM-dd'}}</td>
+                <td (click)="populateForm(pd)">{{pd.DateTo| date:'yyyy-MM-dd'}}</td>
+                <td (click)="populateForm(pd)">{{this.service.getCompetencyTitle(pd.CompetencyId)}}</td>
+                <td>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeCompetencyId)"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
