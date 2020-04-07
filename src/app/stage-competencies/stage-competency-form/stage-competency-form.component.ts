@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StageCompetencyService } from '../shared/stage-competency.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stage-competency-form',
@@ -10,12 +11,15 @@ import { NgForm } from '@angular/forms';
 })
 export class StageCompetencyFormComponent implements OnInit {
 
-  constructor(public service:StageCompetencyService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service:StageCompetencyService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id2');
+    }
 
   ngOnInit(){
     this.service.refreshCompetencyList();
-    this.service.refreshStageList();
-    this.service.refreshStageNameList();
+   // this.service.refreshStageList();
     this.resetForm();
   }
   
@@ -26,7 +30,7 @@ export class StageCompetencyFormComponent implements OnInit {
       StageCompetencyId: 0,
       Amount: 0,
       CompetencyId: 0,
-      ProjectStageId: 0
+      ProjectStageId: this.id
     }
   }
 
@@ -44,7 +48,7 @@ export class StageCompetencyFormComponent implements OnInit {
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err);
@@ -59,7 +63,7 @@ export class StageCompetencyFormComponent implements OnInit {
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err);

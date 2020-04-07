@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContestCertificateService } from '../shared/contest-certificate.service';
 import { ToastrService } from 'ngx-toastr';
 import { ContestCertificate } from '../shared/contest-certificate.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contest-certificate-list',
@@ -10,10 +11,15 @@ import { ContestCertificate } from '../shared/contest-certificate.model';
 })
 export class ContestCertificateListComponent implements OnInit {
 
-  constructor(public service:ContestCertificateService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service:ContestCertificateService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
 
+  
   ngOnInit(){
-    this.service.refreshList();
+    this.service.refreshList(this.id);
   }
 
   populateForm(pd:ContestCertificate){
@@ -24,7 +30,7 @@ export class ContestCertificateListComponent implements OnInit {
     if(confirm('Ar tikrai norite ištrinti?')){
       this.service.deleteContestCertificate(ContestCertificateId)
       .subscribe(res =>{
-        this.service.refreshList();
+        this.service.refreshList(this.id);
         this.toastr.success('Ištrinta sėkmingai');
       },
         err => {
