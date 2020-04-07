@@ -6,14 +6,6 @@
             <input matInput type="text" name="Amount" #Type="ngModel" [(ngModel)]="service.formData.Amount" placeholder="Įveskite kiekį" required maxlength="15">
           </mat-form-field>
     </div>
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pasirinkite projekto etapą</mat-label>
-            <mat-select [(ngModel)]="service.formData.ProjectStageId" name = "service.formData.ProjectStageId" required>
-              <mat-option *ngFor="let sta of service.stageList" [value]="sta.ProjectStageId">{{sta.ProjectStageId}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-       </div>
        <div class="form-group">
         <mat-form-field class="full-width">
             <mat-label>Pasirinkite kompetenciją</mat-label>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContestCertificateService } from '../shared/contest-certificate.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contest-certificate-form',
@@ -10,11 +11,15 @@ import { NgForm } from '@angular/forms';
 })
 export class ContestCertificateFormComponent implements OnInit {
 
-  constructor(public service:ContestCertificateService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service:ContestCertificateService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id');
+    }
 
   ngOnInit(){
     this.service.refreshCertificateList();
-    this.service.refreshContestList();
+  // this.service.refreshContestList();
     this.resetForm();
   }
 
@@ -25,7 +30,7 @@ export class ContestCertificateFormComponent implements OnInit {
       ContestCertificateId: 0,
       Amount: 0,
       CertificateId: 0,
-      ContestId: 0
+      ContestId: this.id
     }
   }
 
@@ -43,7 +48,7 @@ export class ContestCertificateFormComponent implements OnInit {
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err);
@@ -58,7 +63,7 @@ export class ContestCertificateFormComponent implements OnInit {
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.service.refreshList(this.id);
       },
       err => {
         console.log(err);

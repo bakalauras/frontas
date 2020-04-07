@@ -16,12 +16,10 @@ import { CertificatesComponent } from './certificates/certificates.component';
 import { ExamsComponent } from './exams/exams.component';
 import { SalariesComponent } from './salaries/salaries.component';
 import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
-import { ContestCertificatesComponent } from './contest-certificates/contest-certificates.component';
 import { EmployeeCertificatesComponent } from './employee-certificates/employee-certificates.component';
 import { EmployeeExamsComponent } from './employee-exams/employee-exams.component';
 import { EmployeeCompetenciesComponent } from './employee-competencies/employee-competencies.component';
 import { EmployeeDutiesComponent } from './employee-duties/employee-duties.component';
-import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
 import { ContestFormComponent } from './contests/contest-form/contest-form.component';
 import { TenderFormComponent } from './tenders/tender-form/tender-form.component';
 import { ProjectFormComponent } from './projects/project-form/project-form.component';
@@ -49,13 +47,10 @@ const routes: Routes = [
   {path: 'exams', component : ExamsComponent},
   {path: 'salaries', component : SalariesComponent},
   {path: 'allsalaries', component : AllSalaryListComponent},
-  {path: 'consent-certificate', component : ContestCertificatesComponent},
   {path: 'employee-certificate', component : EmployeeCertificatesComponent},
   {path: 'employee-exam', component : EmployeeExamsComponent},
   {path: 'employee-competency', component : EmployeeCompetenciesComponent},
-  {path: 'employee-duty', component : EmployeeDutiesComponent},
-  {path: 'stage-competency', component : StageCompetenciesComponent}
-
+  {path: 'employee-duty', component : EmployeeDutiesComponent}
 ];
 
 @NgModule({

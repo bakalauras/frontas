@@ -15,8 +15,8 @@ export class StageCompetencyService {
   readonly rootURL = environment.rootURL;
   list:StageCompetency[];
   competencyList:Competency[];
-  stageList:ProjectStage[];
-  stageNameList: ProjectStageName[];
+  //stageList:ProjectStage[];
+  //stageNameList: ProjectStageName[];
 
   constructor(private http:HttpClient) { }
 
@@ -33,10 +33,20 @@ export class StageCompetencyService {
     return this.http.delete(this.rootURL + '/StageCompetencies/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/StageCompetencies')
-    .toPromise()
-    .then(res =>this.list=res as StageCompetency[])
+  //refreshList(){
+  //  this.http.get(this.rootURL + '/StageCompetencies')
+ //   .toPromise()
+  //  .then(res =>this.list=res as StageCompetency[])
+ // }
+
+  refreshList(id)
+  {
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/ProjectStages/'+id+'/competencies').
+    toPromise()
+    .then(res => this.list = res as StageCompetency[]);
+    }
   }
 
   refreshCompetencyList()
@@ -46,25 +56,25 @@ export class StageCompetencyService {
     .then(res => this.competencyList = res as Competency[]);
   }
 
-  refreshStageList()
-  {
-    this.http.get(this.rootURL+'/ProjectStages').
-    toPromise()
-    .then(res => this.stageList = res as ProjectStage[]);
-  }
+  //refreshStageList()
+ // {
+ //   this.http.get(this.rootURL+'/ProjectStages').
+ //   toPromise()
+ //   .then(res => this.stageList = res as ProjectStage[]);
+ // }
 
-  refreshStageNameList()
-  {
-    this.http.get(this.rootURL+'/ProjectStageNames').
-    toPromise()
-    .then(res => this.stageNameList = res as ProjectStageName[]);
-  }
+ // refreshStageNameList()
+ // {
+ //   this.http.get(this.rootURL+'/ProjectStageNames').
+ //   toPromise()
+//    .then(res => this.stageNameList = res as ProjectStageName[]);
+//  }
 
-  getProjectStageName(id)
-  {
-      var nr = this.stageList.find(x => x.ProjectStageId == id).ProjectStageNameId;
-       return this.stageNameList.find(x => x.ProjctStageNameId == nr).StageName;
-  }
+ // getProjectStageName(id)
+ // {
+ //     var nr = this.stageList.find(x => x.ProjectStageId == id).ProjectStageNameId;
+ //      return this.stageNameList.find(x => x.ProjctStageNameId == nr).StageName;
+//  }
   
   getCompetencyTitle(id)
   {

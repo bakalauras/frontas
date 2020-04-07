@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StageCompetencyService } from '../shared/stage-competency.service';
 import { ToastrService } from 'ngx-toastr';
 import { StageCompetency } from '../shared/stage-competency.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-stage-competency-list',
@@ -10,10 +11,16 @@ import { StageCompetency } from '../shared/stage-competency.model';
 })
 export class StageCompetencyListComponent implements OnInit {
 
-  constructor(public service:StageCompetencyService, private toastr: ToastrService) { }
+  id = null;
+  constructor(public service:StageCompetencyService, private toastr: ToastrService, private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
+    }
+
 
   ngOnInit(){
-    this.service.refreshList();
+    this.service.refreshCompetencyList();
+    this.service.refreshList(this.id);
   }
 
   populateForm(pd:StageCompetency){
@@ -24,7 +31,7 @@ export class StageCompetencyListComponent implements OnInit {
     if(confirm('Ar tikrai norite ištrinti?')){
       this.service.deleteStageCompetency(StageCompetencyId)
       .subscribe(res =>{
-        this.service.refreshList();
+        this.service.refreshList(this.id);
         this.toastr.success('Ištrinta sėkmingai');
       },
         err => {
