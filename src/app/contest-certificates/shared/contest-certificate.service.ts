@@ -14,7 +14,7 @@ export class ContestCertificateService {
   readonly rootURL = environment.rootURL;
   list:ContestCertificate[];
   certificatelist:Certificate[];
-  contestList:Contest[];
+  //contestList:Contest[];
 
   constructor(private http:HttpClient) { }
 
@@ -31,11 +31,21 @@ export class ContestCertificateService {
     return this.http.delete(this.rootURL + '/ContestCertificates/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/ContestCertificates')
-    .toPromise()
-    .then(res =>this.list=res as ContestCertificate[])
-  }
+ // refreshList(){
+ //   this.http.get(this.rootURL + '/ContestCertificates')
+ //   .toPromise()
+ //   .then(res =>this.list=res as ContestCertificate[])
+ // }
+
+ refreshList(id)
+ {
+   if(id!=0)
+   {
+     this.http.get(this.rootURL+'/Contests/'+id+'/certificates').
+   toPromise()
+   .then(res => this.list = res as ContestCertificate[]);
+   }
+ }
 
   refreshCertificateList()
   {
@@ -44,17 +54,17 @@ export class ContestCertificateService {
     .then(res => this.certificatelist = res as Certificate[]);
   }
 
-  refreshContestList()
-  {
-    this.http.get(this.rootURL+'/Contests').
-    toPromise()
-    .then(res => this.contestList = res as Contest[]);
-  }
+ // refreshContestList()
+ // {
+ //   this.http.get(this.rootURL+'/Contests').
+ //   toPromise()
+ //   .then(res => this.contestList = res as Contest[]);
+ // }
 
-  getContestTitle(id)
-  {
-    return this.contestList.find(x => x.ContestId == id).Title;
-  }
+//  getContestTitle(id)
+//  {
+//    return this.contestList.find(x => x.ContestId == id).Title;
+//  }
 
   getCertificateTitle(id)
   {

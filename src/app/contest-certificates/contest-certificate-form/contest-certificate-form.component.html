@@ -14,14 +14,6 @@
           </mat-select>
         </mat-form-field>
      </div>
-       <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pasirinkite konkursą</mat-label>
-            <mat-select [(ngModel)]="service.formData.ContestId" name = "service.formData.ContestId" required>
-              <mat-option *ngFor="let con of service.contestList" [value]="con.ContestId">{{con.Title}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-       </div>
     <div class="form-group">
         <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
     </div>

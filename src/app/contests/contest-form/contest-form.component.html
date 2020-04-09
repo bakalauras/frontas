@@ -49,8 +49,10 @@
             </form>
         </mat-tab>
         <mat-tab label="Failai" *ngIf="this.id!=0" >
-            <app-contest-files></app-contest-files> </mat-tab>
-            <mat-tab label="Sertifikatai" *ngIf="this.id!=0">
-                </mat-tab>
+            <app-contest-files></app-contest-files>
+        </mat-tab>
+        <mat-tab label="Sertifikatai" *ngIf="this.id!=0">
+            <app-contest-certificates></app-contest-certificates>
+        </mat-tab>
       </mat-tab-group>
 </div>
