@@ -1,30 +1,40 @@
-<div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Planuojama laikymo data</th>
-                <th>Reali laikymo data</th>
-                <th>Ar išlaikytas</th>
-                <th>Kaina</th>
-                <th>Failas</th>
-                <th>Egzaminas</th>
-                <th>Sertifikatas</th>
-               <th></th>
-            </tr>
-        </thead>
-         <tbody>
-            <tr *ngFor="let pd of service.list">
-                <td (click)="populateForm(pd)">{{pd.PlannedExamDate| date:'yyyy-MM-dd'}}</td>
-                <td (click)="populateForm(pd)">{{pd.RealExamDate| date:'yyyy-MM-dd'}}</td>
-                <td (click)="populateForm(pd)">{{this.service.getPassedParam()}}</td>
-                <td (click)="populateForm(pd)">{{pd.Price}}</td>
-                <td (click)="populateForm(pd)">{{pd.File}}</td>
-                <td (click)="populateForm(pd)">{{this.service.getExamTitle(pd.ExamId)}}</td>
-                <td (click)="populateForm(pd)">{{this.service.getCertificateTitle(pd.CertificateId)}}</td>
-                <td>
-                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeExamId)"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
+    <kendo-grid
+    [data]="gridView"
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [filter] ="state.filter"
+    [pageable]="{pageSizes: true}"
+    [groupable]="true"
+    [group]="state.group"
+    [resizable]="true"
+    filterable="menu"
+    [sortable]="true"
+    [sort]="state.sort"
+    (dataStateChange)="dataStateChange($event)"
+    (pageChange)="pageChange($event)">
+    <ng-template kendoGridToolbarTemplate>
+        <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+        <button>
+            <a [routerLink] ="[this.examRoute, 0]">Pridėti egzaminą</a>
+        </button>
+    </ng-template>
+    <kendo-grid-column field="ExamId" title="Egzaminas"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getExamTitle(dataItem.ExamId)}}</a>
+            </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="CertificateId" title="Sertifikatas"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getCertificateTitle(dataItem.CertificateId)}}</a>
+            </ng-template>
+    </kendo-grid-column>
+        <kendo-grid-column field="PlannedExamDate" title="Planuojama laikymo data" minResizableWidth="50">
+        </kendo-grid-column>
+        <kendo-grid-column field="RealExamDate" title="Reali laikymo data" minResizableWidth="50">
+        </kendo-grid-column>
+        <kendo-grid-column field="Price" title="Kaina"   minResizableWidth="50">
+        </kendo-grid-column>
+        <kendo-grid-column field="File" title="Failas"   minResizableWidth="50">
+        </kendo-grid-column>
+        <kendo-grid-excel fileName="Darbuotojo egzaminai.xlsx"></kendo-grid-excel>
+    </kendo-grid>
