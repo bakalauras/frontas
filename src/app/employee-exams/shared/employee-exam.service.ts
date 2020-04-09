@@ -38,6 +38,16 @@ export class EmployeeExamService {
     .then(res =>this.list=res as EmployeeExam[])
   }
 
+  refreshEmployeeExamList(id){
+    if(id!=0)
+    {
+      this.http.get(this.rootURL + '/Employees/'+id+'/exams')
+    .toPromise()
+    .then(res =>this.list=res as EmployeeExam[])
+    }
+    
+  }
+
   refreshCertificateList()
   {
     this.http.get(this.rootURL+'/Certificates').

@@ -1,27 +1,57 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="EmployeeId" [value]="service.formData.EmployeeId">
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Vardas</mat-label>
-            <input matInput type="text" name="Name" #Type="ngModel" [(ngModel)]="service.formData.Name" placeholder="Įveskite vardą" required maxlength="100">
-          </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pavardė</mat-label>
-            <input matInput type="text" name="Surname" #Type="ngModel" [(ngModel)]="service.formData.Surname" placeholder="Įveskite pavardę" required maxlength="100">
-          </mat-form-field>
-    </div>
-    <mat-checkbox class="example-margin" color = "primary"  name="IsActive" [(ngModel)]="service.formData.IsActive">Aktyvus darbuotojas</mat-checkbox>
-  <div class="form-group">
-    <mat-form-field class="full-width">
-        <mat-label>Pasirinkite vadovą</mat-label>
-        <mat-select [(ngModel)]="service.formData.FkEmployeeId" name = "service.formData.FkEmployeeId" required>
-          <mat-option *ngFor="let emp of service.list" [value]="emp.EmployeeId">{{emp.Name +' ' + emp.Surname}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-   </div>
-    <div class="form-group">
-        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
-    </div>
-</form>
+<div class="jumbtron">
+  <h1 class="display-4 text-center">Darbuotojo duomenys</h1>
+  <hr>
+  <mat-tab-group>
+      <nav mat-tab-nav-bar></nav>
+      <mat-tab label="Bendra informacija">
+          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+              <input type="hidden" name="EmployeeId" [value]="service.formData.EmployeeId">
+              <hr>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                    <mat-label>Pavardė</mat-label>
+                    <input matInput disabled type="text" name="Surname" #Type="ngModel" [(ngModel)]="service.formData.Surname" placeholder="Įveskite pavardę" required maxlength="100">
+                  </mat-form-field>
+              </div>
+            <div class="form-group">
+              <mat-form-field class="full-width">
+                  <mat-label>Vardas</mat-label>
+                  <input matInput disabled type="text" name="Name" #Type="ngModel" [(ngModel)]="service.formData.Name" placeholder="Įveskite vardą" required maxlength="100">
+                </mat-form-field>
+            </div>
+            <mat-checkbox class="example-margin" color = "primary"  name="IsActive" [(ngModel)]="service.formData.IsActive">Aktyvus</mat-checkbox>
+            <div class="form-group">
+              <mat-form-field class="full-width" *ngIf="service.formData.IsActive">
+                  <mat-label>Pasirinkite vadovą </mat-label>
+                  <mat-select [(ngModel)]="service.formData.FkEmployeeId" name = "service.formData.FkEmployeeId" required>
+                    <mat-option *ngFor="let emp of service.list" [value]="emp.EmployeeId">{{emp.Name +' ' + emp.Surname}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+             </div>
+             <div class="form-group">
+              <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
+          </div>
+          </form>
+      </mat-tab>
+      <mat-tab label="Egzaminai" *ngIf="this.id!=0" >
+        <hr>
+          <app-employee-exams></app-employee-exams>
+      </mat-tab>
+      <mat-tab label="Sertifikatai" *ngIf="this.id!=0" >
+        <hr>
+        <app-employee-certificates></app-employee-certificates>
+      </mat-tab>  
+      <mat-tab label="Pareigos" *ngIf="this.id!=0" >
+        <hr>
+          <app-employee-duties></app-employee-duties>
+      </mat-tab>
+      <mat-tab label="Kompetencijos" *ngIf="this.id!=0" >
+        <hr>
+          <app-employee-competencies></app-employee-competencies>
+      </mat-tab>   
+      <mat-tab label="Atlyginimai" *ngIf="this.id!=0" >
+        <hr>
+          <app-salaries></app-salaries>
+      </mat-tab>    
+    </mat-tab-group>
+</div>

@@ -13,12 +13,11 @@ export class EmployeeService {
 
   constructor(private http:HttpClient) { }
 
-  postEmployee(formData:Employee){
-    return this.http.post(this.rootURL + '/Employees', this.formData)
+  postEmployee(){
+    return this.http.post<{EmployeedId : number}>(this.rootURL + '/Employees', this.formData)
   }
 
-  putEmployee(formData:Employee){
-    console.log(formData);
+  putEmployee(){
     return this.http.put(this.rootURL + '/Employees/'+ this.formData.EmployeeId, this.formData)
   }
 
@@ -38,10 +37,24 @@ export class EmployeeService {
    // return EmployeeId;
   }
 
-  getActiveParam(id)
+  getActiveParam()
   {
     if(this.formData.IsActive == true)
-    return "Aktyvus";
-    else "Neaktyvus";
+      return "Aktyvus";
+    else return "Neaktyvus";
+  }
+
+  getManager(id)
+  {
+    return this.list.find(x => x.EmployeeId == id).Name + ' '+ this.list.find(x => x.EmployeeId == id).Surname;
+  }
+
+  getRecord(id){
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/Employees/'+id).
+    toPromise()
+    .then(res => this.formData = res as Employee);
+    }
   }
 }

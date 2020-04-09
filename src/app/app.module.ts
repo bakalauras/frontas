@@ -113,6 +113,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import { UploadComponent } from './upload/upload.component';
 import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-grid';
+import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+  EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
+import { ChartsComponent } from './charts/charts.component';
+import { ChartService } from './charts/shared/chart.service';
+
 
 @NgModule({
   declarations: [
@@ -201,7 +206,8 @@ import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-gri
     StageCompetenciesComponent,
     StageCompetencyFormComponent,
     StageCompetencyListComponent,
-    UploadComponent
+    UploadComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -225,10 +231,12 @@ import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-gri
     MatExpansionModule,
     GridModule,
     PDFModule,
-    ExcelModule
+    ExcelModule,
+    GanttModule
   ],
-  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
-     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }],
+  providers: [ChartService, DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
+     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+     EditService, DayMarkersService, ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

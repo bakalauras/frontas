@@ -1,25 +1,34 @@
-<div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Vardas</th>
-                <th>Pavardė</th>
-                <th>Ar aktyvus</th>
-               <th></th>
-            </tr>
-        </thead>
-         <tbody>
-            <tr *ngFor="let pd of service.list">
-                <td (click)="populateForm(pd)">{{pd.Name}}</td>
-                <td (click)="populateForm(pd)">{{pd.Surname}}</td>
-                <td (click)="populateForm(pd)">{{this.service.getActiveParam(pd.EmployeeId)}}</td>
-                <td>
-                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.EmployeeId)"></i>
-                </td>
-                <td>
-                    <i class="fas fa-money-bill-wave" (click)="onClick(pd.EmployeeId)"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
+<kendo-grid
+[data]="gridView"
+[pageSize]="state.take"
+[skip]="state.skip"
+[filter] ="state.filter"
+[pageable]="{pageSizes: true}"
+[groupable]="true"
+[group]="state.group"
+[resizable]="true"
+filterable="menu"
+[sortable]="true"
+[sort]="state.sort"
+(dataStateChange)="dataStateChange($event)"
+(pageChange)="pageChange($event)">
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+</ng-template>
+<kendo-grid-column field="Surname" title="Pavardė" width="250"  minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <a [routerLink]="['/employee/', dataItem.EmployeeId]" >{{dataItem.Surname}}</a>
+        </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="Name" title="Vardas" minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50"></kendo-grid-column>
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <a>{{this.service.getManager(dataItem.FkEmployeeId)}}</a>
+        </ng-template>
+    <kendo-grid-column field="IsActive" title="Ar aktyvus" minResizableWidth="50"></kendo-grid-column>
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getActiveParam()}}</a>
+            </ng-template>
+<kendo-grid-excel fileName="Darbuotojai.xlsx"></kendo-grid-excel>
+</kendo-grid>
