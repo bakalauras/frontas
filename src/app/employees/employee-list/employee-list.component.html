@@ -22,13 +22,15 @@ filterable="menu"
 </kendo-grid-column>
 <kendo-grid-column field="Name" title="Vardas" minResizableWidth="50">
 </kendo-grid-column>
-<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50"></kendo-grid-column>
+<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50"> </kendo-grid-column>
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <a>{{this.service.getManager(dataItem.FkEmployeeId)}}</a>
         </ng-template>
+   
     <kendo-grid-column field="IsActive" title="Ar aktyvus" minResizableWidth="50"></kendo-grid-column>
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getActiveParam()}}</a>
+            <a>{{this.service.getActiveParam(dataItem.EmployeeId)}}</a>
             </ng-template>
+        
 <kendo-grid-excel fileName="Darbuotojai.xlsx"></kendo-grid-excel>
 </kendo-grid>

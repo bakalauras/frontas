@@ -25,8 +25,8 @@ export class EmployeeDutyFormComponent implements OnInit {
       EmployeeDutyId: 0,
       DateFrom: null,
       DateTo: null,
-      DutyId: 0,
-      EmployeeId: 0
+      DutyId: null,
+      EmployeeId: null
     }
   }
 

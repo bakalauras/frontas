@@ -25,8 +25,8 @@ export class EmployeeCompetencyFormComponent implements OnInit {
       EmployeeCompetencyId: 0,
       DateFrom: null,
       DateTo: null,
-      CompetencyId: 0,
-      EmployeeId: 0
+      CompetencyId: null,
+      EmployeeId: null
     }
   }
 
