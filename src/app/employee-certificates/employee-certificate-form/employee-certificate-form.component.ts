@@ -23,8 +23,8 @@ export class EmployeeCertificateFormComponent implements OnInit {
     this.service.formData = {
       EmployeeCertificateId: 0,
       File: null,
-      EmployeeId: 0,
-      CertificateId: 0
+      EmployeeId: null,
+      CertificateId: null
     }
   }
 

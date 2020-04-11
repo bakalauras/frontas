@@ -8,8 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeService {
   formData:Employee
+  testas:Employee
   readonly rootURL = environment.rootURL;
   list:Employee[];
+  name:string;
+  param:string;
 
   constructor(private http:HttpClient) { }
 
@@ -33,20 +36,23 @@ export class EmployeeService {
 
   setSelectedEmployee(EmployeeId){
     //this.http.get(this.rootURL + '/Employees'+ EmployeeId).
-    return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
+   // return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
    // return EmployeeId;
+   
   }
 
-  getActiveParam()
+  getActiveParam(id)
   {
     if(this.formData.IsActive == true)
       return "Aktyvus";
     else return "Neaktyvus";
+    //return this.http.get(this.rootURL + '/Employees/'+ id+'/isActive').subscribe( res => this.param = res as string);;
   }
 
   getManager(id)
   {
-    return this.list.find(x => x.EmployeeId == id).Name + ' '+ this.list.find(x => x.EmployeeId == id).Surname;
+     //this.http.get(this.rootURL + '/Employees/'+ id+'/manager';
+    return this.list.find(x => x.EmployeeId == id).Name;
   }
 
   getRecord(id){

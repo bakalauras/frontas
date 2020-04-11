@@ -10,7 +10,7 @@
         </thead>
          <tbody>
             <tr *ngFor="let pd of service.list">
-                <td (click)="populateForm(pd)">{{pd.DateFrom}}</td>
+                <td (click)="populateForm(pd)">{{pd.DateFrom| date:'yyyy-MM-dd'}}</td>
                 <td (click)="populateForm(pd)">{{pd.DateTo| date:'yyyy-MM-dd'}}</td>
                 <td (click)="populateForm(pd)">{{this.service.getDutyTitle(pd.DutyId)}}</td>
                 <td>

@@ -26,6 +26,7 @@ import { ProjectFormComponent } from './projects/project-form/project-form.compo
 import { ProjectStageFormComponent } from './project-stages/project-stage-form/project-stage-form.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { ChartsComponent } from './charts/charts.component';
+import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
 
 
 const routes: Routes = [
@@ -54,7 +55,7 @@ const routes: Routes = [
   {path: 'employee-competency', component : EmployeeCompetenciesComponent},
   {path: 'stage-competency', component : StageCompetenciesComponent},
   {path: 'employee/:id', component : EmployeeComponent},
-  {path: 'charts', component : ChartsComponent}
+  {path: 'charts', component : ChartsComponent},
   {path: 'employee-duty', component : EmployeeDutiesComponent}
 ];
 

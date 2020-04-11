@@ -29,9 +29,9 @@ export class EmployeeExamFormComponent implements OnInit {
       IsPassed: true,
       Price: 0,
       File: '',
-      ExamId: 0,
-      EmployeeId: 0,
-      CertificateId: 0
+      ExamId: null,
+      EmployeeId: null,
+      CertificateId: null
     }
   }
 

@@ -26,7 +26,7 @@
         </mat-select>
       </mat-form-field>
    </div>
-    <div class="form-group">
-        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
+    <div class="form-group" >
+        <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="!form.valid" >Įrašyti</button>
     </div>
 </form>

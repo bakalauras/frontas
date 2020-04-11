@@ -116,8 +116,7 @@ import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-gri
 import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 import { ChartsComponent } from './charts/charts.component';
-import { ChartService } from './charts/shared/chart.service';
-
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
 @NgModule({
   declarations: [
@@ -232,10 +231,12 @@ import { ChartService } from './charts/shared/chart.service';
     GridModule,
     PDFModule,
     ExcelModule,
-    GanttModule
+    GanttModule,
+    DateInputsModule
   ],
-  providers: [ChartService, DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
-     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
+    { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, 
+    ResizeService, SortService, FilterService, SelectionService, ReorderService,
      EditService, DayMarkersService, ToolbarService],
   bootstrap: [AppComponent]
 })

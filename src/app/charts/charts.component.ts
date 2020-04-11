@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartService } from './shared/chart.service';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
