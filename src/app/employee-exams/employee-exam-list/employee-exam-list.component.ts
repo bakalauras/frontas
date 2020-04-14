@@ -6,73 +6,104 @@ import { GridDataResult, DataStateChangeEvent, PageChangeEvent } from '@progress
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
 import { State, process } from '@progress/kendo-data-query';
 import { Router, ActivatedRoute } from '@angular/router';
+import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-exam-list',
   templateUrl: './employee-exam-list.component.html',
   styles: []
 })
-export class EmployeeExamListComponent implements OnInit {
+export class EmployeeExamListComponent extends KendoGridComponent implements OnInit {
 
   id = null;
-  examRoute = null;
-  public gridView: GridDataResult;
-  public excelExport: ExcelExportData;
-  public state: State = {
-    skip: 0,
-    take: 20
-  };
   
   constructor(public service:EmployeeExamService, private toastr: ToastrService, private router: Router,
     public route: ActivatedRoute) { 
+      super();
       this.id = this.route.snapshot.paramMap.get('id'); 
-      this.examRoute = '/employee/'+this.id+'/exam/';
     }
   ngOnInit(){
     this.service.refreshEmployeeExamList(this.id);
     this.service.refreshExamList();
     this.service.refreshCertificateList();
-    this.service.refreshList();
+    this.service.refreshList(this.id, this.loadItems.bind(this));
     this.service.refreshExamList();
-    this.delay(5).then(any => {
-      this.loadItems();
-    });
   }
 
-  async delay(ms: number) {
-    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
-}
-public dataStateChange(state: DataStateChangeEvent): void {
-  this.state = state;
-  this.gridView = process(this.service.list, this.state);
-}
-
-public pageChange({ skip, take }: PageChangeEvent): void {
-  this.state.skip = skip;
-  this.state.take = take;
-  this.loadItems();
-}
-
-private loadItems(): void {
- this.gridView = process(this.service.list, this.state);
- this.excelExport = this.gridView;
-}
   populateForm(pd:EmployeeExam){
     this.service.formData = Object.assign({}, pd);
+    this.opened2 = true;
   }
 
-  onDelete(EmployeeExamId){
-    if(confirm('Ar tikrai norite ištrinti?')){
-      this.service.deleteEmployeeExam(EmployeeExamId)
+  onDelete(){
+    this.opened = false;
+    if(this.idToDelete!=0)
+    {
+      this.service.deleteEmployeeExam(this.idToDelete)
       .subscribe(res =>{
-        this.service.refreshList();
-        this.toastr.success('Ištrinta sėkmingai');
+        this.toastr.info('Ištrinta sėkmingai');
+        this.service.refreshList(this.id, this.loadItems.bind(this));
       },
         err => {
           console.log(err);
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         })
     }
   }
 
+  resetForm(form?:NgForm) {
+    if(form!=null)
+      form.resetForm();
+    this.service.formData = {
+      EmployeeExamId: 0,
+      PlannedExamDate: null,
+      RealExamDate: null,
+      IsPassed: true,
+      Price: 0,
+      File: '',
+      ExamId: null,
+      EmployeeId: this.id,
+      CertificateId: null
+    }
+  }
+
+  onSubmit(form:NgForm)
+  {
+    if(this.service.formData.EmployeeExamId == 0)
+      this.insertRecord(form);
+    else
+      this.updateRecord(form);
+    this.close();
+  }
+
+  insertRecord(form:NgForm)
+  {
+    this.service.postEmployeeExam().subscribe(
+      res => {
+        this.resetForm(form),
+        this.toastr.success('Išsaugota sėkmingai');
+        this.service.refreshList(this.id, this.loadItems.bind(this));
+      },
+      err => {
+        console.log(err);
+        this.toastr.error(err.error);
+      }
+    )
+  }
+
+  updateRecord(form:NgForm)
+  {
+    this.service.putEmployeeExam().subscribe(
+      res => {
+        this.resetForm(form),
+        this.toastr.success('Išsaugota sėkmingai');
+        this.service.refreshList(this.id, this.loadItems.bind(this));
+      },
+      err => {
+        console.log(err);
+        this.toastr.error(err.error);
+      }
+    )
+  }
 }

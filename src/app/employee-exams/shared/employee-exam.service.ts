@@ -19,12 +19,11 @@ export class EmployeeExamService {
 
   constructor(private http:HttpClient) { }
 
-  postEmployeeExam(formData:EmployeeExam){
+  postEmployeeExam(){
     return this.http.post(this.rootURL + '/EmployeeExams', this.formData)
   }
 
-  putEmployeeExam(formData:EmployeeExam){
-    console.log(formData);
+  putEmployeeExam(){
     return this.http.put(this.rootURL + '/EmployeeExams/'+ this.formData.EmployeeExamId, this.formData)
   }
 
@@ -32,10 +31,10 @@ export class EmployeeExamService {
     return this.http.delete(this.rootURL + '/EmployeeExams/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/EmployeeExams')
+  refreshList(id, callBack){
+    this.http.get(this.rootURL + '/Employees/'+id+'/exams')
     .toPromise()
-    .then(res =>this.list=res as EmployeeExam[])
+    .then(res =>{this.list = res as EmployeeExam[], callBack(this)})
   }
 
   refreshEmployeeExamList(id){

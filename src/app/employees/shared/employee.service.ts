@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeService {
   formData:Employee
-  testas:Employee
+  //testas:Employee
   readonly rootURL = environment.rootURL;
   list:Employee[];
   name:string;
@@ -17,7 +17,7 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   postEmployee(){
-    return this.http.post<{EmployeedId : number}>(this.rootURL + '/Employees', this.formData)
+    return this.http.post<{EmployeeId : number}>(this.rootURL + '/Employees', this.formData)
   }
 
   putEmployee(){
@@ -28,17 +28,10 @@ export class EmployeeService {
     return this.http.delete(this.rootURL + '/Employees/'+ id)
   }
 
-  refreshList(){
+  refreshList(callback){
     this.http.get(this.rootURL + '/Employees')
     .toPromise()
-    .then(res =>this.list=res as Employee[])
-  }
-
-  setSelectedEmployee(EmployeeId){
-    //this.http.get(this.rootURL + '/Employees'+ EmployeeId).
-   // return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
-   // return EmployeeId;
-   
+    .then(res =>{this.list = res as Employee[], callback(this)})
   }
 
   getActiveParam(id)
@@ -52,7 +45,7 @@ export class EmployeeService {
   getManager(id)
   {
      //this.http.get(this.rootURL + '/Employees/'+ id+'/manager';
-    return this.list.find(x => x.EmployeeId == id).Name;
+    return this.list.find(x => x.EmployeeId == id).Surname;
   }
 
   getRecord(id){

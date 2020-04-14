@@ -10,14 +10,65 @@
     filterable="menu"
     [sortable]="true"
     [sort]="state.sort"
-    (dataStateChange)="dataStateChange($event)"
-    (pageChange)="pageChange($event)">
+    (dataStateChange)="dataStateChange($event, this.service)"
+    (pageChange)="pageChange($event, this.service)">
     <ng-template kendoGridToolbarTemplate>
         <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
-        <button>
-            <a [routerLink] ="[this.examRoute, 0]">Pridėti egzaminą</a>
-        </button>
+        <div style="float: left;">
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti egzaminą</button>
+        <kendo-dialog title="Egzamino informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+            <form #form="ngForm" autocomplete="off">
+                <input type="hidden" name="ExamId" [value]="service.formData.ExamId">
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Pasirinkite planuojamą datą</mat-label>
+                        <input matInput type="date"name="PlannedExamDate" #Type="ngModel" [(ngModel)]="service.formData.PlannedExamDate" placeholder="Planuojama data" required>
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Pasirinkite realią datą</mat-label>
+                        <input matInput type="date" name="RealExamDate" #Type="ngModel" [(ngModel)]="service.formData.RealExamDate" placeholder="Reali data" required>
+                      </mat-form-field>
+                </div>
+                <mat-checkbox class="example-margin" color = "primary"  name="IsPassed" [(ngModel)]="service.formData.IsPassed">Išlaikytas</mat-checkbox>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Kaina</mat-label>
+                        <input matInput type="text" name="Price" #Type="ngModel" [(ngModel)]="service.formData.Price" placeholder="Įveskite kainą" required maxlength="100">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Failas</mat-label>
+                        <input matInput type="text" name="File" #Type="ngModel" [(ngModel)]="service.formData.File" placeholder="Įveskite failą" required maxlength="100">
+                      </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Pasirinkite egzaminą</mat-label>
+                        <mat-select [(ngModel)]="service.formData.ExamId" name = "service.formData.ExamId" required>
+                          <mat-option *ngFor="let exam of service.examList" [value]="exam.ExamId">{{exam.Title}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                   </div>
+                   <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Pasirinkite sertifikatą</mat-label>
+                        <mat-select [(ngModel)]="service.formData.CertificateId" name = "service.formData.CertificateId" required>
+                          <mat-option *ngFor="let cert of service.certificatelist" [value]="cert.CertificateId">{{cert.Title}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                   </div>
+                </form>
+                   <kendo-dialog-actions>
+                    <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                    <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                </kendo-dialog-actions>
+            </kendo-dialog>
+        </div>
     </ng-template>
+    
     <kendo-grid-column field="ExamId" title="Egzaminas"   minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
             <a>{{this.service.getExamTitle(dataItem.ExamId)}}</a>
@@ -36,5 +87,26 @@
         </kendo-grid-column>
         <kendo-grid-column field="File" title="Failas"   minResizableWidth="50">
         </kendo-grid-column>
+        <kendo-grid-column width="90"  minResizableWidth="90">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+              <div>
+                  <button class="btn-primary btn-sm edit-btn"  (click)="populateForm(dataItem)"><span class="fa fa-edit fa-lg"></span></button>    
+              </div>
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column  width="90"  minResizableWidth="90">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                  <div>
+                      <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.EmployeeExamId)"><span class="far fa-trash-alt"></span></button>
+                      <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+                          <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                          <kendo-dialog-actions>
+                              <button kendoButton (click)="onDelete()" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                              <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                          </kendo-dialog-actions>
+                      </kendo-dialog>
+                  </div>
+              </ng-template>
+          </kendo-grid-column>
         <kendo-grid-excel fileName="Darbuotojo egzaminai.xlsx"></kendo-grid-excel>
     </kendo-grid>
