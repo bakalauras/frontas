@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeExamService } from '../shared/employee-exam.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-exam-form',
@@ -10,12 +11,17 @@ import { NgForm } from '@angular/forms';
 })
 export class EmployeeExamFormComponent implements OnInit {
 
-  constructor(public service:EmployeeExamService, private toastr: ToastrService) { }
+  uploadSaveUrl = 'saveUrl'; // should represent an actual API endpoint
+  uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
+
+  id = null;
+  constructor(public service:EmployeeExamService, private toastr: ToastrService,
+    private router: Router,
+    public route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+    }
 
   ngOnInit(){
-    this.service.refreshExamList();
-    this.service.refreshCertificateList();
-    this.service.refreshEmployeeteList();
     this.resetForm();
   }
 
@@ -31,7 +37,7 @@ export class EmployeeExamFormComponent implements OnInit {
       File: '',
       ExamId: null,
       EmployeeId: null,
-      CertificateId: null
+      CertificateId: this.id
     }
   }
 
@@ -45,11 +51,11 @@ export class EmployeeExamFormComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postEmployeeExam(form.value).subscribe(
+    this.service.postEmployeeExam().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -60,11 +66,11 @@ export class EmployeeExamFormComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putEmployeeExam(form.value).subscribe(
+    this.service.putEmployeeExam().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);

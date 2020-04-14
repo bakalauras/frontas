@@ -4,7 +4,7 @@
   <mat-tab-group>
       <nav mat-tab-nav-bar></nav>
       <mat-tab label="Bendra informacija">
-          <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+          <form #form="ngForm" autocomplete="off">
               <input type="hidden" name="EmployeeId" [value]="service.formData.EmployeeId">
               <hr>
               <div class="form-group">
@@ -28,9 +28,19 @@
                   </mat-select>
                 </mat-form-field>
              </div>
-             <div class="form-group">
-              <button type="submit" class="full-width" mat-raised-button color="primary" [disabled]="form.invalid">Įrašyti</button>
-          </div>
+        <div class="form-group">
+          <button class="full-width" mat-raised-button color="primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
+      </div>
+      <div *ngIf="this.id!=0" class="form-group">
+        <button class="full-width" mat-raised-button color="accent" (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+        <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+            <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+            <kendo-dialog-actions>
+                <button kendoButton (click)="close('yes')" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                <button kendoButton (click)="close('no')"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
+    </div>
           </form>
       </mat-tab>
       <mat-tab label="Egzaminai" *ngIf="this.id!=0" >

@@ -1,28 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { ToastrService } from 'ngx-toastr';
-import { NgForm, FormControl, Validators } from '@angular/forms';
-import { Duty } from 'src/app/duties/shared/duty.model';
-import { Employee } from '../shared/employee.model';
+import { NgForm} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styles: []
+  styles: [],
+  providers: [DatePipe]
 })
 export class EmployeeComponent implements OnInit {
 
   id = null;
+  public opened = false;
   constructor(public service:EmployeeService, private toastr: ToastrService,
+    private datePipe: DatePipe,
     private router: Router,
     public route: ActivatedRoute) { 
       this.id = this.route.snapshot.paramMap.get('id'); //get id parameter) { }
     }
 
   ngOnInit() {
-    this.service.refreshList();
+    //this.service.refreshList();
     this.resetForm();
+  }
+
+  public close(status) {
+    if(status =='yes')
+    {
+      this.deleteRecord(this.id)
+    }
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 
   resetForm(form?:NgForm) {
@@ -34,7 +48,7 @@ export class EmployeeComponent implements OnInit {
       Name : '',
       Surname: '',
       IsActive: true,
-      FkEmployeeId: 0
+      FkEmployeeId: null
     }
   }
 
@@ -50,13 +64,14 @@ export class EmployeeComponent implements OnInit {
   {
     this.service.postEmployee().subscribe(
       res => {
-        this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.router.navigateByUrl('/employee/'+res.EmployeeId);
+        this.id = res.EmployeeId;
+        this.service.formData.EmployeeId = res.EmployeeId;
       },
       err => {
         console.log(err);
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -66,14 +81,25 @@ export class EmployeeComponent implements OnInit {
     this.service.putEmployee().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        this.toastr.success('Išsaugota sėkmingai');
       },
       err => {
         console.log(err);
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
+  }
+
+  deleteRecord(EmployeeId){
+      this.service.deleteEmployee(EmployeeId)
+      .subscribe(res =>{
+        this.toastr.info('Ištrinta sėkmingai');
+        this.router.navigateByUrl('/employees');
+      },
+        err => {
+          console.log(err);
+          this.toastr.error(err.error);
+        })
   }
 
 }
