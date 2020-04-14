@@ -14,6 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ContestFormComponent implements OnInit {
 
   id = null;
+  public opened = false;
   constructor(public service: ContestService,
     private toastr: ToastrService, private datePipe: DatePipe,
     private router: Router,
@@ -25,6 +26,18 @@ export class ContestFormComponent implements OnInit {
     this.service.refreshContestStatusList();
     this.service.refreshCustomerList();
     this.resetForm();
+  }
+
+  public close(status) {
+    if(status =='yes')
+    {
+      this.delete(this.id)
+    }
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 
   resetForm(form?: NgForm, )
@@ -54,7 +67,6 @@ export class ContestFormComponent implements OnInit {
 
   delete(ContestId)
   {
-    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
       this.service.deleteRecord(ContestId)
       .subscribe(
         res => {
@@ -63,10 +75,9 @@ export class ContestFormComponent implements OnInit {
         },
         err => {
           console.log(err)
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         }
       )
-      }
     }
 
   insert(form:NgForm)
@@ -80,7 +91,7 @@ export class ContestFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -94,7 +105,7 @@ export class ContestFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

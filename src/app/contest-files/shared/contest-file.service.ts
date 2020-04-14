@@ -31,13 +31,13 @@ export class ContestFileService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList(id)
+  refreshList(id, callBack)
   {
     if(id!=0)
     {
       this.http.get(this.rootURL+'/contests/'+id+'/files').
     toPromise()
-    .then(res => this.list = res as ContestFile[]);
+    .then(res => {this.list = res as ContestFile[], callBack(this)});
     }
   }
 }

@@ -32,12 +32,21 @@
                           <option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.TenderId}}</option> 
                       </select>
                   </div>
-                  <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
-                  <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id!=0" (click)="delete(service.formData.ProjectId)">Ištrinti projektą</button>
+                  <div style="float: right;">
+                    <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+                    <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+                        <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="close('yes')" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                            <button kendoButton (click)="close('no')"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
+                <button kendoButton [primary]="true"(click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
             </form>
         </mat-tab>
         <mat-tab label="Etapai" *ngIf="this.id!=0" >
-            <app-project-stages></app-project-stages>
+            <app-project-stage-list></app-project-stage-list>
         </mat-tab>
         <mat-tab label="Rodikliai" *ngIf="this.id!=0" >
             Kol kas nepadaryta

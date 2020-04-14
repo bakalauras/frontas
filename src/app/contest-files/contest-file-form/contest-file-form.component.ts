@@ -11,6 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ContestFileFormComponent implements OnInit {
 
+  uploadSaveUrl = 'saveUrl'; // should represent an actual API endpoint
+  uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
+
   id = null;
   constructor(public service: ContestFileService,
     private toastr: ToastrService, private router: Router,
@@ -48,11 +51,11 @@ export class ContestFileFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
-        this.service.refreshList(this.id);
+       // this.service.refreshList(this.id);
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -63,11 +66,11 @@ export class ContestFileFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
-        this.service.refreshList(this.id);
+        //this.service.refreshList(this.id);
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

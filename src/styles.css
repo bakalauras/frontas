@@ -18,6 +18,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 #toast-container > div {
     opacity: 1;
+    margin-top: 60px;
+    margin-right: 20px;
 }
 
 table tr:hover{
@@ -64,6 +66,34 @@ section {
 
 .btn {
     font-size: 20px;
+}
+
+.edit-btn {
+    width:65px;
+    height: 10 px;
+    background-color: #53b827;
+    border-color: #53b827;
+}
+
+.edit-btn:hover {
+    width:65px;
+    height: 10 px;
+    background-color: #53b827;
+    border-color: #53b827;
+}
+
+.delete-btn {
+    width:65px;
+    height: 10 px;
+    background-color: #c75757;
+    border-color: #c75757;
+}
+
+.delete-btn:hover {
+    width:65px;
+    height: 10 px;
+    background-color: #c75757;
+    border-color: #c75757;
 }
 
 h4 {

@@ -10,11 +10,11 @@
 filterable="menu"
 [sortable]="true"
 [sort]="state.sort"
-(dataStateChange)="dataStateChange($event)"
-(pageChange)="pageChange($event)">
+(dataStateChange)="dataStateChange($event, this.service)"
+(pageChange)="pageChange($event, this.service)">
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
-    <button routerLink="/contest/0">Pridėti konkursą</button>
+    <button kendoButton  [primary]=true routerLink="/contest/0"><i class="fas fa-plus"> </i>   Pridėti konkursą</button>
 </ng-template>
     <kendo-grid-column field="Title" title="Pavadinimas" width="250"  minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">

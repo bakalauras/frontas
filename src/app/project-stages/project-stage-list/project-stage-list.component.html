@@ -10,11 +10,12 @@
 filterable="menu"
 [sortable]="true"
 [sort]="state.sort"
-(dataStateChange)="dataStateChange($event)"
-(pageChange)="pageChange($event)">
+(dataStateChange)="dataStateChange($event, this.service)"
+(pageChange)="pageChange($event, this.service)">
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
-    <button>
+    <button kendoButton  [primary]=true>
+        <i class="fas fa-plus"> </i>
         <a [routerLink] ="[this.stageRoute, 0]">Pridėti etapą</a>
     </button>
 </ng-template>

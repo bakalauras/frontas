@@ -42,11 +42,11 @@ export class ContestService {
     
   }
 
-  refreshList()
+  refreshList(callback)
   {
     this.http.get(this.rootURL+this.apiName).
     toPromise()
-    .then(res => this.list = res as Contest[]);
+    .then(res => {this.list = res as Contest[], callback(this)});
   }
 
   refreshContestStatusList()

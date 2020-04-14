@@ -32,13 +32,13 @@ export class WorkingTimeRegisterService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList(id)
+  refreshList(id, callBack)
   {
     if(id!=0)
     {
       this.http.get(this.rootURL+'/ProjectStages/'+id+'/workingTimeRegisters').
     toPromise()
-    .then(res => this.list = res as WorkingTimeRegister[]);
+    .then(res => {this.list = res as WorkingTimeRegister[], callBack(this)});
     }
   }
 

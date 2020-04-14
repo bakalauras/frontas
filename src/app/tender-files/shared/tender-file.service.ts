@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Tender } from 'src/app/tenders/shared/tender.model';
 import { HttpClient } from '@angular/common/http';
 import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,13 +31,13 @@ export class TenderFileService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList(id)
+  refreshList(id, callBack)
   {
     if(id!=0)
     {
       this.http.get(this.rootURL+'/tenders/'+id+'/files').
     toPromise()
-    .then(res => this.list = res as TenderFile[]);
+    .then(res => {this.list = res as TenderFile[], callBack(this)});
     }
   }
 }

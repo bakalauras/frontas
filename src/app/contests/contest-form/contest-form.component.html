@@ -44,12 +44,22 @@
                         <option *ngFor="let customer of service.list3" [value]="customer.CustomerId">{{customer.Name}}</option> 
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
-                <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id!=0" (click)="delete(service.formData.ContestId)">Ištrinti konkursą</button>
+
+                <div style="float: right;">
+                    <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+                    <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+                        <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="close('yes')" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                            <button kendoButton (click)="close('no')"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
+                <button kendoButton [primary]="true"(click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
             </form>
         </mat-tab>
         <mat-tab label="Failai" *ngIf="this.id!=0" >
-            <app-contest-files></app-contest-files>
+            <app-contest-file-list></app-contest-file-list>
         </mat-tab>
         <mat-tab label="Sertifikatai" *ngIf="this.id!=0">
             <app-contest-certificates></app-contest-certificates>

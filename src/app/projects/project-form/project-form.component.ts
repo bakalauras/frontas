@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProjectFormComponent implements OnInit {
 
   id = null;
+  public opened = false;
   constructor(public service: ProjectService,
     private toastr: ToastrService,
     private router: Router,
@@ -24,6 +25,18 @@ export class ProjectFormComponent implements OnInit {
     this.service.refreshTenderList();
     this.service.refreshCustomerList();
     this.resetForm();
+  }
+
+  public close(status) {
+    if(status =='yes')
+    {
+      this.delete(this.id)
+    }
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 
   resetForm(form?: NgForm)
@@ -50,7 +63,6 @@ export class ProjectFormComponent implements OnInit {
 
   delete(ProjectId)
   {
-    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
       this.service.deleteRecord(ProjectId)
       .subscribe(
         res => {
@@ -59,10 +71,9 @@ export class ProjectFormComponent implements OnInit {
         },
         err => {
           console.log(err)
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         }
       )
-      }
     }
 
   insert(form:NgForm)
@@ -76,7 +87,7 @@ export class ProjectFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -90,7 +101,7 @@ export class ProjectFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

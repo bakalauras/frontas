@@ -113,6 +113,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import { UploadComponent } from './upload/upload.component';
 import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-grid';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
 import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 import { ChartsComponent } from './charts/charts.component';
@@ -206,6 +211,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     StageCompetencyFormComponent,
     StageCompetencyListComponent,
     UploadComponent,
+    KendoGridComponent,
     ChartsComponent
   ],
   imports: [
@@ -231,6 +237,10 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     GridModule,
     PDFModule,
     ExcelModule,
+    DialogsModule,
+    ButtonsModule,
+    UploadModule,
+    DropDownsModule,
     GanttModule,
     DateInputsModule
   ],

@@ -12,39 +12,60 @@
                     <select [(ngModel)]="service.formData.ProjectStageNameId" name = "service.formData.ProjectStageNameId">
                         <option *ngFor="let stageName of service.list2" [value]="stageName.ProjctStageNameId">{{stageName.StageName}}</option> 
                     </select>
+                    <div class="example-config">
+                        Selected Item: {{service.formData.ProjectStageNameId | json}}
+                    </div>
+                    <kendo-dropdownlist
+                        [data]="service.list2"
+                        textField="StageName"
+                        valueField="stageName.ProjctStageNameId"
+                        [(ngModel)]="service.formData.ProjectStageNameId"
+                        name = "service.formData.ProjectStageNameId"
+                    >
+                    </kendo-dropdownlist>
                    </div>
                 <div class="form-group">
                   <label for="ScheduledStartDate">Planuojama pradžios data</label><label style="color: red;"> *</label>
                   <input name="ScheduledStartDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledStartDate" type="date" class="form-control" id="ScheduledStartDate" placeholder="Įveskite failo aprašymą" required>
                 </div>
                 <div class="form-group">
-                    <label for="StartDate">Reali pradžios data</label><label style="color: red;"> *</label>
-                    <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="date" class="form-control" id="StartDate" required>
+                    <label for="StartDate">Reali pradžios data</label>
+                    <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="date" class="form-control" id="StartDate">
                 </div>
                 <div class="form-group">
                     <label for="ScheduledEndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
                     <input name="ScheduledEndDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledEndDate" type="date" class="form-control" id="ScheduledEndDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="EndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
-                    <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="date" class="form-control" id="EndDate" required>
+                    <label for="EndDate">Reali pabaigos data</label>
+                    <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="date" class="form-control" id="EndDate" >
                 </div>
                 <div class="form-group">
                     <label for="StageBudget">Etapo biudžetas</label><label style="color: red;"> *</label>
                     <input name="StageBudget" #Type = "ngModel" [(ngModel)]="service.formData.StageBudget" type="number" class="form-control" id="StageBudget" required>
                 </div>
-                <button type="submit" class="btn btn-primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
-                <button style="float: right;" class="far fa-trash-alt fa-lg text-danger" *ngIf="this.id2!=0" (click)="delete(service.formData.ProjectStageId)">Ištrinti projekto etapą</button>
+                <div style="float: right;">
+                    <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+                    <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+                        <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="close('yes')" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                            <button kendoButton (click)="close('no')"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
+                <button kendoButton [primary]="true"(click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
+                
             </form>
         </mat-tab>
         <mat-tab label="Resursų planas" *ngIf="this.id2!=0" >
-            <app-resource-plans></app-resource-plans>
+            <app-resource-plan-list></app-resource-plan-list>
         </mat-tab>
         <mat-tab label="Darbo laiko registras" *ngIf="this.id2!=0" >
-            <app-working-time-registers></app-working-time-registers>
+            <app-working-time-register-list></app-working-time-register-list>
         </mat-tab>
         <mat-tab label="Etapo įvykdymo progresas" *ngIf="this.id2!=0" >
-            <app-stage-progresses></app-stage-progresses>
+            <app-stage-progress-list></app-stage-progress-list>
         </mat-tab>
         <mat-tab label="Kompetencijos" *ngIf="this.id2!=0" >
             <app-stage-competencies></app-stage-competencies>
