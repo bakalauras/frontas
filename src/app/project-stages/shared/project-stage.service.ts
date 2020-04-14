@@ -41,13 +41,13 @@ export class ProjectStageService {
     
   }
 
-  refreshList(id)
+  refreshList(id, callBack)
   {
     if(id!=0)
     {
       this.http.get(this.rootURL+'/projects/'+id+'/projectStages').
     toPromise()
-    .then(res => this.list = res as ProjectStage[]);
+    .then(res => {this.list = res as ProjectStage[], callBack(this)});
     }
   }
 

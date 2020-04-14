@@ -1,14 +1,58 @@
-<table class="table table-hover">
-    <thead>
-            <tr>
-                    <th>Pavadinimas</th>
-                    <th></th>
-            </tr></thead>
-        <tbody>
-    <tr *ngFor="let pd of service.list">
-<td (click) = "populateForm(pd)">{{pd.StatusName}}</td>
-<td>
-    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.ContestStatusId)"></i>
-</td>
-    </tr></tbody>
-</table>
+<kendo-grid
+[data]="gridView"
+[pageSize]="state.take"
+[skip]="state.skip"
+[filter] ="state.filter"
+[pageable]="{pageSizes: true}"
+[groupable]="true"
+[group]="state.group"
+[resizable]="true"
+filterable="menu"
+[sortable]="true"
+[sort]="state.sort"
+(dataStateChange)="dataStateChange($event, this.service)"
+(pageChange)="pageChange($event, this.service)">
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+    <div style="float: left;">
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Įvesti naują įrašą</button>
+        <kendo-dialog title="Konkurso būsenos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+            <form #form="ngForm" autocomplete="off">
+                <input type="hidden" name="ContestStatusId" [value]="service.formData.ContestStatusId">
+                <div class="form-group">
+                  <label for="Type">Pavadinimas</label><label style="color: red;"> *</label>
+                  <input name="StatusName" #Type = "ngModel" [(ngModel)]="service.formData.StatusName" type="text" class="form-control" id="StatusName" placeholder="Įveskite būsenos pavadinimą" required>
+                </div>
+            </form>
+            <kendo-dialog-actions>
+                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
+    </div>
+</ng-template>
+    <kendo-grid-column field="StatusName" title="Pavadinimas" minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column width="90"  minResizableWidth="90">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+          <div >
+              <button class="btn-primary btn-sm edit-btn"  (click)="populateForm(dataItem)"><span class="fa fa-edit fa-lg"></span></button>    
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+    <kendo-grid-column  width="90"  minResizableWidth="90">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <div>
+                <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.ContestStatusId)"><span class="far fa-trash-alt"></span></button>
+                <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+                    <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                    <kendo-dialog-actions>
+                        <button kendoButton (click)="onDelete()" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                        <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                    </kendo-dialog-actions>
+                </kendo-dialog>
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-excel fileName="Eksportas.xlsx"></kendo-grid-excel>
+</kendo-grid>

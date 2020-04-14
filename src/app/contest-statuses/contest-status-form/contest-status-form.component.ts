@@ -40,11 +40,11 @@ export class ContestStatusFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Būsena sėkmingai pridėta');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -55,11 +55,11 @@ export class ContestStatusFormComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Būsena sėkmingai atnaujinta');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

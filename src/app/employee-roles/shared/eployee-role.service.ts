@@ -27,10 +27,10 @@ export class EployeeRoleService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(callBack)
   {
     this.http.get(this.rootURL+this.apiName).
     toPromise()
-    .then(res => this.list = res as EmployeeRole[]);
+    .then(res => {this.list = res as EmployeeRole[], callBack(this)});
   }
 }

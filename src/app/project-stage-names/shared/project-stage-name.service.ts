@@ -27,10 +27,10 @@ export class ProjectStageNameService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList()
+  refreshList(callBack)
   {
     this.http.get(this.rootURL+this.apiName).
     toPromise()
-    .then(res => this.list = res as ProjectStageName[]);
+    .then(res => {this.list = res as ProjectStageName[], callBack(this)});
   }
 }

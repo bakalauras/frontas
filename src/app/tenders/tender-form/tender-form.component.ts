@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class TenderFormComponent implements OnInit {
 
   id = null;
+  public opened = false;
   constructor(public service: TenderService,
     private toastr: ToastrService,
     private router: Router,
@@ -23,6 +24,18 @@ export class TenderFormComponent implements OnInit {
     this.service.refreshContestsList();
     this.service.refreshTenderStateList();
     this.resetForm();
+  }
+
+  public close(status) {
+    if(status =='yes')
+    {
+      this.delete(this.id)
+    }
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 
   resetForm(form?: NgForm)
@@ -48,7 +61,6 @@ export class TenderFormComponent implements OnInit {
 
   delete(TenderId)
   {
-    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
       this.service.deleteRecord(TenderId)
       .subscribe(
         res => {
@@ -57,10 +69,9 @@ export class TenderFormComponent implements OnInit {
         },
         err => {
           console.log(err)
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         }
       )
-      }
     }
 
   insert(form:NgForm)
@@ -74,7 +85,7 @@ export class TenderFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -88,7 +99,7 @@ export class TenderFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

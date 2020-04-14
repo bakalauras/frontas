@@ -113,6 +113,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MAT_DATE_LOCALE} from '@angular/material';
 import { UploadComponent } from './upload/upload.component';
 import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-grid';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -201,7 +210,8 @@ import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-gri
     StageCompetenciesComponent,
     StageCompetencyFormComponent,
     StageCompetencyListComponent,
-    UploadComponent
+    UploadComponent,
+    KendoGridComponent
   ],
   imports: [
     BrowserModule,
@@ -225,7 +235,11 @@ import { GridModule, PDFModule, ExcelModule  } from '@progress/kendo-angular-gri
     MatExpansionModule,
     GridModule,
     PDFModule,
-    ExcelModule
+    ExcelModule,
+    DialogsModule,
+    ButtonsModule,
+    UploadModule,
+    DropDownsModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
      { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }],

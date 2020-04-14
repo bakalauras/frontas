@@ -30,13 +30,13 @@ export class ResourcePlanService {
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
   }
 
-  refreshList(id)
+  refreshList(id, callBack)
   {
     if(id!=0)
     {
       this.http.get(this.rootURL+'/ProjectStages/'+id+'/resourcePlans').
     toPromise()
-    .then(res => this.list = res as ResourcePlan[]);
+    .then(res => {this.list = res as ResourcePlan[], callBack(this)});
     }
   }
 

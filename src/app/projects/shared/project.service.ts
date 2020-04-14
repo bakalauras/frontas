@@ -40,11 +40,11 @@ export class ProjectService {
     }
   }
 
-  refreshList()
+  refreshList(callback)
   {
     this.http.get(this.rootURL+this.apiName).
     toPromise()
-    .then(res => this.list = res as Project[]);
+    .then(res => {this.list = res as Project[], callback(this)});
   }
 
   refreshTenderList()

@@ -41,11 +41,11 @@ export class TenderService {
     
   }
 
-  refreshList()
+  refreshList(callback)
   {
     this.http.get(this.rootURL+this.apiName).
     toPromise()
-    .then(res => this.list = res as Tender[]);
+    .then(res => {this.list = res as Tender[], callback(this)});
   }
 
   refreshTenderStateList()

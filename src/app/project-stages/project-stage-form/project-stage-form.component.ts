@@ -13,6 +13,7 @@ export class ProjectStageFormComponent implements OnInit {
 
   id = null;
   id2 = null;
+  public opened = false;
   constructor(public service: ProjectStageService,
     private toastr: ToastrService, private router: Router,
     public route: ActivatedRoute) { 
@@ -24,6 +25,18 @@ export class ProjectStageFormComponent implements OnInit {
     this.service.refreshProjectStageNamesList();
     this.service.refreshProjectsList();
     this.resetForm();
+  }
+
+  public close(status) {
+    if(status =='yes')
+    {
+      this.delete(this.id2)
+    }
+    this.opened = false;
+  }
+
+  public open() {
+    this.opened = true;
   }
 
   resetForm(form?: NgForm)
@@ -52,7 +65,6 @@ export class ProjectStageFormComponent implements OnInit {
 
   delete(ProjectStageId)
   {
-    if(confirm('Ar tikrai norite ištrinti šį įrašą?')){
       this.service.deleteRecord(ProjectStageId)
       .subscribe(
         res => {
@@ -61,11 +73,10 @@ export class ProjectStageFormComponent implements OnInit {
         },
         err => {
           console.log(err)
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         }
       )
-      }
-    }
+   }
 
   insert(form:NgForm)
   {
@@ -78,7 +89,7 @@ export class ProjectStageFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -92,7 +103,7 @@ export class ProjectStageFormComponent implements OnInit {
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
