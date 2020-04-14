@@ -14,6 +14,7 @@ export class SalaryComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
+    this.service.refreshEmployeeteList();
   }
 
   resetForm(form?:NgForm) {
@@ -25,7 +26,7 @@ export class SalaryComponent implements OnInit {
       EmployeeSalary: null,
       DateFrom: null,
       DateTo: null,
-      EmployeeId: 0
+      EmployeeId: null
     }
   }
 

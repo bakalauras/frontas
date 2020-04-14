@@ -118,10 +118,10 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { UploadModule } from '@progress/kendo-angular-upload';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
-
-
-
-
+import { GanttModule, ResizeService, SortService, FilterService, SelectionService, ReorderService,
+  EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
+import { ChartsComponent } from './charts/charts.component';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
 @NgModule({
   declarations: [
@@ -211,7 +211,8 @@ import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
     StageCompetencyFormComponent,
     StageCompetencyListComponent,
     UploadComponent,
-    KendoGridComponent
+    KendoGridComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -239,10 +240,14 @@ import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
     DialogsModule,
     ButtonsModule,
     UploadModule,
-    DropDownsModule
+    DropDownsModule,
+    GanttModule,
+    DateInputsModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
-     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }],
+    { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, 
+    ResizeService, SortService, FilterService, SelectionService, ReorderService,
+     EditService, DayMarkersService, ToolbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

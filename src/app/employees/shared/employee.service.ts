@@ -8,17 +8,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmployeeService {
   formData:Employee
+  testas:Employee
   readonly rootURL = environment.rootURL;
   list:Employee[];
+  name:string;
+  param:string;
 
   constructor(private http:HttpClient) { }
 
-  postEmployee(formData:Employee){
-    return this.http.post(this.rootURL + '/Employees', this.formData)
+  postEmployee(){
+    return this.http.post<{EmployeedId : number}>(this.rootURL + '/Employees', this.formData)
   }
 
-  putEmployee(formData:Employee){
-    console.log(formData);
+  putEmployee(){
     return this.http.put(this.rootURL + '/Employees/'+ this.formData.EmployeeId, this.formData)
   }
 
@@ -34,14 +36,31 @@ export class EmployeeService {
 
   setSelectedEmployee(EmployeeId){
     //this.http.get(this.rootURL + '/Employees'+ EmployeeId).
-    return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
+   // return this.http.get(this.rootURL + '/Employees/'+ EmployeeId)
    // return EmployeeId;
+   
   }
 
   getActiveParam(id)
   {
     if(this.formData.IsActive == true)
-    return "Aktyvus";
-    else "Neaktyvus";
+      return "Aktyvus";
+    else return "Neaktyvus";
+    //return this.http.get(this.rootURL + '/Employees/'+ id+'/isActive').subscribe( res => this.param = res as string);;
+  }
+
+  getManager(id)
+  {
+     //this.http.get(this.rootURL + '/Employees/'+ id+'/manager';
+    return this.list.find(x => x.EmployeeId == id).Name;
+  }
+
+  getRecord(id){
+    if(id!=0)
+    {
+      this.http.get(this.rootURL+'/Employees/'+id).
+    toPromise()
+    .then(res => this.formData = res as Employee);
+    }
   }
 }
