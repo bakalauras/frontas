@@ -35,11 +35,11 @@ export class DutyComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postDuty(form.value).subscribe(
+    this.service.postDuty().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -50,11 +50,11 @@ export class DutyComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putDuty(form.value).subscribe(
+    this.service.putDuty().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);

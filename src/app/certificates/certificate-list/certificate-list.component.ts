@@ -4,35 +4,93 @@ import { ToastrService } from 'ngx-toastr';
 import { Certificate } from '../shared/certificate.model';
 import { error } from '@angular/compiler/src/util';
 import { HttpHeaders } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
 
 @Component({
   selector: 'app-certificate-list',
   templateUrl: './certificate-list.component.html',
   styles: []
 })
-export class CertificateListComponent implements OnInit {
+export class CertificateListComponent extends KendoGridComponent implements OnInit {
 
-  constructor(public service:CertificateService, private toastr: ToastrService) { }
+  constructor(public service:CertificateService, private toastr: ToastrService) {
+    super();
+   }
 
   ngOnInit(){
-    this.service.refreshList();
+    this.service.refreshList(this.loadItems.bind(this));
+    this.resetForm();
   }
 
   populateForm(pd:Certificate){
     this.service.formData = Object.assign({}, pd);
+    this.opened2 = true;
   }
 
-  onDelete(CertificateId){
-    if(confirm('Ar tikrai norite ištrinti?')){
-      this.service.deleteCertificate(CertificateId)
+  onDelete(){
+    this.opened = false;
+    if(this.idToDelete!=0){
+      this.service.deleteCertificate(this.idToDelete)
       .subscribe(res =>{
-        this.service.refreshList();
-        this.toastr.success('Ištrinta sėkmingai');
+        this.toastr.info('Ištrinta sėkmingai');
+        this.service.refreshList(this.loadItems.bind(this));
       },
         err => {
           console.log(err);
           this.toastr.error('Įvyko klaida');
         })
     }
+  }
+
+  resetForm(form?:NgForm) {
+    if(form!=null)
+      form.resetForm();
+    this.service.formData = {
+      CertificateId: 0,
+      Title: '',
+      Code: '',
+      Technology:'',
+      Order: 0
+    }
+  }
+
+  onSubmit(form:NgForm)
+  {
+    if(this.service.formData.CertificateId == 0)
+      this.insertRecord(form);
+    else
+      this.updateRecord(form);
+    this.close();
+  }
+
+  insertRecord(form:NgForm)
+  {
+    this.service.postCertificate().subscribe(
+      res => {
+        this.resetForm(form),
+        this.toastr.success('Išsaugota sėkmingai');
+        this.service.refreshList(this.loadItems.bind(this));
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Įvyko klaida');
+      }
+    )
+  }
+
+  updateRecord(form:NgForm)
+  {
+    this.service.putCertificate().subscribe(
+      res => {
+        this.resetForm(form),
+        this.toastr.success('Išsaugota sėkmingai');
+        this.service.refreshList(this.loadItems.bind(this));
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Įvyko klaida');
+      }
+    )
   }
 }

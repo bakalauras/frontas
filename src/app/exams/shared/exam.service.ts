@@ -16,12 +16,11 @@ export class ExamService {
 
   constructor(private http:HttpClient) { }
 
-  postExam(formData:Exam){
+  postExam(){
     return this.http.post(this.rootURL + '/Exams', this.formData)
   }
 
-  putExam(formData:Exam){
-    console.log(formData);
+  putExam(){
     return this.http.put(this.rootURL + '/Exams/'+ this.formData.ExamId, this.formData)
   }
 
@@ -29,10 +28,10 @@ export class ExamService {
     return this.http.delete(this.rootURL + '/Exams/'+ id)
   }
 
-  refreshList(){
+  refreshList(callBack){
     this.http.get(this.rootURL + '/Exams')
     .toPromise()
-    .then(res =>this.list=res as Exam[])
+    .then(res =>{this.list = res as Exam[], callBack(this)})
   }
 
   refreshCertificateList()

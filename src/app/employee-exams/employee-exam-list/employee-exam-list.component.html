@@ -22,17 +22,17 @@
         <div style="float: left;">
         <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti egzaminą</button>
         <kendo-dialog title="Egzamino informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
-            <form #form="ngForm" autocomplete="off">
-                <input type="hidden" name="ExamId" [value]="service.formData.ExamId">
+            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                <input type="hidden" name="EmployeeExamId" [value]="service.formData.EmployeeExamId">
                 <div class="form-group">
                     <mat-form-field class="full-width">
-                        <mat-label>Pasirinkite planuojamą datą</mat-label>
+                        <mat-label>Planuojama data</mat-label>
                         <input matInput type="date"name="PlannedExamDate" #Type="ngModel" [(ngModel)]="service.formData.PlannedExamDate" placeholder="Planuojama data" required>
                       </mat-form-field>
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">
-                        <mat-label>Pasirinkite realią datą</mat-label>
+                        <mat-label>Reali data</mat-label>
                         <input matInput type="date" name="RealExamDate" #Type="ngModel" [(ngModel)]="service.formData.RealExamDate" placeholder="Reali data" required>
                       </mat-form-field>
                 </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">
-                        <mat-label>Pasirinkite egzaminą</mat-label>
+                        <mat-label>Egzaminas</mat-label>
                         <mat-select [(ngModel)]="service.formData.ExamId" name = "service.formData.ExamId" required>
                           <mat-option *ngFor="let exam of service.examList" [value]="exam.ExamId">{{exam.Title}}</mat-option>
                         </mat-select>
@@ -59,7 +59,7 @@
                    </div>
                    <div class="form-group">
                     <mat-form-field class="full-width">
-                        <mat-label>Pasirinkite sertifikatą</mat-label>
+                        <mat-label>Sertifikatas</mat-label>
                         <mat-select [(ngModel)]="service.formData.CertificateId" name = "service.formData.CertificateId" required>
                           <mat-option *ngFor="let cert of service.certificatelist" [value]="cert.CertificateId">{{cert.Title}}</mat-option>
                         </mat-select>
@@ -91,6 +91,8 @@
         <kendo-grid-column field="Price" title="Kaina"   minResizableWidth="50">
         </kendo-grid-column>
         <kendo-grid-column field="File" title="Failas"   minResizableWidth="50">
+        </kendo-grid-column>
+        <kendo-grid-column field="IsPassed" title="Ar išlaikytas"   minResizableWidth="30">
         </kendo-grid-column>
         <kendo-grid-column width="90"  minResizableWidth="90">
             <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">

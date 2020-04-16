@@ -16,12 +16,11 @@ export class EmployeeCertificateService {
   employeeList:Employee[];
 
   constructor(private http:HttpClient) { }
-  postEmployeeCertificate(formData:EmployeeCertificate){
+  postEmployeeCertificate(){
     return this.http.post(this.rootURL + '/EmployeeCertificates', this.formData)
   }
 
-  putEmployeeCertificate(formData:EmployeeCertificate){
-    console.log(formData);
+  putEmployeeCertificate(){
     return this.http.put(this.rootURL + '/EmployeeCertificates/'+ this.formData.EmployeeCertificateId, this.formData)
   }
 
@@ -29,10 +28,10 @@ export class EmployeeCertificateService {
     return this.http.delete(this.rootURL + '/EmployeeCertificates/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/EmployeeCertificates')
+  refreshList(id, callBack){
+    this.http.get(this.rootURL + '/Employees/'+id+"/certificates")
     .toPromise()
-    .then(res =>this.list=res as EmployeeCertificate[])
+    .then(res =>{this.list=res as EmployeeCertificate[], callBack(this)})
   }
 
   refreshCertificateList()
