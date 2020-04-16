@@ -40,11 +40,11 @@ export class EmployeeDutyFormComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postEmployeeDuty(form.value).subscribe(
+    this.service.postEmployeeDuty().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+      //  this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -55,11 +55,11 @@ export class EmployeeDutyFormComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putEmployeeDuty(form.value).subscribe(
+    this.service.putEmployeeDuty().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+      //  this.service.refreshList();
       },
       err => {
         console.log(err);

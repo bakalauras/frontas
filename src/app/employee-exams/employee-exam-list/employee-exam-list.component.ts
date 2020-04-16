@@ -28,7 +28,7 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
     this.service.refreshExamList();
     this.service.refreshCertificateList();
     this.service.refreshList(this.id, this.loadItems.bind(this));
-    this.service.refreshExamList();
+    this.resetForm();
   }
 
   populateForm(pd:EmployeeExam){
@@ -42,7 +42,7 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
     {
       this.service.deleteEmployeeExam(this.idToDelete)
       .subscribe(res =>{
-        this.toastr.info('Ištrinta sėkmingai');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
         err => {
@@ -82,7 +82,7 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
     this.service.postEmployeeExam().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {
@@ -97,7 +97,7 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
     this.service.putEmployeeExam().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {

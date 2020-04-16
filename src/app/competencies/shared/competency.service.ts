@@ -14,12 +14,11 @@ export class CompetencyService {
 
   constructor(private http:HttpClient) { }
 
-  postCompetency(formData:Competency){
+  postCompetency(){
     return this.http.post(this.rootURL + '/Competencies', this.formData)
   }
 
-  putCompetency(formData:Competency){
-    console.log(formData);
+  putCompetency(){
     return this.http.put(this.rootURL + '/Competencies/'+ this.formData.CompetencyId, this.formData)
   }
 
@@ -27,9 +26,9 @@ export class CompetencyService {
     return this.http.delete(this.rootURL + '/Competencies/'+ id)
   }
 
-  refreshList(){
+  refreshList(callBack){
     this.http.get(this.rootURL + '/Competencies')
     .toPromise()
-    .then(res =>this.list=res as Competency[])
+    .then(res =>{this.list = res as Competency[], callBack(this)})
   }
 }

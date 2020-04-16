@@ -35,11 +35,11 @@ export class CompetencyComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postCompetency(form.value).subscribe(
+    this.service.postCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -50,11 +50,11 @@ export class CompetencyComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putCompetency(form.value).subscribe(
+    this.service.putCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err);

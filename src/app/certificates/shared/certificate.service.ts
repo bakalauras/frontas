@@ -14,12 +14,11 @@ export class CertificateService {
 
   constructor(private http:HttpClient) { }
 
-  postCertificate(formData:Certificate){
+  postCertificate(){
     return this.http.post(this.rootURL + '/Certificates', this.formData)
   }
 
-  putCertificate(formData:Certificate){
-    console.log(formData);
+  putCertificate(){
     return this.http.put(this.rootURL + '/Certificates/'+ this.formData.CertificateId, this.formData)
   }
 
@@ -27,9 +26,9 @@ export class CertificateService {
     return this.http.delete(this.rootURL + '/Certificates/'+ id)
   }
 
-  refreshList(){
+  refreshList(callBack){
     this.http.get(this.rootURL + '/Certificates')
     .toPromise()
-    .then(res =>this.list=res as Certificate[])
+    .then(res =>{this.list = res as Certificate[], callBack(this)})
   }
 }
