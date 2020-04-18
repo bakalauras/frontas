@@ -44,7 +44,7 @@ filterable="menu"
               </div>
               <div class="form-group">
                 <mat-form-field class="full-width">
-                    <mat-label>Pasirinkite sertifikatą</mat-label>
+                    <mat-label>Sertifikatas</mat-label>
                     <mat-select [(ngModel)]="service.formData.CertificateId" name = "service.formData.CertificateId" required>
                       <mat-option *ngFor="let cert of service.certificatelist" [value]="cert.CertificateId">{{cert.Title}}</mat-option>
                     </mat-select>
@@ -52,7 +52,7 @@ filterable="menu"
                </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton [disabled]="form.invalid" (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

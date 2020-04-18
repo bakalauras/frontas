@@ -32,12 +32,12 @@ export class ExamListComponent extends KendoGridComponent implements OnInit {
     if(this.idToDelete!=0){
       this.service.deleteExam(this.idToDelete)
       .subscribe(res =>{
-        this.toastr.info('Ištrinta sėkmingai');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
         err => {
           console.log(err);
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         })
     }
   }
@@ -68,12 +68,12 @@ export class ExamListComponent extends KendoGridComponent implements OnInit {
     this.service.postExam().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -83,12 +83,12 @@ export class ExamListComponent extends KendoGridComponent implements OnInit {
     this.service.putExam().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
         console.log(err)
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

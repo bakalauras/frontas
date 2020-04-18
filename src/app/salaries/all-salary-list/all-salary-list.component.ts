@@ -13,7 +13,7 @@ export class AllSalaryListComponent implements OnInit {
   constructor(public service:SalaryService, private toastr: ToastrService) { }
 
   ngOnInit(){
-    this.service.refreshList();
+    //this.service.refreshList(this.id, this.loadItems.bind(this));
   }
 
   populateForm(pd:Salary){

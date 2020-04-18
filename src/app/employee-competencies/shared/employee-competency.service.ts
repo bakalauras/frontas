@@ -14,16 +14,14 @@ export class EmployeeCompetencyService {
   readonly rootURL = environment.rootURL;
   list:EmployeeCompetency[];
   competencyList:Competency[];
-  employeeList:Employee[];
 
   constructor(private http:HttpClient) { }
 
-  postEmployeeCompetency(formData:EmployeeCompetency){
+  postEmployeeCompetency(){
     return this.http.post(this.rootURL + '/EmployeeCompetencies', this.formData)
   }
 
-  putEmployeeCompetency(formData:EmployeeCompetency){
-    console.log(formData);
+  putEmployeeCompetency(){
     return this.http.put(this.rootURL + '/EmployeeCompetencies/'+ this.formData.EmployeeCompetencyId, this.formData)
   }
 
@@ -31,10 +29,10 @@ export class EmployeeCompetencyService {
     return this.http.delete(this.rootURL + '/EmployeeCompetencies/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/EmployeeCompetencies')
+  refreshList(id, callBack){
+    this.http.get(this.rootURL + '/Employees/'+id+"/competencies")
     .toPromise()
-    .then(res =>this.list=res as EmployeeCompetency[])
+    .then(res =>{this.list = res as EmployeeCompetency[], callBack(this)})
   }
 
   refreshCompetencyList()
@@ -42,13 +40,6 @@ export class EmployeeCompetencyService {
     this.http.get(this.rootURL+'/Competencies').
     toPromise()
     .then(res => this.competencyList = res as Competency[]);
-  }
-
-  refreshEmployeeteList()
-  {
-    this.http.get(this.rootURL+'/Employees').
-    toPromise()
-    .then(res => this.employeeList = res as Employee[]);
   }
 
   getCompetencyTitle(id)
