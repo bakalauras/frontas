@@ -64,7 +64,7 @@ export class EmployeeComponent implements OnInit {
   {
     this.service.postEmployee().subscribe(
       res => {
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.router.navigateByUrl('/employee/'+res.EmployeeId);
         this.id = res.EmployeeId;
         this.service.formData.EmployeeId = res.EmployeeId;
@@ -81,7 +81,7 @@ export class EmployeeComponent implements OnInit {
     this.service.putEmployee().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
       },
       err => {
         console.log(err);
@@ -93,7 +93,7 @@ export class EmployeeComponent implements OnInit {
   deleteRecord(EmployeeId){
       this.service.deleteEmployee(EmployeeId)
       .subscribe(res =>{
-        this.toastr.info('Ištrinta sėkmingai');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.router.navigateByUrl('/employees');
       },
         err => {

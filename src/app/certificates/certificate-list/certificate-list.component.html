@@ -50,7 +50,7 @@ filterable="menu"
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton [disabled]="form.invalid" (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

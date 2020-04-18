@@ -21,7 +21,7 @@
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
     <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti sertifikatą</button>
-    <kendo-dialog title="Egzamino informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+    <kendo-dialog title="Sertifikato informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
             <input type="hidden" name="EmployeeCertificateId" [value]="service.formData.EmployeeCertificateId">
             <div class="form-group">
@@ -40,7 +40,7 @@
                </div>
         </form>
         <kendo-dialog-actions>
-         <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+         <button [disabled]="form.invalid" kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
          <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
      </kendo-dialog-actions>
  </kendo-dialog>

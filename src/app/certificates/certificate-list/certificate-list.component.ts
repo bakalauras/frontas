@@ -33,12 +33,12 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
     if(this.idToDelete!=0){
       this.service.deleteCertificate(this.idToDelete)
       .subscribe(res =>{
-        this.toastr.info('Ištrinta sėkmingai');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
         err => {
           console.log(err);
-          this.toastr.error('Įvyko klaida');
+          this.toastr.error(err.error);
         })
     }
   }
@@ -69,12 +69,12 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
     this.service.postCertificate().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
         console.log(err);
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }
@@ -84,12 +84,12 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
     this.service.putCertificate().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
         console.log(err);
-        this.toastr.error('Įvyko klaida');
+        this.toastr.error(err.error);
       }
     )
   }

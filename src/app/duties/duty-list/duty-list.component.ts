@@ -31,7 +31,7 @@ export class DutyListComponent extends KendoGridComponent implements OnInit {
     if(this.idToDelete!=0){
       this.service.deleteDuty(this.idToDelete)
       .subscribe(res =>{
-        this.toastr.info('Ištrinta sėkmingai');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
         err => {
@@ -64,13 +64,12 @@ export class DutyListComponent extends KendoGridComponent implements OnInit {
     this.service.postDuty().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
         console.log(err);
-        //this.toastr.error(err.error.Title);//isspausdins angliskai
-        this.toastr.error("Įvyko klaida.");
+        this.toastr.error(err.error);
       }
     )
   }
@@ -80,7 +79,7 @@ export class DutyListComponent extends KendoGridComponent implements OnInit {
     this.service.putDuty().subscribe(
       res => {
         this.resetForm(form),
-        this.toastr.success('Išsaugota sėkmingai');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
