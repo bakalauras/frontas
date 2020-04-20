@@ -65,8 +65,14 @@
     <kendo-grid-column field="EmployeeSalary" title="Atlyginimas" minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="DateTo" title="Pabaigos data" minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.DateTo | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
