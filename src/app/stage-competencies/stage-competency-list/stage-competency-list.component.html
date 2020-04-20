@@ -1,20 +1,78 @@
-<div style="overflow-x:auto;">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Kiekis</th>
-                <th>Kompetencija</th>
-               <th></th>
-            </tr>
-        </thead>
-         <tbody>
-            <tr *ngFor="let pd of service.list">
-                <td (click)="populateForm(pd)">{{pd.Amount}}</td>
-                <td (click)="populateForm(pd)">{{this.service.getCompetencyTitle(pd.CompetencyId)}}</td>
-                <td>
-                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.StageCompetencyId)"></i>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<kendo-grid
+    [data]="gridView"
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [filter] ="state.filter"
+    [pageable]="{pageSizes: true}"
+    [groupable]="true"
+    [group]="state.group"
+    [resizable]="true"
+    filterable="menu"
+    [sortable]="true"
+    [sort]="state.sort"
+    (dataStateChange)="dataStateChange($event, this.service)"
+    (pageChange)="pageChange($event, this.service)">
+    <app-kendo-grid></app-kendo-grid>
+    <kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
+<ng-template kendoGridToolbarTemplate>
+    <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
+    <div style="float: left;">
+    <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti kompetenciją</button>
+    <kendo-dialog title="Etapo kompetencijos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+        <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+            <input type="hidden" name="StageCompetencyId" [value]="service.formData.StageCompetencyId">
+    <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Kiekis</mat-label>
+            <input matInput type="text" name="Amount" #Type="ngModel" [(ngModel)]="service.formData.Amount" placeholder="Įveskite kiekį" required maxlength="15">
+          </mat-form-field>
     </div>
+       <div class="form-group">
+        <mat-form-field class="full-width">
+            <mat-label>Pasirinkite kompetenciją</mat-label>
+            <mat-select [(ngModel)]="service.formData.CompetencyId" name = "service.formData.CompetencyId" required>
+              <mat-option *ngFor="let comp of service.competencyList" [value]="comp.CompetencyId">{{comp.Title}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div>
+</form>
+<kendo-dialog-actions>
+    <button [disabled]="form.invalid" kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+    <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+</kendo-dialog-actions>
+</kendo-dialog>
+</div>
+</ng-template>
+<kendo-grid-column field="CompetencyId" title="Kompetencija"   minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <a>{{this.service.getCompetencyTitle(dataItem.CompetencyId)}}</a>
+        </ng-template>
+</kendo-grid-column>
+    <kendo-grid-column field="Amount" title="Kiekis" minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column width="90"  minResizableWidth="90">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+          <div>
+              <button class="btn-primary btn-sm edit-btn"  (click)="populateForm(dataItem)"><span class="fa fa-edit fa-lg"></span></button>    
+          </div>
+          </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column  width="90"  minResizableWidth="90">
+          <ng-template kendoGridCellTemplate let-dataItem>
+              <div>
+                  <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.StageCompetencyId)"><span class="far fa-trash-alt"></span></button>
+                  <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+                      <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
+                      <kendo-dialog-actions>
+                          <button kendoButton (click)="onDelete()" primary="true"><i class="fas fa-trash-alt"></i> Ištrinti</button>
+                          <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
+                      </kendo-dialog-actions>
+                  </kendo-dialog>
+              </div>
+          </ng-template>
+      </kendo-grid-column>
+    <kendo-grid-excel fileName="Etapo kompetencijos.xlsx"></kendo-grid-excel>
+</kendo-grid>

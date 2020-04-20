@@ -44,11 +44,11 @@ export class StageCompetencyFormComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postStageCompetency(form.value).subscribe(
+    this.service.postStageCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList(this.id);
+       // this.service.refreshList(this.id);
       },
       err => {
         console.log(err);
@@ -59,11 +59,11 @@ export class StageCompetencyFormComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putStageCompetency(form.value).subscribe(
+    this.service.putStageCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList(this.id);
+        //this.service.refreshList(this.id);
       },
       err => {
         console.log(err);

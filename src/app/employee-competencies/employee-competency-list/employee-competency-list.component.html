@@ -24,18 +24,22 @@
     <kendo-dialog title="Kompetencijos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
             <input type="hidden" name="EmployeeCompetencyId" [value]="service.formData.EmployeeCompetencyId">
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pradžios data</mat-label>
-            <input matInput type="date"name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" placeholder="Pradžios data" required>
-          </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pabaigos data</mat-label>
-            <input matInput type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" placeholder="Pabaigos data" required>
-          </mat-form-field>
-    </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Pradžios data</mat-label>
+                  <input matInput [matDatepicker]="myDatePicker" name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" required>
+                  <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Pabaigos data</mat-label>
+                  <input matInput [matDatepicker]="myDatePicker2" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" required>
+                  <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker2></mat-datepicker>
+                  </mat-form-field>
+            </div>
        <div class="form-group">
         <mat-form-field class="full-width">
             <mat-label>Kompetencija</mat-label>
@@ -58,8 +62,14 @@
         </ng-template>
 </kendo-grid-column>
     <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="DateTo" title="Pabaigos data" minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            {{dataItem.DateTo | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
