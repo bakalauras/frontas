@@ -14,7 +14,6 @@ export class SalaryComponent implements OnInit {
 
   ngOnInit() {
     this.resetForm();
-    this.service.refreshEmployeeteList();
   }
 
   resetForm(form?:NgForm) {
@@ -40,11 +39,11 @@ export class SalaryComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postSalary(form.value).subscribe(
+    this.service.postSalary().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -55,11 +54,11 @@ export class SalaryComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putSalary(form.value).subscribe(
+    this.service.putSalary().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);

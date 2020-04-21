@@ -14,7 +14,6 @@ export class EmployeeCompetencyFormComponent implements OnInit {
 
   ngOnInit(){
     this.service.refreshCompetencyList();
-    this.service.refreshEmployeeteList();
     this.resetForm();
   }
 
@@ -40,11 +39,11 @@ export class EmployeeCompetencyFormComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postEmployeeCompetency(form.value).subscribe(
+    this.service.postEmployeeCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -55,11 +54,11 @@ export class EmployeeCompetencyFormComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putEmployeeCompetency(form.value).subscribe(
+    this.service.putEmployeeCompetency().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err);

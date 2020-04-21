@@ -11,16 +11,14 @@ export class SalaryService {
   formData:Salary
   readonly rootURL = environment.rootURL;
   list:Salary[];
-  employeeList:Employee[];
 
   constructor(private http:HttpClient) { }
 
-  postSalary(formData:Salary){
+  postSalary(){
     return this.http.post(this.rootURL + '/Salaries', this.formData)
   }
 
-  putSalary(formData:Salary){
-    console.log(formData);
+  putSalary(){
     return this.http.put(this.rootURL + '/Salaries/'+ this.formData.SalaryId, this.formData)
   }
 
@@ -28,16 +26,9 @@ export class SalaryService {
     return this.http.delete(this.rootURL + '/Salaries/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/Salaries')
+  refreshList(id, callBack){
+    this.http.get(this.rootURL+'/Employees/'+id+'/salaries')
     .toPromise()
-    .then(res =>this.list=res as Salary[])
-  }
-
-  refreshEmployeeteList()
-  {
-    this.http.get(this.rootURL+'/Employees').
-    toPromise()
-    .then(res => this.employeeList = res as Employee[]);
+    .then(res =>{this.list = res as Salary[], callBack(this)})
   }
 }

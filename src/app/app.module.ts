@@ -125,8 +125,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { CpiMeasuresComponent } from './cpi-measures/cpi-measures.component';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
-
-
+//import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
   declarations: [

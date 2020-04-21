@@ -12,14 +12,6 @@
             <input matInput type="date" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" placeholder="Pabaigos data" required>
           </mat-form-field>
     </div>
-    <div class="form-group">
-        <mat-form-field class="full-width">
-            <mat-label>Pasirinkite darbuotoją</mat-label>
-            <mat-select [(ngModel)]="service.formData.EmployeeId" name = "service.formData.EmployeeId" required>
-              <mat-option *ngFor="let emp of service.employeeList" [value]="emp.EmployeeId">{{emp.Name +' ' + emp.Surname}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-       </div>
        <div class="form-group">
         <mat-form-field class="full-width">
             <mat-label>Pasirinkite kompetenciją</mat-label>

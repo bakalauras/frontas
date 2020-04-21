@@ -12,12 +12,11 @@ export class DutyService {
   list:Duty[];
 
   constructor(private http:HttpClient) { }
-  postDuty(formData:Duty){
+  postDuty(){
     return this.http.post(this.rootURL + '/Duties', this.formData)
   }
 
-  putDuty(formData:Duty){
-    console.log(formData);
+  putDuty(){
     return this.http.put(this.rootURL + '/Duties/'+ this.formData.DutyId, this.formData)
   }
 
@@ -25,9 +24,9 @@ export class DutyService {
     return this.http.delete(this.rootURL + '/Duties/'+ id)
   }
 
-  refreshList(){
+  refreshList(callBack){
     this.http.get(this.rootURL + '/Duties')
     .toPromise()
-    .then(res =>this.list=res as Duty[])
+    .then(res =>{this.list = res as Duty[], callBack(this)})
   }
 }

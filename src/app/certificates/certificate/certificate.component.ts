@@ -38,11 +38,11 @@ export class CertificateComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postCertificate(form.value).subscribe(
+    this.service.postCertificate().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);
@@ -53,11 +53,11 @@ export class CertificateComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putCertificate(form.value).subscribe(
+    this.service.putCertificate().subscribe(
       res => {
         this.resetForm(form),
         this.toastr.info('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err);

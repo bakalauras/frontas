@@ -17,12 +17,11 @@ export class EmployeeDutyService {
 
   constructor(private http:HttpClient) { }
 
-  postEmployeeDuty(formData:EmployeeDuty){
+  postEmployeeDuty(){
     return this.http.post(this.rootURL + '/EmployeeDuties', this.formData)
   }
 
-  putEmployeeDuty(formData:EmployeeDuty){
-    console.log(formData);
+  putEmployeeDuty(){
     return this.http.put(this.rootURL + '/EmployeeDuties/'+ this.formData.EmployeeDutyId, this.formData)
   }
 
@@ -30,10 +29,10 @@ export class EmployeeDutyService {
     return this.http.delete(this.rootURL + '/EmployeeDuties/'+ id)
   }
 
-  refreshList(){
-    this.http.get(this.rootURL + '/EmployeeDuties')
+  refreshList(id, callBack){
+    this.http.get(this.rootURL + '/Employees/'+id+"/duties")
     .toPromise()
-    .then(res =>this.list=res as EmployeeDuty[])
+    .then(res =>{this.list = res as EmployeeDuty[], callBack(this)})
   }
 
   refreshDutyList()

@@ -12,9 +12,10 @@ export class ChartsComponent implements OnInit {
 
   public data: object;
   public taskfield: object;
-  /*public columns: object[];
+  public taskSettings: object;
+  public columns: object[];
   readonly rootURL = environment.rootURL;
-  readonly apiName = '/ProjectStages';*/
+  readonly apiName = '/ProjectStages';
   constructor(private http:HttpClient) { }
   ngOnInit() {
 
@@ -24,7 +25,7 @@ export class ChartsComponent implements OnInit {
       crossDomain: true
   });*/
 
-  /*this.data =this.chartService.getData();
+  //this.data =this.chartService.getData();
 
   this.taskSettings = {
     id: 'ProjectStageId',
@@ -35,7 +36,7 @@ export class ChartsComponent implements OnInit {
       { field: 'ProjectStageId', headerText: 'ID', width: '250', clipMode: 'EllipsisWithTooltip' },
       { field: 'StartDate' },
       { field: 'EndDate' }
-  ];*/
+  ];
 
   this.data = [{
   TaskID: 1,

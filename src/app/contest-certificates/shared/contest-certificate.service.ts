@@ -14,16 +14,14 @@ export class ContestCertificateService {
   readonly rootURL = environment.rootURL;
   list:ContestCertificate[];
   certificatelist:Certificate[];
-  //contestList:Contest[];
 
   constructor(private http:HttpClient) { }
 
-  postContestCertificate(formData:ContestCertificate){
+  postContestCertificate(){
     return this.http.post(this.rootURL + '/ContestCertificates', this.formData)
   }
 
-  putContestCertificate(formData:ContestCertificate){
-    console.log(formData);
+  putContestCertificate(){
     return this.http.put(this.rootURL + '/ContestCertificates/'+ this.formData.ContestCertificateId, this.formData)
   }
 
@@ -31,19 +29,13 @@ export class ContestCertificateService {
     return this.http.delete(this.rootURL + '/ContestCertificates/'+ id)
   }
 
- // refreshList(){
- //   this.http.get(this.rootURL + '/ContestCertificates')
- //   .toPromise()
- //   .then(res =>this.list=res as ContestCertificate[])
- // }
-
- refreshList(id)
+ refreshList(id, callBack)
  {
    if(id!=0)
    {
      this.http.get(this.rootURL+'/Contests/'+id+'/certificates').
    toPromise()
-   .then(res => this.list = res as ContestCertificate[]);
+   .then(res => {this.list=res as ContestCertificate[], callBack(this)});
    }
  }
 
@@ -53,18 +45,6 @@ export class ContestCertificateService {
     toPromise()
     .then(res => this.certificatelist = res as Certificate[]);
   }
-
- // refreshContestList()
- // {
- //   this.http.get(this.rootURL+'/Contests').
- //   toPromise()
- //   .then(res => this.contestList = res as Contest[]);
- // }
-
-//  getContestTitle(id)
-//  {
-//    return this.contestList.find(x => x.ContestId == id).Title;
-//  }
 
   getCertificateTitle(id)
   {

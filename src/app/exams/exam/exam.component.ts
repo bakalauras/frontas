@@ -39,11 +39,11 @@ export class ExamComponent implements OnInit {
 
   insertRecord(form:NgForm)
   {
-    this.service.postExam(form.value).subscribe(
+    this.service.postExam().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+       // this.service.refreshList();
       },
       err => {
         console.log(err)
@@ -54,11 +54,11 @@ export class ExamComponent implements OnInit {
 
   updateRecord(form:NgForm)
   {
-    this.service.putExam(form.value).subscribe(
+    this.service.putExam().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Išsaugota sėkmingai');
-        this.service.refreshList();
+        //this.service.refreshList();
       },
       err => {
         console.log(err)
