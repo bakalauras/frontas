@@ -15,8 +15,6 @@ export class ProjectListComponent extends KendoGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.refreshCustomerList();
-    this.service.refreshTenderList();
     this.service.refreshList(this.loadItems.bind(this));
   }
 }

@@ -31,15 +31,9 @@ filterable="menu"
     </kendo-grid-column>
     <kendo-grid-column field="ClaimsFillingDate" title="Pretenzijų pateikimo data"  minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="ContestStatusId" title="Būsena"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getContestStatusName(dataItem.ContestStatusId)}}</a>
-            </ng-template>
+    <kendo-grid-column field="ContestStatus.StatusName" title="Būsena"   minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
-            </ng-template>
+    <kendo-grid-column field="Customer.Name" title="Užsakovas"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Konkursai.xlsx"></kendo-grid-excel>
 </kendo-grid>

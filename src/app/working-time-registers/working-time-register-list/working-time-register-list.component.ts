@@ -5,6 +5,7 @@ import { WorkingTimeRegister } from '../shared/working-time-register.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
+import * as moment from 'moment-business-days';
 
 @Component({
   selector: 'app-working-time-register-list',
@@ -41,7 +42,7 @@ export class WorkingTimeRegisterListComponent extends KendoGridComponent impleme
     this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshEmployeeRoleList();
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
@@ -62,9 +63,12 @@ export class WorkingTimeRegisterListComponent extends KendoGridComponent impleme
       DateFrom : null,
       DateTo : null,
       Hours : 0,
+      Price :0,
       ProjectStageId : this.id,
-      EmployeeRoleId : 0,
-      EmployeeId : 0
+      EmployeeRoleId : null,
+      EmployeeId : null,
+      EmployeeRole : null,
+      Employee : null
     }
   }
 
@@ -106,4 +110,9 @@ export class WorkingTimeRegisterListComponent extends KendoGridComponent impleme
     )
   }
 
+  getDateDiff()
+  {
+    if(this.service.formData.WorkingTimeRegisterId==0 && this.service.formData.DateFrom != null && this.service.formData.DateTo != null)
+      this.service.formData.Hours = moment(this.service.formData.DateTo, 'YYYY-MM-DD').businessDiff(moment(this.service.formData.DateFrom,'YYYY-MM-DD'))*8;
+  }
 }

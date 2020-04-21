@@ -15,23 +15,17 @@ filterable="menu"
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
-        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Įvesti naują įrašą</button>
-        <kendo-dialog title="Etapo įvykdymo progreso informacija" *ngIf="opened2" (close)="close()" [minWidth]="350" [width]="450">
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Skaičiuoti naują CPI rodiklį</button>
+        <kendo-dialog title="CPI rodiklio informacija" *ngIf="opened2" (close)="close()" [minWidth]="350" [width]="450">
             <form #form="ngForm" autocomplete="off">
-                <input type="hidden" name="StageProgressId" [value]="service.formData.StageProgressId">
+                <input type="hidden" name="CPIMeasureId" [value]="service.formData.CPIMeasureId">
                 <div class="form-group">
-                    <label for="Date">Data</label><label style="color: red;"> *</label>
+                    <label for="Date">Rodiklio skaičiavimo data</label><label style="color: red;"> *</label>
                     <input name="Date" #Type = "ngModel" [(ngModel)]="service.formData.Date" type="date" class="form-control" id="Date" required>
-                </div>
-                <div class="form-group">
-                    <mat-form-field class="full-width">  
-                        <mat-label>Pasirinktai datai įvykdyta projekto etapo dalis</mat-label>
-                        <input matInput name="Percentage" #Type = "ngModel" [(ngModel)]="service.formData.Percentage" type="number" id="Percentage" required>    
-                    </mat-form-field>
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>Skaičiuoti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>
@@ -43,11 +37,11 @@ filterable="menu"
             {{dataItem.Date | date: 'yyyy-MM-dd'}}
         </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="ScheduledPercentage" title="Planuota įvykdyti, %"  minResizableWidth="50">
+    <kendo-grid-column field="PlannedPrice" title="Planuota suma"  minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="Percentage" title="Įvykdyta, %"  minResizableWidth="50">
+    <kendo-grid-column field="ActualPrice" title="Faktinė suma"  minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="SPI" title="SPI"  minResizableWidth="50">
+    <kendo-grid-column field="CPI" title="CPI"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
@@ -59,7 +53,7 @@ filterable="menu"
     <kendo-grid-column  width="90"  minResizableWidth="90">
         <ng-template kendoGridCellTemplate let-dataItem>
             <div>
-                <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.StageProgressId)"><span class="far fa-trash-alt"></span></button>
+                <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.CPIMeasureId)"><span class="far fa-trash-alt"></span></button>
                 <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
                     <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
                     <kendo-dialog-actions>
@@ -72,3 +66,20 @@ filterable="menu"
     </kendo-grid-column>
     <kendo-grid-excel fileName="Eksportas.xlsx"></kendo-grid-excel>
 </kendo-grid>
+
+<kendo-chart [title]="{ text: 'Projekto etapo rodiklių kaita' }">
+    <kendo-chart-series>
+      <kendo-chart-series-item type="scatterLine"
+                               [data]="this.service.list"
+                               yField="CPI" xField="CPIMeasureId">
+      </kendo-chart-series-item>
+    </kendo-chart-series>
+    <kendo-chart-x-axis>
+        <kendo-chart-x-axis-item [title]="{ text: 'Data' }">
+        </kendo-chart-x-axis-item>
+    </kendo-chart-x-axis>
+    <kendo-chart-y-axis>
+        <kendo-chart-y-axis-item [title]="{ text: 'Rodiklių reikšmės' }">
+        </kendo-chart-y-axis-item>
+    </kendo-chart-y-axis>
+  </kendo-chart>

@@ -19,9 +19,9 @@ filterable="menu"
         <a [routerLink] ="[this.stageRoute, 0]">Pridėti etapą</a>
     </button>
 </ng-template>
-    <kendo-grid-column field="ProjectStageNameId" title="Etapo pavadinimas" width="250"  minResizableWidth="50">
+    <kendo-grid-column field="ProjectStageName.StageName" title="Etapo pavadinimas" width="250"  minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a [routerLink]="[this.stageRoute, dataItem.ProjectStageId]" >{{this.service.getProjectStageName(dataItem.ProjectStageNameId)}}</a>
+            <a [routerLink]="[this.stageRoute, dataItem.ProjectStageId]">{{dataItem.ProjectStageName.StageName}}</a>
             </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="ScheduledStartDate" title="Planuojama pradžios data" minResizableWidth="50">

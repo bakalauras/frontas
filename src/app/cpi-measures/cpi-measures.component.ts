@@ -1,30 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { ContestFileService } from '../shared/contest-file.service';
+import { CpiMeasureService } from './shared/cpi-measure.service';
 import { ToastrService } from 'ngx-toastr';
-import { ContestFile } from '../shared/contest-file.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { KendoGridComponent } from '../kendo-grid/kendo-grid.component';
+import { CpiMeasure } from './shared/cpi-measure.model';
 import { NgForm } from '@angular/forms';
-import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
 
 @Component({
-  selector: 'app-contest-file-list',
-  templateUrl: './contest-file-list.component.html',
+  selector: 'app-cpi-measures',
+  templateUrl: './cpi-measures.component.html',
   styles: []
 })
-export class ContestFileListComponent extends KendoGridComponent implements OnInit {
+export class CpiMeasuresComponent extends KendoGridComponent  implements OnInit {
 
   id = null;
-  constructor(public service : ContestFileService, private toastr: ToastrService, private router: Router,
+
+  constructor(public service : CpiMeasureService, private toastr: ToastrService, private router: Router,
     public route: ActivatedRoute) { 
       super();
-      this.id = this.route.snapshot.paramMap.get('id'); //get id parameter
+      this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
     }
+
   ngOnInit() {
     this.service.refreshList(this.id, this.loadItems.bind(this));
     this.resetForm();
+    
   }
 
-  populateForm(pd:ContestFile)
+  populateForm(pd:CpiMeasure)
   {
     this.service.formData = Object.assign({},pd);
     this.opened2 = true;
@@ -33,9 +36,8 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
   onDelete()
   {
     this.opened = false;
-    if(this.idToDelete!=0)
-    {
-      this.service.deleteRecord(this.idToDelete)
+    if(this.idToDelete!=0){
+    this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
         this.toastr.success('Įrašas sėkmingai ištrintas');
@@ -47,7 +49,6 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
       }
     )
     }
-    
   }
 
   resetForm(form?: NgForm)
@@ -55,27 +56,29 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
     if(form != null)
       form.resetForm();
     this.service.formData = {
-      ContestFileId : 0,
-      Description : '',
-      FileName : '',
-      ContestId : this.id
+      CPIMeasureId : 0,
+      Date : null,
+      PlannedPrice : 0,
+      ActualPrice : 0,
+      CPI : 0,
+      ProjectStageId : this.id
     }
   }
 
   onSubmit(form:NgForm){
-    if(this.service.formData.ContestFileId ==0)
+    if(this.service.formData.CPIMeasureId ==0)
       this.insert(form);
     else
       this.update(form);
     this.close();
-    }
+  }
 
   insert(form:NgForm)
   {
     this.service.postRecord().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Įrašas sėkmingai pridėtas');
+        this.toastr.success('Rodiklis sėkmingai apskaičiuotas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {
@@ -90,7 +93,7 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
     this.service.putRecord().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Įrašas sėkmingai atnaujintas');
+        this.toastr.success('Rodiklis perskaičiuotas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {
@@ -99,5 +102,4 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
       }
     )
   }
-
 }

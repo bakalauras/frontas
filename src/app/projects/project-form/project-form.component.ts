@@ -49,8 +49,9 @@ export class ProjectFormComponent implements OnInit {
       Title : '',
       ContractNumber : '',
       Budget : 0,
-      CustomerId : 0,
-      TenderId : 0
+      CustomerId : null,
+      Customer : null,
+      TenderId : null
     }
   }
 
@@ -66,7 +67,7 @@ export class ProjectFormComponent implements OnInit {
       this.service.deleteRecord(ProjectId)
       .subscribe(
         res => {
-          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.toastr.success('Įrašas sėkmingai ištrintas');
           this.router.navigateByUrl('/projects');
         },
         err => {

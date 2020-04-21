@@ -20,12 +20,14 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="CustomerTypeId" [value]="service.formData.CustomerTypeId">
                 <div class="form-group">
-                  <label for="Type">Užsakovo tipas</label><label style="color: red;"> *</label>
-                  <input name="Type" #Type = "ngModel" [(ngModel)]="service.formData.Type" type="text" class="form-control" id="Type" placeholder="Įveskite tipo pavadinimą" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Užsakovo tipas</mat-label>
+                        <input matInput name="Type" #Type = "ngModel" [(ngModel)]="service.formData.Type" type="text"id="Type" placeholder="Įveskite tipo pavadinimą" required>    
+                    </mat-form-field>
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

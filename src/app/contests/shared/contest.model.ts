@@ -1,3 +1,6 @@
+import { Customer } from 'src/app/customers/shared/customer.model';
+import { ContestStatus } from 'src/app/contest-statuses/shared/contest-status.model';
+
 export class Contest {
     ContestId : number;
     Title : string;
@@ -7,5 +10,7 @@ export class Contest {
     PriceRobbingDate : Date;
     ClaimsFillingDate : Date;
     CustomerId : number;
+    Customer : Customer;
     ContestStatusId : number;
+    ContestStatus : ContestStatus;
 }

@@ -27,7 +27,8 @@ export class CustomerFormComponent implements OnInit {
       CustomerId : 0,
       Name : '',
       Adress : '',
-      CustomerTypeId : 0
+      CustomerTypeId : 0,
+      CustomerType : null
     }
   }
 

@@ -20,12 +20,14 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="TenderStateId" [value]="service.formData.TenderStateId">
                 <div class="form-group">
-                  <label for="Type">Būsenos pavadinimas</label><label style="color: red;"> *</label>
-                  <input name="Name" #Type = "ngModel" [(ngModel)]="service.formData.Name" type="text" class="form-control" id="Name" placeholder="Įveskite būsenos pavadinimą" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Būsenos pavadinimas</mat-label>
+                        <input matInput name="Name" #Type = "ngModel" [(ngModel)]="service.formData.Name" type="text" id="Name" placeholder="Įveskite būsenos pavadinimą" required>    
+                    </mat-form-field>
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

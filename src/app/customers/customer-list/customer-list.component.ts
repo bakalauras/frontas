@@ -36,7 +36,7 @@ export class CustomerListComponent  extends KendoGridComponent implements OnInit
       this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshCustomerTypeList();
         this.service.refreshList(this.loadItems.bind(this));
       },
@@ -57,7 +57,8 @@ export class CustomerListComponent  extends KendoGridComponent implements OnInit
       CustomerId : 0,
       Name : '',
       Adress : '',
-      CustomerTypeId : 0
+      CustomerTypeId : null,
+      CustomerType : null
     }
   }
 
