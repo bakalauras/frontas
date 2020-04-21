@@ -42,9 +42,4 @@ export class CustomerService {
     toPromise()
     .then(res => this.list2 = res as CustomerType[]);
   }
-
-  getCustomerTypeName(id)
-  {
-        return this.list2.find(x => x.CustomerTypeId == id).Type;
-  }
 }

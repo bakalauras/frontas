@@ -38,7 +38,6 @@ export class ProjectStageService {
     toPromise()
     .then(res => this.formData = res as ProjectStage);
     }
-    
   }
 
   refreshList(id, callBack)
@@ -63,15 +62,5 @@ export class ProjectStageService {
     this.http.get(this.rootURL+'/Projects').
     toPromise()
     .then(res => this.list3 = res as Project[]);
-  }
-
-  getProjectName(id)
-  {
-        return this.list3.find(x => x.ProjectId == id).Title;
-  }
-
-  getProjectStageName(id)
-  {
-        return this.list2.find(x => x.ProjctStageNameId == id).StageName;
   }
 }

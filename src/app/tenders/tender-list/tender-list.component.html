@@ -16,19 +16,16 @@ filterable="menu"
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <button kendoButton  [primary]=true routerLink="/tender/0"><i class="fas fa-plus"> </i>   Pridėti pasiūlymą</button>
 </ng-template>
-    <kendo-grid-column field="Title" title="Pavadinimas" width="250"  minResizableWidth="50">
+    <kendo-grid-column field="Contest.Title" title="Pavadinimas" width="250"  minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a [routerLink]="['/tender/', dataItem.TenderId]" >{{this.service.getContestName(dataItem.ContestId)}}</a>
+            <a [routerLink]="['/tender/', dataItem.TenderId]" >{{dataItem.Contest.Title}}</a>
             </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="Price" title="Kaina" minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-column field="FillingDate" title="Pateikimo data"   minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="TenderState" title="Būsena"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getTenderStateName(dataItem.TenderState)}}</a>
-            </ng-template>
+    <kendo-grid-column field="TenderState.Name" title="Būsena"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Pasiūlymai.xlsx"></kendo-grid-excel>
 </kendo-grid>

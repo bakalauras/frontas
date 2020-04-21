@@ -20,23 +20,27 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="EmployeeRoleId" [value]="service.formData.EmployeeRoleId">
                 <div class="form-group">
-                  <label for="Title">Rolės pavadinimas</label><label style="color: red;"> *</label>
-                  <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" class="form-control" id="Title" placeholder="Įveskite rolės pavadinimą" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Rolės pavadinimas</mat-label>
+                        <input matInput name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" id="Title" placeholder="Įveskite rolės pavadinimą" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="AverageWage">Vidutinis atlyginimas</label><label style="color: red;"> *</label>
-                    <input name="AverageWage" #Type = "ngModel" [(ngModel)]="service.formData.AverageWage" type="number" class="form-control" id="AverageWage" required>
-                  </div>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Vidutinis atlyginimas</mat-label>
+                        <input matInput name="AverageWage" #Type = "ngModel" [(ngModel)]="service.formData.AverageWage" type="number" placeholder="Įveskite vidutinį atlyginimą" id="AverageWage" required>    
+                    </mat-form-field>
+                </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>
     </div>
 </ng-template>
 
-    <kendo-grid-column field="Title" title="Pavadinimas" width="400"  minResizableWidth="50">
+    <kendo-grid-column field="Title" title="Pavadinimas"  minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-column field="AverageWage" title="Vidutinis atlyginimas"  minResizableWidth="50">
     </kendo-grid-column>

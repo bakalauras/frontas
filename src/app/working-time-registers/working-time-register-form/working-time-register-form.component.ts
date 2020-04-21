@@ -33,9 +33,12 @@ export class WorkingTimeRegisterFormComponent implements OnInit {
       DateFrom : null,
       DateTo : null,
       Hours : 0,
+      Price :0,
       ProjectStageId : this.id2,
       EmployeeRoleId : 0,
-      EmployeeId : 0
+      EmployeeId : 0,
+      EmployeeRole : null,
+      Employee : null
     }
   }
 

@@ -45,10 +45,12 @@ export class TenderFormComponent implements OnInit {
       form.resetForm();
     this.service.formData = {
       TenderId : 0,
-      TenderState : 0,
+      TenderStateId : null,
+      TenderState : null,
       Price : 0,
       FillingDate : null,
-      ContestId : 0
+      ContestId : null,
+      Contest : null
     }
   }
 
@@ -64,7 +66,7 @@ export class TenderFormComponent implements OnInit {
       this.service.deleteRecord(TenderId)
       .subscribe(
         res => {
-          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.toastr.success('Įrašas sėkmingai ištrintas');
           this.router.navigateByUrl('/tenders');
         },
         err => {

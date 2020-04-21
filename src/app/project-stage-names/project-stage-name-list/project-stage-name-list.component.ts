@@ -35,7 +35,7 @@ export class ProjectStageNameListComponent  extends KendoGridComponent implement
       this.service.deleteName(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {

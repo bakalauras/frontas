@@ -22,8 +22,6 @@ export class ProjectStageListComponent extends KendoGridComponent implements OnI
     }
 
   ngOnInit() {
-    this.service.refreshProjectStageNamesList();
-    this.service.refreshProjectsList();
     this.service.refreshList(this.id, this.loadItems.bind(this));
   }
 }

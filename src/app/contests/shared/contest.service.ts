@@ -62,14 +62,4 @@ export class ContestService {
     toPromise()
     .then(res => this.list3 = res as Customer[]);
   }
-
-  getContestStatusName(id)
-  {
-        return this.list2.find(x => x.ContestStatusId == id).StatusName;
-  }
-
-  getCustomerName(id)
-  {
-        return this.list3.find(x => x.CustomerId == id).Name;
-  }
 }

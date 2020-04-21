@@ -20,12 +20,14 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="ProjctStageNameId" [value]="service.formData.ProjctStageNameId">
                 <div class="form-group">
-                  <label for="Type">Pavadinimas</label><label style="color: red;"> *</label>
-                  <input name="StageName" #Type = "ngModel" [(ngModel)]="service.formData.StageName" type="text" class="form-control" id="StageName" placeholder="Įveskite etapo pavadinimą" required>
+                    <mat-form-field class="full-width">  
+                    <mat-label>Pavadinimas</mat-label>
+                    <input matInput name="StageName" #Type = "ngModel" [(ngModel)]="service.formData.StageName" type="text" id="StageName" placeholder="Įveskite etapo pavadinimą" required>    
+                    </mat-form-field>
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

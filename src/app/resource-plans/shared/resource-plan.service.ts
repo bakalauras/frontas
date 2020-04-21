@@ -46,9 +46,4 @@ export class ResourcePlanService {
     toPromise()
     .then(res => this.list3 = res as EmployeeRole[]);
   }
-
-  getEmployeeRoleName(id)
-  {
-        return this.list3.find(x => x.EmployeeRoleId == id).Title;
-  }
 }

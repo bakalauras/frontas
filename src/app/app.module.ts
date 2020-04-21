@@ -122,6 +122,9 @@ import { GanttModule, ResizeService, SortService, FilterService, SelectionServic
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 import { ChartsComponent } from './charts/charts.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { CpiMeasuresComponent } from './cpi-measures/cpi-measures.component';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -213,7 +216,8 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     StageCompetencyListComponent,
     UploadComponent,
     KendoGridComponent,
-    ChartsComponent
+    ChartsComponent,
+    CpiMeasuresComponent
   ],
   imports: [
     BrowserModule,
@@ -243,7 +247,8 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     UploadModule,
     DropDownsModule,
     GanttModule,
-    DateInputsModule
+    DateInputsModule,
+    ChartsModule
   ],
   providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourcePlanService } from '../shared/resource-plan.service';
+import * as moment from 'moment-business-days';
 import { ToastrService } from 'ngx-toastr';
 import { ResourcePlan } from '../shared/resource-plan.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,6 +15,7 @@ import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
 export class ResourcePlanListComponent extends KendoGridComponent implements OnInit {
 
   id = null;
+
   constructor(public service : ResourcePlanService, private toastr: ToastrService, private router: Router,
     public route: ActivatedRoute) { 
       super();
@@ -39,7 +41,7 @@ export class ResourcePlanListComponent extends KendoGridComponent implements OnI
     this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshEmployeeRoleList();
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
@@ -60,8 +62,10 @@ export class ResourcePlanListComponent extends KendoGridComponent implements OnI
       DateFrom : null,
       DateTo : null,
       Hours : 0,
+      Price : 0,
       ProjectStageId : this.id,
-      EmployeeRoleId : 0
+      EmployeeRoleId : null,
+      EmployeeRole : null
     }
   }
 
@@ -101,6 +105,12 @@ export class ResourcePlanListComponent extends KendoGridComponent implements OnI
         this.toastr.error(err.error);
       }
     )
+  }
+
+  getDateDiff()
+  {
+    if(this.service.formData.ResourcePlanId==0 && this.service.formData.DateFrom != null && this.service.formData.DateTo != null)
+      this.service.formData.Hours = moment(this.service.formData.DateTo, 'YYYY-MM-DD').businessDiff(moment(this.service.formData.DateFrom,'YYYY-MM-DD'))*8;
   }
 
 }

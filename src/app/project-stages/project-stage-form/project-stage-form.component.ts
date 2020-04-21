@@ -46,7 +46,8 @@ export class ProjectStageFormComponent implements OnInit {
       form.resetForm();
     this.service.formData = {
       ProjectStageId : 0,
-      ProjectStageNameId : 0,
+      ProjectStageNameId : null,
+      ProjectStageName : null,
       StageBudget : 0,
       StartDate : null,
       EndDate : null,
@@ -68,7 +69,7 @@ export class ProjectStageFormComponent implements OnInit {
       this.service.deleteRecord(ProjectStageId)
       .subscribe(
         res => {
-          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.toastr.success('Įrašas sėkmingai ištrintas');
           this.router.navigateByUrl('/project/'+this.id);
         },
         err => {

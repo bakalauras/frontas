@@ -38,7 +38,6 @@ export class TenderService {
     toPromise()
     .then(res => this.formData = res as Tender);
     }
-    
   }
 
   refreshList(callback)
@@ -60,15 +59,5 @@ export class TenderService {
     this.http.get(this.rootURL+'/Contests').
     toPromise()
     .then(res => this.list3 = res as Contest[]);
-  }
-
-  getTenderStateName(id)
-  {
-        return this.list2.find(x => x.TenderStateId == id).Name;
-  }
-
-  getContestName(id)
-  {
-        return this.list3.find(x => x.ContestId == id).Title;
   }
 }

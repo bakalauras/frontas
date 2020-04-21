@@ -60,9 +60,4 @@ export class ProjectService {
     toPromise()
     .then(res => this.list2 = res as Customer[]);
   }
-
-  getCustomerName(id)
-  {
-        return this.list2.find(x => x.CustomerId == id).Name;
-  }
 }

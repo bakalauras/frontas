@@ -34,7 +34,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       this.service.deleteStatus(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {

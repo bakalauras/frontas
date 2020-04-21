@@ -7,12 +7,16 @@
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="ContestId" [value]="service.formData.ContestId">
                 <div class="form-group">
-                  <label for="Title">Pavadinimas</label><label style="color: red;"> *</label>
-                  <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" class="form-control" id="Title" placeholder="Įveskite konkurso pavadinimą" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Pavadinimas</mat-label>
+                        <input matInput name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" id="Title" placeholder="Įveskite konkurso pavadinimą" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="Budget">Biudžetas</label><label style="color: red;"> *</label>
-                    <input name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" class="form-control" id="Budget" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Biudžetas</mat-label>
+                        <input matInput name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" id="Budget" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
                     <label for="PublicationDate">Paskelbimo data</label><label style="color: red;"> *</label>
@@ -31,18 +35,20 @@
                     <input name="ClaimsFillingDate" #Type = "ngModel" [(ngModel)]="service.formData.ClaimsFillingDate" type="date" class="form-control" id="ClaimsFillingDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="ContestStatusId">Pasirinkite konkurso būseną</label><label style="color: red;"> *</label>
-                    <hr>
-                    <select [(ngModel)]="service.formData.ContestStatusId" name = "service.formData.ContestStatusId">
-                        <option *ngFor="let contestStatus of service.list2" [value]="contestStatus.ContestStatusId">{{contestStatus.StatusName}}</option> 
-                    </select>
+                    <mat-form-field class="full-width">
+                        <mat-label>Konkurso būsena</mat-label>
+                        <mat-select [(ngModel)]="service.formData.ContestStatusId" name = "service.formData.ContestStatusId" required>
+                          <mat-option *ngFor="let contestStatus of service.list2" [value]="contestStatus.ContestStatusId">{{contestStatus.StatusName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="CustomerId">Pasirinkite konkurso užsakovą</label><label style="color: red;"> *</label>
-                    <hr>
-                    <select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId">
-                        <option *ngFor="let customer of service.list3" [value]="customer.CustomerId">{{customer.Name}}</option> 
-                    </select>
+                    <mat-form-field class="full-width">
+                        <mat-label>Užsakovas</mat-label>
+                        <mat-select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId" required>
+                          <mat-option *ngFor="let customer of service.list3" [value]="customer.CustomerId">{{customer.Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
 
                 <div style="float: right;">

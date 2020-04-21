@@ -29,9 +29,10 @@ export class StageProgressFormComponent implements OnInit {
       form.resetForm();
     this.service.formData = {
       StageProgressId : 0,
-      DateFrom : null,
-      DateTo : null,
+      Date : null,
       Percentage : 0,
+      ScheduledPercentage : 0,
+      SPI : 0,
       ProjectStageId : this.id2
     }
   }

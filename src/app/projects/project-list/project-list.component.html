@@ -25,10 +25,7 @@ filterable="menu"
     </kendo-grid-column>
     <kendo-grid-column field="Budget" title="Biudžetas"   minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
-            </ng-template>
+    <kendo-grid-column field="Customer.Name" title="Užsakovas"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Projektai.xlsx"></kendo-grid-excel>
 </kendo-grid>
