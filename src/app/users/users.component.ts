@@ -1,27 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { ContestStatusService } from '../shared/contest-status.service';
+import { UserService } from './shared/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { ContestStatus } from '../shared/contest-status.model';
-import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
+import { KendoGridComponent } from '../kendo-grid/kendo-grid.component';
 import { NgForm } from '@angular/forms';
+import { User } from './shared/user.model';
 
 @Component({
-  selector: 'app-contest-status-list',
-  templateUrl: './contest-status-list.component.html',
+  selector: 'app-users',
+  templateUrl: './users.component.html',
   styles: []
 })
-export class ContestStatusListComponent extends KendoGridComponent implements OnInit {
+export class UsersComponent extends KendoGridComponent implements OnInit {
 
-  constructor(public service : ContestStatusService, private toastr: ToastrService) {
+  Password2 =null;
+  public opened3 = false;
+  loggedId = 0;
+  constructor(public service : UserService, private toastr: ToastrService) {
     super();
    }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.service.refreshList(this.loadItems.bind(this));
+    this.loggedId = +localStorage.getItem('id');
     this.resetForm();
   }
 
-  populateForm(pd:ContestStatus)
+  public open3() {
+    this.opened3 = true;
+  }
+
+  public close3(){
+    this.opened3 = false;
+    this.resetForm();
+  }
+
+  populateForm(pd:User)
   {
     this.service.formData = Object.assign({},pd);
     this.opened2 = true;
@@ -31,7 +44,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
   {
     this.opened = false;
     if(this.idToDelete!=0){
-      this.service.deleteStatus(this.idToDelete)
+    this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
         this.toastr.success('Įrašas sėkmingai ištrintas');
@@ -43,8 +56,6 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       }
     )
     }
-    
-
   }
 
   resetForm(form?: NgForm)
@@ -52,22 +63,32 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
     if(form != null)
       form.resetForm();
     this.service.formData = {
-      ContestStatusId : 0,
-      StatusName : ''
+      UserId : 0,
+      Login : '',
+      Password : ''
     }
+    this.Password2 = '';
   }
 
   onSubmit(form:NgForm){
-    if(this.service.formData.ContestStatusId ==0)
+    if(this.checkPasswords()==true)
+    {
+      if(this.service.formData.UserId ==0)
       this.insert(form);
     else
       this.update(form);
     this.close();
+    this.close3();
+    }
+    else
+    {
+      this.toastr.error('Slaptažodžiai nesutampa');
+    }
   }
 
   insert(form:NgForm)
   {
-    this.service.postStatus().subscribe(
+    this.service.postRecord().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
@@ -80,9 +101,15 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
     )
   }
 
+  checkPasswords(): boolean{
+    if (this.service.formData.Password == this.Password2)
+      return true;
+    return false;
+  }
+
   update(form:NgForm)
   {
-    this.service.putStatus().subscribe(
+    this.service.putRecord().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
@@ -90,7 +117,15 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       },
       err => {
         console.log(err)
-        this.toastr.error(err.error);
+        if(err.status==401)
+        {
+          this.toastr.error("Neturite teisės keisti kito naudotojo duomenų");
+        }
+        else
+        {
+           this.toastr.error(err.error);
+        }
+       
       }
     )
   }

@@ -27,36 +27,41 @@ import { ProjectStageFormComponent } from './project-stages/project-stage-form/p
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { ChartsComponent } from './charts/charts.component';
 import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
+import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login/login.component';
+import { JwtService } from './jwt.service';
 
 
 const routes: Routes = [
-  {path: 'contestStatuses', component: ContestStatusesComponent},
-  {path: 'projectStageNames', component: ProjectStageNamesComponent},
-  {path: 'tenderStates', component: TenderStatesComponent},
-  {path: 'customerTypes', component: CustomerTypesComponent},
-  {path: 'employeeRoles', component: EmployeeRolesComponent},
-  {path: 'customers', component : CustomersComponent},
-  {path: 'contests', component : ContestsComponent},
-  {path: 'tenders', component: TendersComponent},
-  {path: 'projects', component: ProjectsComponent},
-  {path: 'contest/:id', component : ContestFormComponent},
-  {path: 'tender/:id', component : TenderFormComponent},
-  {path: 'project/:id', component : ProjectFormComponent},
-  {path: 'project/:id/stage/:id2', component : ProjectStageFormComponent},
-  {path: 'duties', component : DutiesComponent},
-  {path: 'competencies', component : CompetenciesComponent},
-  {path: 'employees', component : EmployeesComponent},
-  {path: 'certificates', component : CertificatesComponent},
-  {path: 'exams', component : ExamsComponent},
-  {path: 'salaries', component : SalariesComponent},
-  {path: 'allsalaries', component : AllSalaryListComponent},
-  {path: 'employee-certificate', component : EmployeeCertificatesComponent},
-  {path: 'employee-exam', component : EmployeeExamsComponent},
-  {path: 'employee-competency', component : EmployeeCompetenciesComponent},
-  {path: 'stage-competency', component : StageCompetenciesComponent},
-  {path: 'employee/:id', component : EmployeeComponent},
-  {path: 'charts', component : ChartsComponent},
-  {path: 'employee-duty', component : EmployeeDutiesComponent}
+  {path: 'contestStatuses', component: ContestStatusesComponent, canActivate: [JwtService]},
+  {path: 'projectStageNames', component: ProjectStageNamesComponent, canActivate: [JwtService]},
+  {path: 'tenderStates', component: TenderStatesComponent, canActivate: [JwtService]},
+  {path: 'customerTypes', component: CustomerTypesComponent, canActivate: [JwtService]},
+  {path: 'employeeRoles', component: EmployeeRolesComponent, canActivate: [JwtService]},
+  {path: 'customers', component : CustomersComponent, canActivate: [JwtService]},
+  {path: 'contests', component : ContestsComponent, canActivate: [JwtService]},
+  {path: 'tenders', component: TendersComponent, canActivate: [JwtService]},
+  {path: 'projects', component: ProjectsComponent, canActivate: [JwtService]},
+  {path: 'contest/:id', component : ContestFormComponent, canActivate: [JwtService]},
+  {path: 'tender/:id', component : TenderFormComponent, canActivate: [JwtService]},
+  {path: 'project/:id', component : ProjectFormComponent, canActivate: [JwtService]},
+  {path: 'project/:id/stage/:id2', component : ProjectStageFormComponent, canActivate: [JwtService]},
+  {path: 'duties', component : DutiesComponent, canActivate: [JwtService]},
+  {path: 'competencies', component : CompetenciesComponent, canActivate: [JwtService]},
+  {path: 'employees', component : EmployeesComponent, canActivate: [JwtService]},
+  {path: 'certificates', component : CertificatesComponent, canActivate: [JwtService]},
+  {path: 'exams', component : ExamsComponent, canActivate: [JwtService]},
+  {path: 'salaries', component : SalariesComponent, canActivate: [JwtService]},
+  {path: 'allsalaries', component : AllSalaryListComponent, canActivate: [JwtService]},
+  {path: 'employee-certificate', component : EmployeeCertificatesComponent, canActivate: [JwtService]},
+  {path: 'employee-exam', component : EmployeeExamsComponent, canActivate: [JwtService]},
+  {path: 'employee-competency', component : EmployeeCompetenciesComponent, canActivate: [JwtService]},
+  {path: 'stage-competency', component : StageCompetenciesComponent, canActivate: [JwtService]},
+  {path: 'employee/:id', component : EmployeeComponent, canActivate: [JwtService]},
+  {path: 'charts', component : ChartsComponent, canActivate: [JwtService]},
+  {path: 'users', component : UsersComponent, canActivate: [JwtService]},
+  {path: 'login', component : LoginComponent},
+  {path: 'employee-duty', component : EmployeeDutiesComponent, canActivate: [JwtService]}
 ];
 
 @NgModule({

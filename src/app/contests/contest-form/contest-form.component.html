@@ -5,6 +5,7 @@
         <nav mat-tab-nav-bar></nav>
         <mat-tab label="Bendra informacija">
             <form #form="ngForm" autocomplete="off">
+                <hr>
                 <input type="hidden" name="ContestId" [value]="service.formData.ContestId">
                 <div class="form-group">
                     <mat-form-field class="full-width">  
@@ -19,20 +20,36 @@
                     </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="PublicationDate">Paskelbimo data</label><label style="color: red;"> *</label>
-                    <input name="PublicationDate" #Type = "ngModel" [(ngModel)]="service.formData.PublicationDate" type="date" class="form-control" id="PublicationDate" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Paskelbimo data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker" name="PublicationDate" #Type="ngModel" [(ngModel)]="service.formData.PublicationDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                  <div class="form-group">
+                    <mat-form-field class="full-width">
+                      <mat-label>Pateikimo data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker2" name="FillingDate" #Type="ngModel" [(ngModel)]="service.formData.FillingDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker2></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="FillingDate">Pateikimo data</label><label style="color: red;"> *</label>
-                    <input name="FillingDate" #Type = "ngModel" [(ngModel)]="service.formData.FillingDate" type="date" class="form-control" id="FillingDate" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Kainų plėšimo data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker3" name="PriceRobbingDate" #Type="ngModel" [(ngModel)]="service.formData.PriceRobbingDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker3" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker3></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="PriceRobbingDate">Kainų plėšimo data</label><label style="color: red;"> *</label>
-                    <input name="PriceRobbingDate" #Type = "ngModel" [(ngModel)]="service.formData.PriceRobbingDate" type="date" class="form-control" id="PriceRobbingDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="ClaimsFillingDate">Pretenzijų pateikimo data</label><label style="color: red;"> *</label>
-                    <input name="ClaimsFillingDate" #Type = "ngModel" [(ngModel)]="service.formData.ClaimsFillingDate" type="date" class="form-control" id="ClaimsFillingDate" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Pretenzijų pateikimo data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker4" name="ClaimsFillingDate" #Type="ngModel" [(ngModel)]="service.formData.ClaimsFillingDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker4" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker4></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">

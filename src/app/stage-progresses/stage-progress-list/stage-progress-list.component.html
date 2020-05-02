@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
@@ -20,8 +25,12 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="StageProgressId" [value]="service.formData.StageProgressId">
                 <div class="form-group">
-                    <label for="Date">Data</label><label style="color: red;"> *</label>
-                    <input name="Date" #Type = "ngModel" [(ngModel)]="service.formData.Date" type="date" class="form-control" id="Date" required>
+                    <mat-form-field class="full-width">
+                        <mat-label>Data</mat-label>
+                        <input matInput [matDatepicker]="myDatePicker" name="Date" #Type="ngModel" [(ngModel)]="service.formData.Date" required>
+                        <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #myDatePicker></mat-datepicker>
+                        </mat-form-field>
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">  
@@ -43,11 +52,11 @@ filterable="menu"
             {{dataItem.Date | date: 'yyyy-MM-dd'}}
         </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="ScheduledPercentage" title="Planuota įvykdyti, %"  minResizableWidth="50">
+    <kendo-grid-column field="ScheduledPercentage" title="Planuota įvykdyti, %"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
-    <kendo-grid-column field="Percentage" title="Įvykdyta, %"  minResizableWidth="50">
+    <kendo-grid-column field="Percentage" title="Įvykdyta, %"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
-    <kendo-grid-column field="SPI" title="SPI"  minResizableWidth="50">
+    <kendo-grid-column field="SPI" title="SPI"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">

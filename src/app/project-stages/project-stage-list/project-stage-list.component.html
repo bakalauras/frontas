@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <button kendoButton  [primary]=true>
@@ -25,14 +30,26 @@ filterable="menu"
             </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="ScheduledStartDate" title="Planuojama pradžios data" minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.ScheduledStartDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="StartDate" title="Reali pradžios data"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.StartDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="ScheduledEndDate" title="Planuojama pabaigos data"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.ScheduledEndDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="EndDate" title="Reali pabaigos data"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.EndDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="StageBudget" title="Etapo biudžetas"   minResizableWidth="50">
+    <kendo-grid-column field="StageBudget" title="Etapo biudžetas"   minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Projekto etapai.xlsx"></kendo-grid-excel>
 </kendo-grid>

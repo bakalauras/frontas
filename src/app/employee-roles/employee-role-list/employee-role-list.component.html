@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
@@ -42,7 +47,7 @@ filterable="menu"
 
     <kendo-grid-column field="Title" title="Pavadinimas"  minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="AverageWage" title="Vidutinis atlyginimas"  minResizableWidth="50">
+    <kendo-grid-column field="AverageWage" title="Vidutinis atlyginimas"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
     
     <kendo-grid-column width="90"  minResizableWidth="90">
