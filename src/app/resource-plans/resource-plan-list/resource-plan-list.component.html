@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
@@ -20,12 +25,20 @@ filterable="menu"
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="ResourcePlanId" [value]="service.formData.ResourcePlanId">
                 <div class="form-group">
-                    <label for="DateFrom">Data nuo</label><label style="color: red;"> *</label>
-                    <input name="DateFrom" #Type = "ngModel" [(ngModel)]="service.formData.DateFrom" type="date" class="form-control" id="DateFrom" (change)="getDateDiff()" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Data nuo</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker" name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" (change)="getDateDiff()" required>
+                      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker></mat-datepicker>
+                      </mat-form-field>
                 </div>
-                <div class="form-group">
-                    <label for="DateTo">Data iki</label><label style="color: red;"> *</label>
-                    <input name="DateTo" #Type = "ngModel" [(ngModel)]="service.formData.DateTo" type="date" class="form-control" id="DateTo" (change)="getDateDiff()" required>
+                  <div class="form-group">
+                    <mat-form-field class="full-width">
+                      <mat-label>Data iki</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker2" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" (change)="getDateDiff()" required>
+                      <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker2></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">  
@@ -60,9 +73,9 @@ filterable="menu"
             {{dataItem.DateTo | date: 'yyyy-MM-dd'}}
         </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="Hours" title="Valandų kiekis"  minResizableWidth="50">
+    <kendo-grid-column field="Hours" title="Valandų kiekis"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
-    <kendo-grid-column field="Price" title="Kaina"  minResizableWidth="50">
+    <kendo-grid-column field="Price" title="Kaina"  minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
     <kendo-grid-column field="EmployeeRole.Title" title="Darbuotojo rolė"   minResizableWidth="50">
     </kendo-grid-column>

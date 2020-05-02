@@ -5,7 +5,8 @@
       fixedInViewport="false"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+      [opened]="(isHandset$ | async) === false"
+      [hidden]="!logged" >
     <mat-toolbar >Atea</mat-toolbar>
     <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
       <mat-expansion-panel-header>
@@ -38,6 +39,9 @@
   <mat-nav-list >
     <a mat-list-item routerLink="/employees">Darbuotojai</a>
   </mat-nav-list>
+  <mat-nav-list >
+    <a mat-list-item routerLink="/users">Naudotojai</a>
+  </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary" style="position: sticky; opacity: 100; overflow: hidden; z-index: 10;">
@@ -50,6 +54,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span style="color: white;">Resursų planavimo sistema</span>
+      <span style="color: white; position: absolute; right: 15px;" [hidden]="!logged" (click)="logout()">
+        <i class="fas fa-sign-out-alt">  </i>   
+    </span>
     </mat-toolbar>
     <ng-content></ng-content> 
   </mat-sidenav-content>

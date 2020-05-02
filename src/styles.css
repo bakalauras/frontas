@@ -73,6 +73,7 @@ section {
     height: 10 px;
     background-color: #53b827;
     border-color: #53b827;
+    color: white;
 }
 
 .edit-btn:hover {
@@ -80,7 +81,17 @@ section {
     height: 10 px;
     background-color: #53b827;
     border-color: #53b827;
+    color: white;
 }
+
+.edit-btn:disabled {
+    width:65px;
+    height: 10 px;
+    background-color: #C5EDB3;
+    border-color: #C5EDB3;
+    color: white;
+}
+
 
 .delete-btn {
     width:65px;

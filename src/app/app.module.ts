@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -125,6 +126,12 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { CpiMeasuresComponent } from './cpi-measures/cpi-measures.component';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
+import { UsersComponent } from './users/users.component';
+import { UserService } from './users/shared/user.service';
+import { MyInterceptor } from './my-interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginComponent } from './login/login.component';
+import { AuthErrorHandler } from './auth-error-handler';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -217,7 +224,9 @@ import 'hammerjs';
     UploadComponent,
     KendoGridComponent,
     ChartsComponent,
-    CpiMeasuresComponent
+    CpiMeasuresComponent,
+    UsersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -248,10 +257,27 @@ import 'hammerjs';
     DropDownsModule,
     GanttModule,
     DateInputsModule,
-    ChartsModule
+    ChartsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+             return     localStorage.getItem('access_token');},
+        whitelistedDomains: ['http://localhost:4200'],
+        blacklistedRoutes: ['http://localhost:4200/auth/login']
+      }
+    })
   ],
-  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService,
+  providers: [DutyService, CompetencyService, EmployeeService, CertificateService, ExamService, SalaryService, UserService,
     { provide: MAT_DATE_LOCALE, useValue: 'lt-LT' }, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: AuthErrorHandler
+    },
     ResizeService, SortService, FilterService, SelectionService, ReorderService,
      EditService, DayMarkersService, ToolbarService],
   bootstrap: [AppComponent]

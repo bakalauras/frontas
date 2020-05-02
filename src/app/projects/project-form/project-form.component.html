@@ -5,6 +5,7 @@
         <nav mat-tab-nav-bar></nav>
         <mat-tab label="Bendra informacija">
             <form #form="ngForm" autocomplete="off">
+                <hr>
                 <input type="hidden" name="ProjectId" [value]="service.formData.ProjectId">
                 <div class="form-group">
                     <mat-form-field class="full-width">  
@@ -36,7 +37,7 @@
                     <mat-form-field class="full-width">
                         <mat-label>Projekto pasiūlymas</mat-label>
                         <mat-select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId" required>
-                          <mat-option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.TenderId}}</mat-option>
+                          <mat-option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.Contest.Title}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                   </div>
@@ -55,9 +56,6 @@
         </mat-tab>
         <mat-tab label="Etapai" *ngIf="this.id!=0" >
             <app-project-stage-list></app-project-stage-list>
-        </mat-tab>
-        <mat-tab label="Rodikliai" *ngIf="this.id!=0" >
-            Kol kas nepadaryta
-        </mat-tab>   
+        </mat-tab>  
       </mat-tab-group>
 </div>

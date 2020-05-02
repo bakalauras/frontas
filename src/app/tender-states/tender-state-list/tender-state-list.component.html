@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">

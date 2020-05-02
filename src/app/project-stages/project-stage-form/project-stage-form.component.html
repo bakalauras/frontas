@@ -16,20 +16,36 @@
                     </mat-form-field>
                    </div>
                 <div class="form-group">
-                  <label for="ScheduledStartDate">Planuojama pradžios data</label><label style="color: red;"> *</label>
-                  <input name="ScheduledStartDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledStartDate" type="date" class="form-control" id="ScheduledStartDate" placeholder="Įveskite failo aprašymą" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Planuojama pradžios data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker" name="ScheduledStartDate" #Type="ngModel" [(ngModel)]="service.formData.ScheduledStartDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                  <div class="form-group">
+                    <mat-form-field class="full-width">
+                      <mat-label>Reali pradžios data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker2" name="StartDate" #Type="ngModel" [(ngModel)]="service.formData.StartDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker2></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="StartDate">Reali pradžios data</label>
-                    <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="date" class="form-control" id="StartDate">
+                    <mat-form-field class="full-width">
+                      <mat-label>Planuojama pabaigos data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker3" name="ScheduledEndDate" #Type="ngModel" [(ngModel)]="service.formData.ScheduledEndDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker3" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker3></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="ScheduledEndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
-                    <input name="ScheduledEndDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledEndDate" type="date" class="form-control" id="ScheduledEndDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="EndDate">Reali pabaigos data</label>
-                    <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="date" class="form-control" id="EndDate" >
+                    <mat-form-field class="full-width">
+                      <mat-label>Reali pabaigos data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker4" name="EndDate" #Type="ngModel" [(ngModel)]="service.formData.EndDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker4" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker4></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">  

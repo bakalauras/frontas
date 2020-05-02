@@ -1,0 +1,22 @@
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Prisijungti</h1>   
+         <hr>
+</div>
+<div class = "content">
+<form #form="ngForm" autocomplete="off">
+          <input type="hidden" name="UserId" [value]="service.formData.UserId">
+          <div class="form-group">
+            <mat-form-field class="full-width">  
+                <mat-label>Prisijungimo vardas</mat-label>
+                <input matInput name="Login" #Type = "ngModel" [(ngModel)]="service.formData.Login" type="text" id="Login" placeholder="Įveskite prisijungimo vardą" required>    
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="full-width">  
+                <mat-label>Slaptažodis</mat-label>
+                <input matInput name="Password" #Type = "ngModel" [(ngModel)]="service.formData.Password" type="password" id="Password" placeholder="Įveskite slaptžodį" required>    
+            </mat-form-field>
+        </div>
+</form>  
+<button kendoButton [primary]="true"(click)="onSubmit(form)" [disabled]="form.invalid">Prisijungti</button>
+</div>
