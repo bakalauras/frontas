@@ -123,6 +123,9 @@ import { GanttModule, ResizeService, SortService, FilterService, SelectionServic
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 import { ChartsComponent } from './charts/charts.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
+import { GroupsComponent } from './groups/groups.component';
+import { GroupListComponent } from './groups/group-list/group-list.component';
 import { CpiMeasuresComponent } from './cpi-measures/cpi-measures.component';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
@@ -224,6 +227,8 @@ import { AuthErrorHandler } from './auth-error-handler';
     UploadComponent,
     KendoGridComponent,
     ChartsComponent,
+    GroupsComponent,
+    GroupListComponent
     CpiMeasuresComponent,
     UsersComponent,
     LoginComponent

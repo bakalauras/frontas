@@ -5,6 +5,8 @@ import { Certificate } from 'src/app/certificates/shared/certificate.model';
 import { Employee } from 'src/app/employees/shared/employee.model';
 import { Exam } from 'src/app/exams/shared/exam.model';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class EmployeeExamService {
   employeeList:Employee[];
   examList:Exam[];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private toastr: ToastrService) { }
 
   postEmployeeExam(){
     return this.http.post(this.rootURL + '/EmployeeExams', this.formData)
@@ -83,5 +85,21 @@ export class EmployeeExamService {
   getCertificateTitle(id)
   {
     return this.certificatelist.find(x => x.CertificateId == id).Title;
+  }
+
+  downloadFile(data: any, filename: string) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    saveAs(blob, filename);
+  }
+
+  public getDocument(id: number, fileName: string) {
+
+    this.http.get(this.rootURL + '/Upload/' + id + '/exams', {responseType: 'blob'})
+      .subscribe((data) => this.downloadFile(data, fileName), 
+      error => { 
+        console.log(error);
+        this.toastr.error('Nepavyko parsiųsti failo.');
+      },
+        () => console.info('OK'));
   }
 }

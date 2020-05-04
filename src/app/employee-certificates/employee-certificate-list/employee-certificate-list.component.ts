@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TestabilityRegistry, EventEmitter, Output, Input, ViewChild } from '@angular/core';
 import { EmployeeCertificateService } from '../shared/employee-certificate.service';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeCertificate } from '../shared/employee-certificate.model';
 import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-employee-certificate-list',
@@ -12,11 +15,11 @@ import { NgForm } from '@angular/forms';
   styles: []
 })
 export class EmployeeCertificateListComponent extends KendoGridComponent implements OnInit {
-
+ 
   id = null;
   
   constructor(public service:EmployeeCertificateService, private toastr: ToastrService,private router: Router,
-    public route: ActivatedRoute) { 
+    public route: ActivatedRoute, private http: HttpClient) { 
       super();
       this.id = this.route.snapshot.paramMap.get('id'); 
     }
@@ -27,6 +30,11 @@ export class EmployeeCertificateListComponent extends KendoGridComponent impleme
     this.service.refreshEmployeeteList();
     this.resetForm();
   }
+  
+  fileDownload(document: any) {
+    this.service.getDocument(document.EmployeeCertificateId, document.File);
+  }
+
   populateForm(pd:EmployeeCertificate){
     this.service.formData = Object.assign({}, pd);
     this.opened2 = true;
@@ -52,7 +60,7 @@ export class EmployeeCertificateListComponent extends KendoGridComponent impleme
       form.resetForm();
     this.service.formData = {
       EmployeeCertificateId: 0,
-      File: null,
+      File: 'failas',
       EmployeeId: this.id,
       CertificateId: null
     }

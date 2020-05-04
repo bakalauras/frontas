@@ -107,6 +107,22 @@ section {
     border-color: #c75757;
 }
 
+.btn-warning {
+    color: white;
+    width:65px;
+    height: 8 px;
+    background-color: #ffad33;
+    border-color: #ffad33;
+}
+
+.btn-warning:hover {
+    color: white;
+    width:65px;
+    height: 8 px;
+    background-color: #ffad33;
+    border-color: #ffad33;
+}
+
 h4 {
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 16px;

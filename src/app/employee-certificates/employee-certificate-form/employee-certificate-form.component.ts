@@ -30,7 +30,7 @@ export class EmployeeCertificateFormComponent implements OnInit {
 
   onSubmit(form:NgForm)
   {
-    if(this.service.formData.EmployeeCertificateId == 0)
+    if(this.service.formData.CertificateId == 0)
       this.insertRecord(form);
     else
       this.updateRecord(form);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { EmployeeExamService } from '../shared/employee-exam.service';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeExam } from '../shared/employee-exam.model';
@@ -8,6 +8,8 @@ import { State, process } from '@progress/kendo-data-query';
 import { Router, ActivatedRoute } from '@angular/router';
 import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-employee-exam-list',
@@ -61,7 +63,7 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
       RealExamDate: null,
       IsPassed: true,
       Price: 0,
-      File: '',
+      File: 'failas',
       ExamId: null,
       EmployeeId: this.id,
       CertificateId: null
@@ -105,5 +107,9 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
         this.toastr.error(err.error);
       }
     )
+  }
+
+  fileDownload(document: any) {
+    this.service.getDocument(document.EmployeeExamId, document.File);
   }
 }

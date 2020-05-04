@@ -21,7 +21,7 @@
         <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
         <div style="float: left;">
         <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti atlyginimą</button>
-        <kendo-dialog title="Atlyginimo informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+        <kendo-dialog title="Darbuotojo atlyginimo informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
                 <input type="hidden" name="SalaryId" [value]="service.formData.SalaryId">
                 <div class="form-group">
@@ -60,11 +60,11 @@
        </kendo-dialog>
        </div>
        </ng-template>
-       <kendo-grid-column field="Staff" title="Etatas" minResizableWidth="50">
+       <kendo-grid-column field="Staff" title="Etatas" minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
-    <kendo-grid-column field="EmployeeSalary" title="Atlyginimas" minResizableWidth="50">
+    <kendo-grid-column field="EmployeeSalary" title="Atlyginimas" minResizableWidth="50" filter="numeric" >
     </kendo-grid-column>
-    <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
+    <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50" filter="date" format="{0:yyyy-MM-dd}">
         <ng-template kendoGridCellTemplate let-dataItem>
             {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
         </ng-template>

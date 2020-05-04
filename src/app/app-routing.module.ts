@@ -27,10 +27,10 @@ import { ProjectStageFormComponent } from './project-stages/project-stage-form/p
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { ChartsComponent } from './charts/charts.component';
 import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
+import { GroupsComponent } from './groups/groups.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { JwtService } from './jwt.service';
-
 
 const routes: Routes = [
   {path: 'contestStatuses', component: ContestStatusesComponent, canActivate: [JwtService]},

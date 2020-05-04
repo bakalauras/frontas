@@ -24,6 +24,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     //this.service.refreshList();
+    this.service.refreshGroupList();
     this.resetForm();
   }
 
@@ -48,7 +49,8 @@ export class EmployeeComponent implements OnInit {
       Name : '',
       Surname: '',
       IsActive: true,
-      FkEmployeeId: null
+      FkEmployeeId: null,
+      GroupId: null
     }
   }
 
