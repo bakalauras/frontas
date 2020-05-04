@@ -15,8 +15,6 @@ export class ContestListComponent extends KendoGridComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.refreshCustomerList();
-    this.service.refreshContestStatusList();
     this.service.refreshList(this.loadItems.bind(this));
   }
 }

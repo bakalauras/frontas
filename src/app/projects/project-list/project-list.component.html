@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <button kendoButton  [primary]=true routerLink="/project/0"><i class="fas fa-plus"> </i>   Pridėti projektą</button>
@@ -23,12 +28,9 @@ filterable="menu"
     </kendo-grid-column>
     <kendo-grid-column field="ContractNumber" title="Sutarties numeris" minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="Budget" title="Biudžetas"   minResizableWidth="50">
+    <kendo-grid-column field="Budget" title="Biudžetas"   minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
-    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
-            </ng-template>
+    <kendo-grid-column field="Customer.Name" title="Užsakovas"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Projektai.xlsx"></kendo-grid-excel>
 </kendo-grid>

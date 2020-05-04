@@ -53,8 +53,10 @@ export class ContestFormComponent implements OnInit {
       FillingDate : null,
       PriceRobbingDate : null,
       ClaimsFillingDate : null,
-      CustomerId : 0,
-      ContestStatusId : 0
+      CustomerId : null,
+      Customer : null,
+      ContestStatusId : null,
+      ContestStatus : null
     }
   }
 
@@ -70,7 +72,7 @@ export class ContestFormComponent implements OnInit {
       this.service.deleteRecord(ContestId)
       .subscribe(
         res => {
-          this.toastr.info('Įrašas sėkmingai ištrintas');
+          this.toastr.success('Įrašas sėkmingai ištrintas');
           this.router.navigateByUrl('/contests');
         },
         err => {

@@ -5,32 +5,41 @@
         <nav mat-tab-nav-bar></nav>
         <mat-tab label="Bendra informacija">
             <form #form="ngForm" autocomplete="off">
+                <hr>
                 <input type="hidden" name="ProjectId" [value]="service.formData.ProjectId">
                 <div class="form-group">
-                    <label for="Title">Pavadinimas</label><label style="color: red;"> *</label>
-                    <input name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" placeholder="Įveskite projekto pavadinimą" class="form-control" id="Title" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Pavadinimas</mat-label>
+                        <input matInput name="Title" #Type = "ngModel" [(ngModel)]="service.formData.Title" type="text" placeholder="Įveskite projekto pavadinimą" id="Title" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="ContractNumber">Sutarties numeris</label><label style="color: red;"> *</label>
-                    <input name="ContractNumber" #Type = "ngModel" [(ngModel)]="service.formData.ContractNumber" type="text" placeholder="Įveskite projekto sutarties numerį" class="form-control" id="ContractNumber" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Sutarties numeris</mat-label>
+                        <input matInput name="ContractNumber" #Type = "ngModel" [(ngModel)]="service.formData.ContractNumber" type="text" placeholder="Įveskite projekto sutarties numerį" id="ContractNumber" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="Budget">Biudžetas</label><label style="color: red;"> *</label>
-                    <input name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" class="form-control" id="Budget" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Biudžetas</mat-label>
+                        <input matInput name="Budget" #Type = "ngModel" [(ngModel)]="service.formData.Budget" type="number" id="Budget" required>    
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="CustomerId">Pasirinkite projekto užsakovą</label><label style="color: red;"> *</label>
-                    <hr>
-                    <select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId">
-                        <option *ngFor="let customer of service.list2" [value]="customer.CustomerId">{{customer.Name}}</option> 
-                    </select>
+                    <mat-form-field class="full-width">
+                        <mat-label>Užsakovas</mat-label>
+                        <mat-select [(ngModel)]="service.formData.CustomerId" name = "service.formData.CustomerId" required>
+                          <mat-option *ngFor="let customer of service.list2" [value]="customer.CustomerId">{{customer.Name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="TenderId">Pasirinkite projekto pasiūlymą</label><label style="color: red;"> *</label>
-                    <hr>
-                      <select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId">
-                          <option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.TenderId}}</option> 
-                      </select>
+                    <mat-form-field class="full-width">
+                        <mat-label>Projekto pasiūlymas</mat-label>
+                        <mat-select [(ngModel)]="service.formData.TenderId" name = "service.formData.TenderId" required>
+                          <mat-option *ngFor="let tender of service.list3" [value]="tender.TenderId">{{tender.Contest.Title}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                   </div>
                   <div style="float: right;">
                     <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
@@ -47,9 +56,6 @@
         </mat-tab>
         <mat-tab label="Etapai" *ngIf="this.id!=0" >
             <app-project-stage-list></app-project-stage-list>
-        </mat-tab>
-        <mat-tab label="Rodikliai" *ngIf="this.id!=0" >
-            Kol kas nepadaryta
-        </mat-tab>   
+        </mat-tab>  
       </mat-tab-group>
 </div>

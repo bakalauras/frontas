@@ -5,44 +5,53 @@
         <nav mat-tab-nav-bar></nav>
         <mat-tab label="Bendra informacija">
             <form #form="ngForm" autocomplete="off">
+                <hr>
                 <input type="hidden" name="ProjectStageId" [value]="service.formData.ProjectStageId">
                    <div class="form-group">
-                    <label for="ProjectStageNameId">Pasirinkite etapo pavadinimą</label><label style="color: red;"> *</label>
-                    <hr>
-                    <select [(ngModel)]="service.formData.ProjectStageNameId" name = "service.formData.ProjectStageNameId">
-                        <option *ngFor="let stageName of service.list2" [value]="stageName.ProjctStageNameId">{{stageName.StageName}}</option> 
-                    </select>
-                    <div class="example-config">
-                        Selected Item: {{service.formData.ProjectStageNameId | json}}
-                    </div>
-                    <kendo-dropdownlist
-                        [data]="service.list2"
-                        textField="StageName"
-                        valueField="stageName.ProjctStageNameId"
-                        [(ngModel)]="service.formData.ProjectStageNameId"
-                        name = "service.formData.ProjectStageNameId"
-                    >
-                    </kendo-dropdownlist>
+                    <mat-form-field class="full-width">
+                        <mat-label>Etapo pavadinimas</mat-label>
+                        <mat-select [(ngModel)]="service.formData.ProjectStageNameId" name = "service.formData.ProjectStageNameId" required>
+                          <mat-option *ngFor="let stageName of service.list2" [value]="stageName.ProjctStageNameId">{{stageName.StageName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                    </div>
                 <div class="form-group">
-                  <label for="ScheduledStartDate">Planuojama pradžios data</label><label style="color: red;"> *</label>
-                  <input name="ScheduledStartDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledStartDate" type="date" class="form-control" id="ScheduledStartDate" placeholder="Įveskite failo aprašymą" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Planuojama pradžios data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker" name="ScheduledStartDate" #Type="ngModel" [(ngModel)]="service.formData.ScheduledStartDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker></mat-datepicker>
+                      </mat-form-field>
+                </div>
+                  <div class="form-group">
+                    <mat-form-field class="full-width">
+                      <mat-label>Reali pradžios data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker2" name="StartDate" #Type="ngModel" [(ngModel)]="service.formData.StartDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker2></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="StartDate">Reali pradžios data</label>
-                    <input name="StartDate" #Type = "ngModel" [(ngModel)]="service.formData.StartDate" type="date" class="form-control" id="StartDate">
+                    <mat-form-field class="full-width">
+                      <mat-label>Planuojama pabaigos data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker3" name="ScheduledEndDate" #Type="ngModel" [(ngModel)]="service.formData.ScheduledEndDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker3" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker3></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="ScheduledEndDate">Planuojama pabaigos data</label><label style="color: red;"> *</label>
-                    <input name="ScheduledEndDate" #Type = "ngModel" [(ngModel)]="service.formData.ScheduledEndDate" type="date" class="form-control" id="ScheduledEndDate" required>
+                    <mat-form-field class="full-width">
+                      <mat-label>Reali pabaigos data</mat-label>
+                      <input matInput [matDatepicker]="myDatePicker4" name="EndDate" #Type="ngModel" [(ngModel)]="service.formData.EndDate" required>
+                      <mat-datepicker-toggle [for]="myDatePicker4" matSuffix></mat-datepicker-toggle>
+                      <mat-datepicker #myDatePicker4></mat-datepicker>
+                      </mat-form-field>
                 </div>
                 <div class="form-group">
-                    <label for="EndDate">Reali pabaigos data</label>
-                    <input name="EndDate" #Type = "ngModel" [(ngModel)]="service.formData.EndDate" type="date" class="form-control" id="EndDate" >
-                </div>
-                <div class="form-group">
-                    <label for="StageBudget">Etapo biudžetas</label><label style="color: red;"> *</label>
-                    <input name="StageBudget" #Type = "ngModel" [(ngModel)]="service.formData.StageBudget" type="number" class="form-control" id="StageBudget" required>
+                    <mat-form-field class="full-width">  
+                        <mat-label>Etapo biudžetas</mat-label>
+                        <input matInput name="StageBudget" #Type = "ngModel" [(ngModel)]="service.formData.StageBudget" type="number" id="StageBudget" required>    
+                    </mat-form-field>
                 </div>
                 <div style="float: right;">
                     <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
@@ -66,6 +75,9 @@
         </mat-tab>
         <mat-tab label="Etapo įvykdymo progresas" *ngIf="this.id2!=0" >
             <app-stage-progress-list></app-stage-progress-list>
+        </mat-tab>
+        <mat-tab label="CPI rodikliai" *ngIf="this.id2!=0" >
+            <app-cpi-measures></app-cpi-measures>
         </mat-tab>
         <mat-tab label="Kompetencijos" *ngIf="this.id2!=0" >
             <app-stage-competencies></app-stage-competencies>

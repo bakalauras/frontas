@@ -55,16 +55,4 @@ export class WorkingTimeRegisterService {
     toPromise()
     .then(res => this.list4 = res as Employee[]);
   }
-
-  getEmployeeRoleName(id)
-  {
-        return this.list3.find(x => x.EmployeeRoleId == id).Title;
-  }
-
-  getEmployeeName(id)
-  {
-        var em = this.list4.find(x => x.EmployeeId == id);
-        return em.Name+ " " + em.Surname;
-  }
-
 }

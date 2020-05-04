@@ -38,7 +38,7 @@ export class StageProgressListComponent extends KendoGridComponent implements On
     this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {
@@ -55,9 +55,10 @@ export class StageProgressListComponent extends KendoGridComponent implements On
       form.resetForm();
     this.service.formData = {
       StageProgressId : 0,
-      DateFrom : null,
-      DateTo : null,
+      Date : null,
       Percentage : 0,
+      ScheduledPercentage : 0,
+      SPI : 0,
       ProjectStageId : this.id
     }
   }

@@ -38,7 +38,7 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
       this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.id, this.loadItems.bind(this));
       },
       err => {

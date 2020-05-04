@@ -34,7 +34,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       this.service.deleteStatus(this.idToDelete)
     .subscribe(
       res => {
-        this.toastr.info('Įrašas sėkmingai ištrintas');
+        this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
@@ -70,7 +70,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
     this.service.postStatus().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Būsena sėkmingai pridėta');
+        this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
@@ -85,7 +85,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
     this.service.putStatus().subscribe(
       res => {
         this.resetForm(form);
-        this.toastr.success('Būsena sėkmingai atnaujinta');
+        this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {

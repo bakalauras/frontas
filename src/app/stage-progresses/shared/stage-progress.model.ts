@@ -1,7 +1,8 @@
 export class StageProgress {
     StageProgressId : number;
-    DateFrom : Date;
-    DateTo : Date;
+    Date : Date;
     Percentage : number;
+    ScheduledPercentage : number;
+    SPI : number;
     ProjectStageId : number;
 }

@@ -12,6 +12,11 @@ filterable="menu"
 [sort]="state.sort"
 (dataStateChange)="dataStateChange($event, this.service)"
 (pageChange)="pageChange($event, this.service)">
+<app-kendo-grid></app-kendo-grid>
+<kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <button kendoButton  [primary]=true routerLink="/contest/0"><i class="fas fa-plus"> </i>   Pridėti konkursą</button>
@@ -21,25 +26,31 @@ filterable="menu"
             <a [routerLink]="['/contest/', dataItem.ContestId]" >{{dataItem.Title}}</a>
             </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="Budget" title="Biudžetas" minResizableWidth="50">
+    <kendo-grid-column field="Budget" title="Biudžetas" minResizableWidth="50" filter="numeric">
     </kendo-grid-column>
     <kendo-grid-column field="PublicationDate" title="Paskelbimo data"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.PublicationDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="FillingDate" title="Pateikimo data"  minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.FillingDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="PriceRobbingDate" title="Kainų plėšimo data"   minResizableWidth="50">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            {{dataItem.PriceRobbingDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="ClaimsFillingDate" title="Pretenzijų pateikimo data"  minResizableWidth="50">
-    </kendo-grid-column>
-    <kendo-grid-column field="ContestStatusId" title="Būsena"   minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getContestStatusName(dataItem.ContestStatusId)}}</a>
-            </ng-template>
+            {{dataItem.ClaimsFillingDate | date: 'yyyy-MM-dd'}}
+        </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="CustomerId" title="Užsakovas"   minResizableWidth="50">
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getCustomerName(dataItem.CustomerId)}}</a>
-            </ng-template>
+    <kendo-grid-column field="ContestStatus.StatusName" title="Būsena"   minResizableWidth="50">
+    </kendo-grid-column>
+    <kendo-grid-column field="Customer.Name" title="Užsakovas"   minResizableWidth="50">
     </kendo-grid-column>
     <kendo-grid-excel fileName="Konkursai.xlsx"></kendo-grid-excel>
 </kendo-grid>
