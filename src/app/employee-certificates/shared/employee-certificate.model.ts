@@ -1,6 +1,6 @@
 export class EmployeeCertificate {
     EmployeeCertificateId: number;
-    File: File;
+    File: string;
     EmployeeId: number;
     CertificateId: number;
 }

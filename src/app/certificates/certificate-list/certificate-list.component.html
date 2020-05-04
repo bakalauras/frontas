@@ -21,7 +21,7 @@ filterable="menu"
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
         <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>Pridėti sertifikatą</button>
-        <kendo-dialog title="Pareigos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+        <kendo-dialog title="Sertifikato informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="CertificateId" [value]="service.formData.CertificateId">
                 <div class="form-group">
@@ -40,12 +40,6 @@ filterable="menu"
                     <mat-form-field class="full-width">
                         <mat-label>Technologija</mat-label>
                         <input matInput type="text" name="Technology" #Type="ngModel" [(ngModel)]="service.formData.Technology" placeholder="Įveskite technologiją" required maxlength="100">
-                      </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <mat-form-field class="full-width">
-                        <mat-label>Lygis</mat-label>
-                        <input matInput type="text" name="Order" #Type="ngModel" [(ngModel)]="service.formData.Order" placeholder="Įveskite lygį" required maxlength="100">
                       </mat-form-field>
                 </div>
             </form>

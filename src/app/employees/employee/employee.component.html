@@ -28,6 +28,14 @@
                   </mat-select>
                 </mat-form-field>
              </div>
+             <div class="form-group">
+              <mat-form-field class="full-width">
+                  <mat-label>Grupė </mat-label>
+                  <mat-select [(ngModel)]="service.formData.GroupId" name = "service.formData.GroupId" required>
+                    <mat-option *ngFor="let gr of service.groupsList" [value]="gr.GroupId">{{gr.Title}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+             </div>
         <div class="form-group">
           <button class="full-width" mat-raised-button color="primary" (click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
       </div>

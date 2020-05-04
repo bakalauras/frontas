@@ -27,6 +27,7 @@ import { ProjectStageFormComponent } from './project-stages/project-stage-form/p
 import { EmployeeComponent } from './employees/employee/employee.component';
 import { ChartsComponent } from './charts/charts.component';
 import { StageCompetenciesComponent } from './stage-competencies/stage-competencies.component';
+import { GroupsComponent } from './groups/groups.component';
 
 
 const routes: Routes = [
@@ -56,7 +57,8 @@ const routes: Routes = [
   {path: 'stage-competency', component : StageCompetenciesComponent},
   {path: 'employee/:id', component : EmployeeComponent},
   {path: 'charts', component : ChartsComponent},
-  {path: 'employee-duty', component : EmployeeDutiesComponent}
+  {path: 'employee-duty', component : EmployeeDutiesComponent},
+  {path: 'groups', component : GroupsComponent}
 ];
 
 @NgModule({

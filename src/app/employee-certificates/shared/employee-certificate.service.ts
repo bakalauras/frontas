@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Certificate } from 'src/app/certificates/shared/certificate.model';
 import { Employee } from 'src/app/employees/shared/employee.model';
+import { saveAs } from 'file-saver';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +17,12 @@ export class EmployeeCertificateService {
   certificatelist:Certificate[];
   employeeList:Employee[];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private toastr: ToastrService) { }
   postEmployeeCertificate(){
     return this.http.post(this.rootURL + '/EmployeeCertificates', this.formData)
   }
 
-  putEmployeeCertificate(){
+ putEmployeeCertificate(){
     return this.http.put(this.rootURL + '/EmployeeCertificates/'+ this.formData.EmployeeCertificateId, this.formData)
   }
 
@@ -32,6 +34,22 @@ export class EmployeeCertificateService {
     this.http.get(this.rootURL + '/Employees/'+id+"/certificates")
     .toPromise()
     .then(res =>{this.list=res as EmployeeCertificate[], callBack(this)})
+  }
+
+  downloadFile(data: any, filename: string) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    saveAs(blob, filename);
+  }
+
+  public getDocument(id: number, fileName: string) {
+
+    this.http.get(this.rootURL + '/Upload/' + id + '/certificates', {responseType: 'blob'})
+      .subscribe((data) => this.downloadFile(data, fileName), 
+      error => { 
+        console.log(error);
+        this.toastr.error('Nepavyko parsiųsti failo.');
+      },
+        () => console.info('OK'));
   }
 
   refreshCertificateList()

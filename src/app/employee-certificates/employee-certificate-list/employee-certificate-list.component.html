@@ -21,13 +21,9 @@
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
     <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Pridėti sertifikatą</button>
-    <kendo-dialog title="Sertifikato informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+    <kendo-dialog title="Darbuotojo sertifikato informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
         <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
             <input type="hidden" name="EmployeeCertificateId" [value]="service.formData.EmployeeCertificateId">
-            <div class="form-group">
-                <label>Failas</label>
-                <input type = "file" required placeholder="Pasirinkite failą" name="File" #Type="ngModel" [(ngModel)]="service.formData.File">
-            </div>
                <div class="form-group">
                 <mat-form-field class="full-width">
                     <mat-label>Sertifikatas</mat-label>
@@ -50,8 +46,13 @@
         <a>{{this.service.getCertificateTitle(dataItem.CertificateId)}}</a>
         </ng-template>
 </kendo-grid-column>
-    <kendo-grid-column field="File" title="Failas" minResizableWidth="50">
-    </kendo-grid-column>
+    <kendo-grid-column width="90"  minResizableWidth="90">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+          <div>
+              <button class="btn-primary btn-sm btn-warning"  (click)="fileDownload(dataItem)"><i class="fas fa-download"></i></button>    
+          </div>
+          </ng-template>
+      </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
           <div>

@@ -33,10 +33,13 @@ filterable="menu"
         <a>{{this.service.getManager(dataItem.FkEmployeeId)}}</a>
         </ng-template>
    
-    <kendo-grid-column field="IsActive" title="Ar aktyvus" minResizableWidth="50"></kendo-grid-column>
+    <kendo-grid-column field="IsActive" title="Ar aktyvus" minResizableWidth="50" filter="boolean"></kendo-grid-column>
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
             <a>{{this.service.getActiveParam(dataItem.EmployeeId)}}</a>
             </ng-template>
-        
+    <kendo-grid-column field="GroupId" title="Grupė" minResizableWidth="50"></kendo-grid-column>
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <a>{{this.service.getActiveParam(dataItem.EmployeeId)}}</a>
+            </ng-template>    
 <kendo-grid-excel fileName="Darbuotojai.xlsx"></kendo-grid-excel>
 </kendo-grid>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from './employee.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Group } from 'src/app/groups/shared/group.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class EmployeeService {
   list:Employee[];
   name:string;
   param:string;
+  groupsList:Group[]
 
   constructor(private http:HttpClient) { }
 
@@ -55,5 +57,12 @@ export class EmployeeService {
     toPromise()
     .then(res => this.formData = res as Employee);
     }
+  }
+
+  refreshGroupList()
+  {
+    this.http.get(this.rootURL+'/Groups').
+    toPromise()
+    .then(res => this.groupsList = res as Group[]);
   }
 }

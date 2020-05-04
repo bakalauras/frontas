@@ -1,29 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { CertificateService } from '../shared/certificate.service';
-import { ToastrService } from 'ngx-toastr';
-import { Certificate } from '../shared/certificate.model';
-import { error } from '@angular/compiler/src/util';
-import { HttpHeaders } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
 import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
+import { GroupService } from '../shared/group.service';
+import { ToastrService } from 'ngx-toastr';
+import { Group } from '../shared/group.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-certificate-list',
-  templateUrl: './certificate-list.component.html',
+  selector: 'app-group-list',
+  templateUrl: './group-list.component.html',
   styles: []
 })
-export class CertificateListComponent extends KendoGridComponent implements OnInit {
+export class GroupListComponent extends KendoGridComponent implements OnInit {
 
-  constructor(public service:CertificateService, private toastr: ToastrService) {
+  constructor(public service:GroupService,private toastr: ToastrService) { 
     super();
-   }
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     this.service.refreshList(this.loadItems.bind(this));
     this.resetForm();
   }
 
-  populateForm(pd:Certificate){
+  populateForm(pd:Group){
     this.service.formData = Object.assign({}, pd);
     this.opened2 = true;
   }
@@ -31,7 +29,7 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
   onDelete(){
     this.opened = false;
     if(this.idToDelete!=0){
-      this.service.deleteCertificate(this.idToDelete)
+      this.service.deleteGroup(this.idToDelete)
       .subscribe(res =>{
         this.toastr.success('Įrašas sėkmingai ištrintas');
         this.service.refreshList(this.loadItems.bind(this));
@@ -43,20 +41,18 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
     }
   }
 
-  resetForm(form?:NgForm) {
-    if(form!=null)
+  resetForm(form?: NgForm)
+  {
+    if(form != null)
       form.resetForm();
     this.service.formData = {
-      CertificateId: 0,
-      Title: '',
-      Code: '',
-      Technology:''
+      GroupId: 0,
+      Title: ''
     }
   }
 
-  onSubmit(form:NgForm)
-  {
-    if(this.service.formData.CertificateId == 0)
+  onSubmit(form:NgForm){
+    if(this.service.formData.GroupId ==0)
       this.insertRecord(form);
     else
       this.updateRecord(form);
@@ -65,14 +61,14 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
 
   insertRecord(form:NgForm)
   {
-    this.service.postCertificate().subscribe(
+    this.service.postGroup().subscribe(
       res => {
-        this.resetForm(form),
+        this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
-        console.log(err);
+        console.log(err)
         this.toastr.error(err.error);
       }
     )
@@ -80,14 +76,14 @@ export class CertificateListComponent extends KendoGridComponent implements OnIn
 
   updateRecord(form:NgForm)
   {
-    this.service.putCertificate().subscribe(
+    this.service.putGroup().subscribe(
       res => {
-        this.resetForm(form),
+        this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
         this.service.refreshList(this.loadItems.bind(this));
       },
       err => {
-        console.log(err);
+        console.log(err)
         this.toastr.error(err.error);
       }
     )

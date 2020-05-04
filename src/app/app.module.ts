@@ -122,6 +122,8 @@ import { GanttModule, ResizeService, SortService, FilterService, SelectionServic
   EditService, DayMarkersService, ToolbarService } from '@syncfusion/ej2-angular-gantt';
 import { ChartsComponent } from './charts/charts.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupListComponent } from './groups/group-list/group-list.component';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -213,7 +215,9 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
     StageCompetencyListComponent,
     UploadComponent,
     KendoGridComponent,
-    ChartsComponent
+    ChartsComponent,
+    GroupsComponent,
+    GroupListComponent
   ],
   imports: [
     BrowserModule,
