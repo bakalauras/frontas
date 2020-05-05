@@ -228,7 +228,7 @@ import { AuthErrorHandler } from './auth-error-handler';
     KendoGridComponent,
     ChartsComponent,
     GroupsComponent,
-    GroupListComponent
+    GroupListComponent,
     CpiMeasuresComponent,
     UsersComponent,
     LoginComponent
