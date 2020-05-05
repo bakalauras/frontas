@@ -149,3 +149,8 @@ select{
 form-group {
     width: 100%;
 }
+
+.part-width {
+    width: 15%;
+    color: white;
+  }
