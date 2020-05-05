@@ -31,6 +31,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { JwtService } from './jwt.service';
+import { GroupRightsComponent } from './group-rights/group-rights.component';
 
 const routes: Routes = [
   {path: 'contestStatuses', component: ContestStatusesComponent, canActivate: [JwtService]},
@@ -61,7 +62,8 @@ const routes: Routes = [
   {path: 'charts', component : ChartsComponent, canActivate: [JwtService]},
   {path: 'users', component : UsersComponent, canActivate: [JwtService]},
   {path: 'login', component : LoginComponent},
-  {path: 'employee-duty', component : EmployeeDutiesComponent, canActivate: [JwtService]}
+  {path: 'employee-duty', component : EmployeeDutiesComponent, canActivate: [JwtService]},
+  {path: 'groupRights', component: GroupRightsComponent, canActivate: [JwtService]}
 ];
 
 @NgModule({

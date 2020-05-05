@@ -58,7 +58,7 @@ export class TenderFileListComponent  extends KendoGridComponent implements OnIn
   this.service.formData = {
     TenderFileId : 0,
     Description : '',
-    FileName : '',
+    FileName : 'failas',
     TenderId : this.id
   }
 }
@@ -100,4 +100,9 @@ update(form:NgForm)
     }
   )
 }
+
+fileDownload(document: any) {
+  this.service.getDocument(document.TenderFileId, document.FileName);
+}
+
 }

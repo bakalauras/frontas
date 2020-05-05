@@ -5,6 +5,8 @@ import { Tender } from 'src/app/tenders/shared/tender.model';
 import { HttpClient } from '@angular/common/http';
 import { SortDescriptor, orderBy } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
+import { saveAs } from 'file-saver';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class TenderFileService {
   list2: Tender[];
   readonly apiName = '/TenderFiles';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private toastr: ToastrService) { }
 
   postRecord(){
     return this.http.post(this.rootURL+this.apiName,this.formData);
@@ -39,5 +41,21 @@ export class TenderFileService {
     toPromise()
     .then(res => {this.list = res as TenderFile[], callBack(this)});
     }
+  }
+
+  downloadFile(data: any, filename: string) {
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+    saveAs(blob, filename);
+  }
+
+  public getDocument(id: number, fileName: string) {
+
+    this.http.get(this.rootURL + '/Upload/' + id + '/tender', {responseType: 'blob'})
+      .subscribe((data) => this.downloadFile(data, fileName), 
+      error => { 
+        console.log(error);
+        this.toastr.error('Nepavyko parsiųsti failo.');
+      },
+        () => console.info('OK'));
   }
 }

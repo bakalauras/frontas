@@ -57,7 +57,7 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
     this.service.formData = {
       ContestFileId : 0,
       Description : '',
-      FileName : '',
+      FileName : 'failas',
       ContestId : this.id
     }
   }
@@ -98,6 +98,10 @@ export class ContestFileListComponent extends KendoGridComponent implements OnIn
         this.toastr.error(err.error);
       }
     )
+  }
+
+  fileDownload(document: any) {
+    this.service.getDocument(document.ContestFileId, document.FileName);
   }
 
 }

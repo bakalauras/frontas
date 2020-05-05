@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
       this.service.formData = {
         UserId: 0,
         Login : '',
-        Password : ''
+        Password : '',
+        GroupRightId: 0,
+        GroupRights: null
       }
   }
 

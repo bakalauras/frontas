@@ -20,15 +20,36 @@ filterable="menu"
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
-        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Pridėti kompetenciją</button>
-        <kendo-dialog title="Kompetencijos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Pridėti rolę</button>
+        <kendo-dialog title="Rolės informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
-                <input type="hidden" name="CompetencyId" [value]="service.formData.CompetencyId">
+                <input type="hidden" name="GroupRightId" [value]="service.formData.GroupRightId">
                 <div class="form-group">
                     <mat-form-field class="full-width">
                         <mat-label>Pavadinimas</mat-label>
                         <input matInput type="text" name="Title" #Type="ngModel" [(ngModel)]="service.formData.Title" placeholder="Įveskite pavadinimą" required maxlength="100">
                       </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageClassifiers" [(ngModel)]="service.formData.manageClassifiers">Valdyti klasifikatorius</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageContests" [(ngModel)]="service.formData.manageContests">Valdyti konkursus</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageTenders" [(ngModel)]="service.formData.manageTenders">Valdyti pasiūlymus</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageProjects" [(ngModel)]="service.formData.manageProjects">Valdyti projektus</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageEmployees" [(ngModel)]="service.formData.manageEmployees">Valdyti darbuotojus</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageUsers" [(ngModel)]="service.formData.manageUsers">Valdyti naudotojus</mat-checkbox>
+                </div>
+                <div class="form-group">
+                    <mat-checkbox class="example-margin" color = "primary"  name="manageCustomers" [(ngModel)]="service.formData.manageCustomers">Valdyti užsakovus</mat-checkbox>
                 </div>
             </form>
             <kendo-dialog-actions>
@@ -50,7 +71,7 @@ filterable="menu"
 <kendo-grid-column  width="90"  minResizableWidth="90">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <div>
-            <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.CompetencyId)"><span class="far fa-trash-alt"></span></button>
+            <button class="btn-primary btn-sm delete-btn" (click)="open(dataItem.GroupRightId)"><span class="far fa-trash-alt"></span></button>
             <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
                 <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
                 <kendo-dialog-actions>
@@ -61,5 +82,5 @@ filterable="menu"
         </div>
     </ng-template>
 </kendo-grid-column>
-<kendo-grid-excel fileName="Kompetencijos.xlsx"></kendo-grid-excel>
+<kendo-grid-excel fileName="Grupių rolės.xlsx"></kendo-grid-excel>
 </kendo-grid>

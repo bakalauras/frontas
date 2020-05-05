@@ -4,5 +4,4 @@ export class Employee {
     Surname: string;
     IsActive: boolean;
     FkEmployeeId: number;
-    GroupId: number;
 }

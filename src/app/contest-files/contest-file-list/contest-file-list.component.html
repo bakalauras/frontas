@@ -20,7 +20,7 @@ filterable="menu"
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
-        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i>    Įvesti naują įrašą</button>
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Įvesti naują įrašą</button>
         <kendo-dialog title="Failo informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="ContestFileId" [value]="service.formData.ContestFileId">
@@ -30,12 +30,7 @@ filterable="menu"
                         <input matInput name="Description" #Type = "ngModel" [(ngModel)]="service.formData.Description" type="text" id="Description" placeholder="Įveskite failo aprašymą" required>    
                     </mat-form-field>
                 </div>
-                <div class="form-group">
-                    <mat-form-field class="full-width">  
-                        <mat-label>Failo pavadinimas</mat-label>
-                        <input matInput name="FileName" #Type = "ngModel" [(ngModel)]="service.formData.FileName" placeholder="Įkelkite failą" type="text" id="FileName" required>    
-                    </mat-form-field>
-                </div>
+                <app-upload></app-upload>
             </form>
             <kendo-dialog-actions>
                 <button kendoButton (click)="onSubmit(form)" [disabled]="form.invalid" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
@@ -47,9 +42,13 @@ filterable="menu"
 
     <kendo-grid-column field="Description" title="Aprašymas" width="400"  minResizableWidth="50">
     </kendo-grid-column>
-    <kendo-grid-column field="FileName" title="Failas"  minResizableWidth="50">
-    </kendo-grid-column>
-    
+    <kendo-grid-column width="90"  minResizableWidth="90">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+          <div>
+              <button class="btn-primary btn-sm btn-warning"  (click)="fileDownload(dataItem)"><i class="fas fa-download"></i></button>    
+          </div>
+          </ng-template>
+      </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
       <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <div>

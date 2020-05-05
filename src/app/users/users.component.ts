@@ -23,6 +23,7 @@ export class UsersComponent extends KendoGridComponent implements OnInit {
     this.service.refreshList(this.loadItems.bind(this));
     this.loggedId = +localStorage.getItem('id');
     this.resetForm();
+    this.service.refreshGroupRightsList();
   }
 
   public open3() {
@@ -65,7 +66,9 @@ export class UsersComponent extends KendoGridComponent implements OnInit {
     this.service.formData = {
       UserId : 0,
       Login : '',
-      Password : ''
+      Password : '',
+      GroupRightId: null,
+      GroupRights: null
     }
     this.Password2 = '';
   }
