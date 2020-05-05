@@ -135,6 +135,8 @@ import { MyInterceptor } from './my-interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
 import { AuthErrorHandler } from './auth-error-handler';
+import { GroupRightsComponent } from './group-rights/group-rights.component';
+import { GroupRightsListComponent } from './group-rights/group-rights-list/group-rights-list.component';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -231,7 +233,9 @@ import { AuthErrorHandler } from './auth-error-handler';
     GroupListComponent,
     CpiMeasuresComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    GroupRightsComponent,
+    GroupRightsListComponent
   ],
   imports: [
     BrowserModule,

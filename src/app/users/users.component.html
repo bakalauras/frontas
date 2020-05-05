@@ -24,7 +24,7 @@ filterable="menu"
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
-        <button kendoButton  [primary]=true (click)="open3()"><i class="fas fa-plus"> </i>    Pridėti naudotoją</button>
+        <button kendoButton  [primary]=true (click)="open3()"><i class="fas fa-plus"> </i> &nbsp; Pridėti naudotoją</button>
         <kendo-dialog title="Naudotojo informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="UserId" [value]="service.formData.UserId">
@@ -44,6 +44,14 @@ filterable="menu"
                     <mat-form-field class="full-width">  
                         <mat-label>Pakartokite naują slaptažodį</mat-label>
                         <input matInput name="Password2" #Type = "ngModel" [(ngModel)]="this.Password2" type="password" id="Password2" placeholder="Pakartokite naują slaptažodį" required>    
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Naudotojo grupė</mat-label>
+                        <mat-select [(ngModel)]="service.formData.GroupRightId" name = "service.formData.GroupRightId" required>
+                          <mat-option *ngFor="let contest of service.list3" [value]="contest.GroupRightId">{{contest.Title}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </form>
@@ -71,6 +79,14 @@ filterable="menu"
                     <mat-form-field class="full-width">
                         <mat-label>Pakartokite slaptažodį</mat-label>
                         <input matInput name="Password2" #Type = "ngModel" [(ngModel)]="this.Password2" type="password" id="Password2" placeholder="Pakartokite naują slaptažodį" required>    
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Naudotojo grupė</mat-label>
+                        <mat-select [(ngModel)]="service.formData.GroupRightId" name = "service.formData.GroupRightId" required>
+                          <mat-option *ngFor="let contest of service.list3" [value]="contest.GroupRightId">{{contest.Title}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </form>

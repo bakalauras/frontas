@@ -19,7 +19,7 @@ filterable="menu"
 </kendo-grid-messages>
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
-    <button kendoButton  [primary]=true routerLink="/employee/0"><i class="fas fa-plus"> </i>   Pridėti darbuotoją</button>
+    <button kendoButton  [primary]=true routerLink="/employee/0"><i class="fas fa-plus"> </i> &nbsp; Pridėti darbuotoją</button>
 </ng-template>
 <kendo-grid-column field="Surname" title="Pavardė" width="250"  minResizableWidth="50">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
@@ -37,9 +37,5 @@ filterable="menu"
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
             <a>{{this.service.getActiveParam(dataItem.EmployeeId)}}</a>
             </ng-template>
-    <kendo-grid-column field="GroupId" title="Grupė" minResizableWidth="50"></kendo-grid-column>
-        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-            <a>{{this.service.getActiveParam(dataItem.EmployeeId)}}</a>
-            </ng-template>    
 <kendo-grid-excel fileName="Darbuotojai.xlsx"></kendo-grid-excel>
 </kendo-grid>
