@@ -58,11 +58,4 @@ export class EmployeeService {
     .then(res => this.formData = res as Employee);
     }
   }
-
-  refreshGroupList()
-  {
-    this.http.get(this.rootURL+'/Groups').
-    toPromise()
-    .then(res => this.groupsList = res as Group[]);
-  }
 }
