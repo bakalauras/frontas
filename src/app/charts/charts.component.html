@@ -1,12 +1,34 @@
-<ejs-gantt id="GanttSample" 
-  [dataSource]="data" 
-  height= "450px"
-  width="800px"
-  allowFiltering = 'false'
-  [taskFields]= "taskfield"
-  taskIdMapping= "TaskID"
-  taskNameMapping= "TaskName"
-  parentTaskIdMapping= "ParentID"
-  startDateMapping= "StartDate"
-  endDateMapping= "EndDate">
+
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Projekto diagrama</h1>
+    <hr>
+    <form #form="ngForm" autocomplete="off">
+            <input type="hidden" name="ProjectId" [value]="service.formData.ProjectId">
+            <div class="form-group">
+                <mat-form-field class="part-width">
+                    <mat-label>Projektas</mat-label>
+                    <mat-select [(ngModel)]="service.formData.ProjectId" name = "service.formData.ProjectId" required>
+                      <mat-option *ngFor="let cert of service.listProjects" [value]="cert.ProjectId">{{cert.Title}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <button  class="btn-primary btn-sm edit-btn" (click)="onSubmit(form)"><span class="fa fa-edit fa-lg"></span></button>    
+               </div>
+            </form>
+            <hr>
+    </div>
+<ejs-gantt id="ganttDefault" 
+height="430px" 
+[dataSource]="list" 
+[taskFields]="taskSettings" 
+[renderBaseline]="true"
+baselineColor='red'
+dateFormat="yyyy-MM-dd"
+[columns]="columns"
+[holidays] = "holidays">
 </ejs-gantt>
+<kendo-grid [data]="list"  >
+    <kendo-grid-column field="ProjectStageNameId" title="Nr." width="60">
+    </kendo-grid-column>
+    <kendo-grid-column field="ProjectStageName.StageName" title="Pavadinimas" >
+    </kendo-grid-column>
+    </kendo-grid>

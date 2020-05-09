@@ -24,7 +24,6 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     //this.service.refreshList();
-    this.service.refreshGroupList();
     this.resetForm();
   }
 
