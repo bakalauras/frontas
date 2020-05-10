@@ -54,7 +54,7 @@
                     </mat-form-field>
                 </div>
                 <div style="float: right;">
-                    <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+                    <button kendoButton  (click)="open()" *ngIf="this.id!=0" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
                     <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
                         <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
                         <kendo-dialog-actions>
