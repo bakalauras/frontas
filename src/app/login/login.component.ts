@@ -34,14 +34,11 @@ export class LoginComponent implements OnInit {
   onSubmit(form:NgForm){
     this.service.postAuth().subscribe(
       res => {
-       // this.toastr.success('Prisijungta');
-        window.location.href = 'projects';
+        window.location.href = '';
       },
       err => {
-        //console.log(err)
         this.toastr.error('Blogas prisijungimo vardas arba slaptažodis');
       }
     )
   }
-
 }

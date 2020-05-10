@@ -8,8 +8,16 @@ export class AuthErrorHandler implements ErrorHandler {
 
   handleError(error) {
     const router = this.injector.get(Router);
-    if (error.rejection.status === 401 || error.rejection.status === 403) {
-        window.location.href = 'login';
+    if (error.rejection.status === 401)
+    {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('id');
+      localStorage.removeItem('rights');
+      window.location.href = 'login';
+    }
+    if (error.rejection.status === 403)
+    {
+      window.location.href = '';
     }
     
     throw error;
