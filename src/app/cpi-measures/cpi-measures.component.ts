@@ -14,17 +14,26 @@ import { NgForm } from '@angular/forms';
 export class CpiMeasuresComponent extends KendoGridComponent  implements OnInit {
 
   id = null;
+  stats = null;
 
   constructor(public service : CpiMeasureService, private toastr: ToastrService, private router: Router,
     public route: ActivatedRoute) { 
       super();
       this.id = this.route.snapshot.paramMap.get('id2'); //get id parameter
+      this.stats = [
+        { value: 30, date: new Date("2011-12-20") },
+        { value: 50, date: new Date("2011-12-21") },
+        { value: 45, date: new Date("2011-12-22") },
+        { value: 40, date: new Date("2011-12-23") },
+        { value: 35, date: new Date("2011-12-24") },
+        { value: 40, date: new Date("2011-12-25") }
+    ];
     }
 
   ngOnInit() {
     this.service.refreshList(this.id, this.loadItems.bind(this));
     this.resetForm();
-    
+    //this.service.prepData();
   }
 
   populateForm(pd:CpiMeasure)

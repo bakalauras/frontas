@@ -22,7 +22,7 @@
     <div style="float: left;">
     <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Pridėti sertifikatą</button>
     <kendo-dialog title="Darbuotojo sertifikato informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
-        <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+        <form #form="ngForm" autocomplete="off">
             <input type="hidden" name="EmployeeCertificateId" [value]="service.formData.EmployeeCertificateId">
                <div class="form-group">
                 <mat-form-field class="full-width">
