@@ -1,8 +1,0 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="CustomerTypeId" [value]="service.formData.CustomerTypeId">
-    <div class="form-group">
-      <label for="Type">Užsakovo tipas</label><label style="color: red;"> *</label>
-      <input name="Type" #Type = "ngModel" [(ngModel)]="service.formData.Type" type="text" class="form-control" id="Type" placeholder="Įveskite tipo pavadinimą" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
-</form>
