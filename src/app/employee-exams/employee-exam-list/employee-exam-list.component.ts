@@ -64,8 +64,11 @@ export class EmployeeExamListComponent extends KendoGridComponent implements OnI
       IsPassed: false,
       Price: 0,
       File: 'failas',
+      Exam: null,
       ExamId: null,
+      Employee: null,
       EmployeeId: this.id,
+      Certificate: null,
       CertificateId: null
     }
   }

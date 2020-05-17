@@ -61,7 +61,9 @@ export class EmployeeCertificateListComponent extends KendoGridComponent impleme
     this.service.formData = {
       EmployeeCertificateId: 0,
       File: 'failas',
+      Emloyee: null,
       EmployeeId: this.id,
+      Certificate: null,
       CertificateId: null
     }
   }

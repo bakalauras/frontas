@@ -55,6 +55,7 @@ export class SalaryListComponent extends KendoGridComponent implements OnInit {
       EmployeeSalary: null,
       DateFrom: null,
       DateTo: null,
+      Employee: null,
       EmployeeId: this.id
     }
   }

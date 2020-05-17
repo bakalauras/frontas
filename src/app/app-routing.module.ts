@@ -15,7 +15,6 @@ import { EmployeesComponent } from './employees/employees.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { ExamsComponent } from './exams/exams.component';
 import { SalariesComponent } from './salaries/salaries.component';
-import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
 import { EmployeeCertificatesComponent } from './employee-certificates/employee-certificates.component';
 import { EmployeeExamsComponent } from './employee-exams/employee-exams.component';
 import { EmployeeCompetenciesComponent } from './employee-competencies/employee-competencies.component';
@@ -54,7 +53,6 @@ const routes: Routes = [
   {path: 'certificates', component : CertificatesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'exams', component : ExamsComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'salaries', component : SalariesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
-  {path: 'allsalaries', component : AllSalaryListComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'employee-certificate', component : EmployeeCertificatesComponent, canActivate: [JwtService], data: {expectedRightPos: 3}},
   {path: 'employee-exam', component : EmployeeExamsComponent, canActivate: [JwtService], data: {expectedRightPos: 3}},
   {path: 'employee-competency', component : EmployeeCompetenciesComponent, canActivate: [JwtService], data: {expectedRightPos: 3}},

@@ -50,6 +50,7 @@ export class ExamListComponent extends KendoGridComponent implements OnInit {
       ExamId: 0,
       Title: '',
       Code: '',
+      Certificate: null,
       CertificateId: null
     }
   }

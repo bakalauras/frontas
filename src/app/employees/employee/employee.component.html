@@ -29,10 +29,10 @@
                 </mat-form-field>
              </div>
         <div class="form-group">
-          <button kendoButton class="part-width"  [primary]=true   (click)="onSubmit(form)" ><i class="fas fa-plus"> </i> &nbsp; Įrašyti</button>
+          <button kendoButton class="part-width"  [primary]=true (click)="onSubmit(form)" [disabled]="form.invalid" ><i class="fas fa-plus"> </i> &nbsp;Įrašyti</button>
       </div>
       <div *ngIf="this.id!=0" class="form-group">
-        <button kendoButton [primary]=true class="delete2-btn" style="background-color: #c75757; border-color: #c75757;" (click)="open()"><i class="fas fa-trash-alt"> </i> &nbsp; Ištrinti</button>
+        <button kendoButton [primary]=true class="delete2-btn" style="background-color: #c75757; border-color: #c75757;" (click)="open()" ><i class="fas fa-trash-alt"> </i> &nbsp; Ištrinti</button>
         <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
             <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
             <kendo-dialog-actions>

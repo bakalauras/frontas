@@ -53,7 +53,9 @@ export class StageCompetencyListComponent extends KendoGridComponent implements 
     this.service.formData = {
       StageCompetencyId: 0,
       Amount: 0,
+      Competency: null,
       CompetencyId: 0,
+      ProjectStage: null,
       ProjectStageId: this.id
     }
   }
