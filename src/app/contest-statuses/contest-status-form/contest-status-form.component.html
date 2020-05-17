@@ -1,8 +1,0 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="ContestStatusId" [value]="service.formData.ContestStatusId">
-    <div class="form-group">
-      <label for="Type">Pavadinimas</label><label style="color: red;"> *</label>
-      <input name="StatusName" #Type = "ngModel" [(ngModel)]="service.formData.StatusName" type="text" class="form-control" id="StatusName" placeholder="Įveskite būsenos pavadinimą" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Įrašyti</button>
-</form>

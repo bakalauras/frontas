@@ -59,7 +59,7 @@ filterable="menu"
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>
-        <kendo-dialog title="Naujas naudotojas" *ngIf="opened3" (close)="close3()" [minWidth]="250" [width]="450">
+        <kendo-dialog title="Naudotojo informacija" *ngIf="opened3" (close)="close3()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="UserId" [value]="service.formData.UserId">
                 <div class="form-group">
