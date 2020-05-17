@@ -29,6 +29,7 @@ L10n.load({
       }
     }
 });
+
 @Component({
   selector: 'app-charts',
   templateUrl:  './charts.component.html',
@@ -67,10 +68,17 @@ readonly rootURL = environment.rootURL;
     baselineEndDate: 'ScheduledEndDate'
 };
 this.columns = [
-    { field: 'ProjectStageNameId', headerText: 'Nr.', width: '60', clipMode: 'EllipsisWithTooltip' },
-    { field: 'StartDate', headerText: 'Pradžios data', width: '70' },
-    { field: 'EndDate' , headerText: 'Pabaigos data', width: '70'}
+    { field: 'ProjectStageNameId', headerText: 'Nr.', width: '50', clipMode: 'EllipsisWithTooltip' },
+    { field: 'ScheduledStartDate',headerText: 'Planuojama pradžios data', width: '70' },
+    { field: 'ScheduledEndDate',headerText: 'Planuojama pabaigos data', width: '70'},
+    { field: 'StartDate',headerText: 'Pradžios data', width: '70' },
+    { field: 'EndDate',headerText: 'Pabaigos data', width: '70'}
 ];
+
+this.timelineSettings = {
+  timelineViewMode:'Year',
+  timelineUnitSize:70
+};
   }
 
   resetForm(form?: NgForm)

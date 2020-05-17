@@ -20,8 +20,8 @@ filterable="menu"
 <ng-template kendoGridToolbarTemplate>
     <button type="button" style="float: right;" kendoGridExcelCommand>Eksportuoti į Excel</button>
     <div style="float: left;">
-        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Pridėti rolę</button>
-        <kendo-dialog title="Rolės informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
+        <button kendoButton  [primary]=true (click)="open2()"><i class="fas fa-plus"> </i> &nbsp; Pridėti naudotojų grupę</button>
+        <kendo-dialog title="Naudotojų grupės informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off">
                 <input type="hidden" name="GroupRightId" [value]="service.formData.GroupRightId">
                 <div class="form-group">

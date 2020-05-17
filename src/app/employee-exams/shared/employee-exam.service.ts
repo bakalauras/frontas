@@ -70,11 +70,11 @@ export class EmployeeExamService {
     .then(res => this.examList = res as Exam[]);
   }
 
-  getPassedParam()
+  getPassedParam(pass:boolean)
   {
-    if(this.formData.IsPassed == true)
-    return "Išlaikytas";
-    else "Neišlaikytas";
+    if(pass == true)
+      return "Išlaikytas";
+    else return "Neišlaikytas";
   }
 
   getExamTitle(id)

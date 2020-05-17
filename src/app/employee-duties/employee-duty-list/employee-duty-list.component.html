@@ -56,10 +56,7 @@
 </kendo-dialog>
 </div>
 </ng-template>
-<kendo-grid-column field="DutyId" title="Pareigos"   minResizableWidth="50">
-    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-        <a>{{this.service.getDutyTitle(dataItem.DutyId)}}</a>
-        </ng-template>
+<kendo-grid-column field="Duty.Title" title="Pareigos"   minResizableWidth="50">
 </kendo-grid-column>
     <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem>

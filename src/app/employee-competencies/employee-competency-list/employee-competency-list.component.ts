@@ -54,7 +54,9 @@ export class EmployeeCompetencyListComponent extends KendoGridComponent implemen
       EmployeeCompetencyId: 0,
       DateFrom: null,
       DateTo: null,
+      Competency: null,
       CompetencyId: null,
+      Employee: null,
       EmployeeId: this.id
     }
   }

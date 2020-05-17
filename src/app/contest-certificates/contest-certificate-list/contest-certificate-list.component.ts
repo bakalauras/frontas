@@ -53,7 +53,9 @@ export class ContestCertificateListComponent extends KendoGridComponent implemen
     this.service.formData = {
       ContestCertificateId: 0,
       Amount: 0,
+      Certificate: null,
       CertificateId: 0,
+      Contest:null,
       ContestId: this.id
     }
   }

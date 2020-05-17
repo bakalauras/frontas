@@ -46,10 +46,7 @@
 </kendo-dialog>
 </div>
 </ng-template>
-<kendo-grid-column field="CompetencyId" title="Kompetencija"   minResizableWidth="50">
-    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-        <a>{{this.service.getCompetencyTitle(dataItem.CompetencyId)}}</a>
-        </ng-template>
+<kendo-grid-column field="Competency.Title" title="Kompetencija"   minResizableWidth="50">
 </kendo-grid-column>
     <kendo-grid-column field="Amount" title="Kiekis" minResizableWidth="50">
     </kendo-grid-column>

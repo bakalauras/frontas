@@ -15,7 +15,6 @@ import { EmployeesComponent } from './employees/employees.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import { ExamsComponent } from './exams/exams.component';
 import { SalariesComponent } from './salaries/salaries.component';
-import { AllSalaryListComponent } from './salaries/all-salary-list/all-salary-list.component';
 import { EmployeeCertificatesComponent } from './employee-certificates/employee-certificates.component';
 import { EmployeeExamsComponent } from './employee-exams/employee-exams.component';
 import { EmployeeCompetenciesComponent } from './employee-competencies/employee-competencies.component';
@@ -53,7 +52,6 @@ const routes: Routes = [
   {path: 'certificates', component : CertificatesComponent, canActivate: [JwtService]},
   {path: 'exams', component : ExamsComponent, canActivate: [JwtService]},
   {path: 'salaries', component : SalariesComponent, canActivate: [JwtService]},
-  {path: 'allsalaries', component : AllSalaryListComponent, canActivate: [JwtService]},
   {path: 'employee-certificate', component : EmployeeCertificatesComponent, canActivate: [JwtService]},
   {path: 'employee-exam', component : EmployeeExamsComponent, canActivate: [JwtService]},
   {path: 'employee-competency', component : EmployeeCompetenciesComponent, canActivate: [JwtService]},

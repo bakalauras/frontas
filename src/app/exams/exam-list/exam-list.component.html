@@ -56,10 +56,7 @@ filterable="menu"
 </kendo-grid-column>
 <kendo-grid-column field="Code" title="Kodas" minResizableWidth="50">
 </kendo-grid-column>
-<kendo-grid-column field="CertificateId" title="Sertifikatas" minResizableWidth="50"> 
-    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-        <a>{{this.service.getCertificateTitle(dataItem.CertificateId)}}</a>
-        </ng-template>
+<kendo-grid-column field="Certificate.Title" title="Sertifikatas" minResizableWidth="50"> 
 </kendo-grid-column>  
 <kendo-grid-column width="90"  minResizableWidth="90">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">

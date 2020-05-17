@@ -154,3 +154,21 @@ form-group {
     width: 15%;
     color: white;
   }
+
+  .delete2-btn {
+    width: 15%;
+    color: white;
+    background-color: #c75757;
+    border-color: #c75757;
+    
+}
+
+  .sec-width {
+    width: 50%;
+    color: white;
+  }
+
+  h6{
+      color: red;
+      font-size: 12px;
+  }

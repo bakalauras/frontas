@@ -36,18 +36,18 @@ export class EmployeeService {
     .then(res =>{this.list = res as Employee[], callback(this)})
   }
 
-  getActiveParam(id)
+  getActiveParam(active:boolean)
   {
-    if(this.formData.IsActive == true)
+    if(active == true)
       return "Aktyvus";
     else return "Neaktyvus";
     //return this.http.get(this.rootURL + '/Employees/'+ id+'/isActive').subscribe( res => this.param = res as string);;
   }
 
-  getManager(id)
+  getManager(id:number)
   {
      //this.http.get(this.rootURL + '/Employees/'+ id+'/manager';
-    return this.list.find(x => x.EmployeeId == id).Surname;
+    return this.list.find(x => x.EmployeeId == id).Name +" " + this.list.find(x => x.EmployeeId == id).Surname;
   }
 
   getRecord(id){
