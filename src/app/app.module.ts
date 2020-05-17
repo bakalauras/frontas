@@ -21,23 +21,18 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ContestStatusesComponent } from './contest-statuses/contest-statuses.component';
-import { ContestStatusFormComponent } from './contest-statuses/contest-status-form/contest-status-form.component';
 import { ContestStatusListComponent } from './contest-statuses/contest-status-list/contest-status-list.component';
 import { FormsModule } from "@angular/forms";
 import { ProjectStageNamesComponent } from './project-stage-names/project-stage-names.component';
-import { ProjectStageNameFormComponent } from './project-stage-names/project-stage-name-form/project-stage-name-form.component';
 import { ProjectStageNameListComponent } from './project-stage-names/project-stage-name-list/project-stage-name-list.component';
 import { TenderStatesComponent } from './tender-states/tender-states.component';
-import { TenderStateFormComponent } from './tender-states/tender-state-form/tender-state-form.component';
 import { TenderStateListComponent } from './tender-states/tender-state-list/tender-state-list.component';
-import { CustomerTypeFormComponent } from './customer-types/customer-type-form/customer-type-form.component';
 import { CustomerTypeListComponent } from './customer-types/customer-type-list/customer-type-list.component';
 import { CustomerTypesComponent } from './customer-types/customer-types.component';
 import { EmployeeRolesComponent } from './employee-roles/employee-roles.component';
 import { EmployeeRoleFormComponent } from './employee-roles/employee-role-form/employee-role-form.component';
 import { EmployeeRoleListComponent } from './employee-roles/employee-role-list/employee-role-list.component';
 import { CustomersComponent } from './customers/customers.component';
-import { CustomerFormComponent } from './customers/customer-form/customer-form.component';
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { ContestsComponent } from './contests/contests.component';
 import { ContestFormComponent } from './contests/contest-form/contest-form.component';
@@ -49,22 +44,17 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectFormComponent } from './projects/project-form/project-form.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ContestFilesComponent } from './contest-files/contest-files.component';
-import { ContestFileFormComponent } from './contest-files/contest-file-form/contest-file-form.component';
 import { ContestFileListComponent } from './contest-files/contest-file-list/contest-file-list.component';
 import { TenderFilesComponent } from './tender-files/tender-files.component';
-import { TenderFileFormComponent } from './tender-files/tender-file-form/tender-file-form.component';
 import { TenderFileListComponent } from './tender-files/tender-file-list/tender-file-list.component';
 import { ProjectStagesComponent } from './project-stages/project-stages.component';
 import { ProjectStageFormComponent } from './project-stages/project-stage-form/project-stage-form.component';
 import { ProjectStageListComponent } from './project-stages/project-stage-list/project-stage-list.component';
 import { WorkingTimeRegistersComponent } from './working-time-registers/working-time-registers.component';
-import { WorkingTimeRegisterFormComponent } from './working-time-registers/working-time-register-form/working-time-register-form.component';
 import { WorkingTimeRegisterListComponent } from './working-time-registers/working-time-register-list/working-time-register-list.component';
 import { StageProgressesComponent } from './stage-progresses/stage-progresses.component';
-import { StageProgressFormComponent } from './stage-progresses/stage-progress-form/stage-progress-form.component';
 import { StageProgressListComponent } from './stage-progresses/stage-progress-list/stage-progress-list.component';
 import { ResourcePlansComponent } from './resource-plans/resource-plans.component';
-import { ResourcePlanFormComponent } from './resource-plans/resource-plan-form/resource-plan-form.component';
 import { ResourcePlanListComponent } from './resource-plans/resource-plan-list/resource-plan-list.component';
 import { DutiesComponent } from './duties/duties.component';
 import { DutyComponent } from './duties/duty/duty.component';
@@ -128,6 +118,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthErrorHandler } from './auth-error-handler';
 import { GroupRightsComponent } from './group-rights/group-rights.component';
 import { GroupRightsListComponent } from './group-rights/group-rights-list/group-rights-list.component';
+import { HomeComponent } from './home/home.component';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -135,22 +126,17 @@ import { GroupRightsListComponent } from './group-rights/group-rights-list/group
     AppComponent,
     NavigationComponent,
     ContestStatusesComponent,
-    ContestStatusFormComponent,
     ContestStatusListComponent,
     ProjectStageNamesComponent,
-    ProjectStageNameFormComponent,
     ProjectStageNameListComponent,
     TenderStatesComponent,
-    TenderStateFormComponent,
     TenderStateListComponent,
     CustomerTypesComponent,
-    CustomerTypeFormComponent,
     CustomerTypeListComponent,
     EmployeeRolesComponent,
     EmployeeRoleFormComponent,
     EmployeeRoleListComponent,
     CustomersComponent,
-    CustomerFormComponent,
     CustomerListComponent,
     ContestsComponent,
     ContestFormComponent,
@@ -162,22 +148,17 @@ import { GroupRightsListComponent } from './group-rights/group-rights-list/group
     ProjectFormComponent,
     ProjectListComponent,
     ContestFilesComponent,
-    ContestFileFormComponent,
     ContestFileListComponent,
     TenderFilesComponent,
-    TenderFileFormComponent,
     TenderFileListComponent,
     ProjectStagesComponent,
     ProjectStageFormComponent,
     ProjectStageListComponent,
     WorkingTimeRegistersComponent,
-    WorkingTimeRegisterFormComponent,
     WorkingTimeRegisterListComponent,
     StageProgressesComponent,
-    StageProgressFormComponent,
     StageProgressListComponent,
     ResourcePlansComponent,
-    ResourcePlanFormComponent,
     ResourcePlanListComponent,
     DutiesComponent,
     DutyComponent,
@@ -217,7 +198,8 @@ import { GroupRightsListComponent } from './group-rights/group-rights-list/group
     UsersComponent,
     LoginComponent,
     GroupRightsComponent,
-    GroupRightsListComponent
+    GroupRightsListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

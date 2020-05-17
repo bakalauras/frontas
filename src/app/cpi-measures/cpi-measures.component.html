@@ -76,11 +76,12 @@ filterable="menu"
     <kendo-grid-excel fileName="Eksportas.xlsx"></kendo-grid-excel>
 </kendo-grid>
 
-<kendo-chart [title]="{ text: 'Projekto etapo rodiklių kaita' }">
+
+<kendo-chart [] *ngIf="0!=0" [title]="{ text: 'Projekto etapo rodiklių kaita' }">
     <kendo-chart-series>
       <kendo-chart-series-item type="scatterLine"
-                               [data]="this.service.list"
-                               yField="CPI" xField="CPIMeasureId">
+                               [data]="this.stats"
+                               yField="value" xField="date">
       </kendo-chart-series-item>
     </kendo-chart-series>
     <kendo-chart-x-axis>

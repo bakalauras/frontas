@@ -37,8 +37,11 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div style="float: right;">
-                    <button kendoButton  (click)="open()" ><i class="fas fa-trash-alt"></i>  Ištrinti</button>
+                <div class="form-group">
+                    <button kendoButton class="part-width"  [primary]=true   (click)="onSubmit(form)" [disabled]="form.invalid"><i class="fas fa-plus"> </i> &nbsp; Įrašyti</button>
+                </div>
+                <div *ngIf="this.id!=0" class="form-group">
+                    <button kendoButton [primary]=true class="delete2-btn" style="background-color: #c75757; border-color: #c75757;" (click)="open()"><i class="fas fa-trash-alt"> </i> &nbsp; Ištrinti</button>
                     <kendo-dialog title="Ištrinti įrašą" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
                         <p style="margin: 30px; text-align: center;">Ar tikrai norite ištrinti šį įrašą?</p>
                         <kendo-dialog-actions>
@@ -47,10 +50,10 @@
                         </kendo-dialog-actions>
                     </kendo-dialog>
                 </div>
-                <button kendoButton [primary]="true"(click)="onSubmit(form)" [disabled]="form.invalid">Įrašyti</button>
             </form>
         </mat-tab>
         <mat-tab label="Failai" *ngIf="this.id!=0" >
+            <hr>
             <app-tender-file-list></app-tender-file-list>
         </mat-tab>
       </mat-tab-group>

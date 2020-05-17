@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class JwtService {
   readonly rootURL = environment.rootURL;;
   httpClient1 : HttpClient;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, public toastr: ToastrService) {
     this.httpClient1 = httpClient;
   }
 
@@ -24,18 +26,18 @@ export class JwtService {
     .pipe(tap(res => {
       localStorage.setItem('access_token', res.toString());
       var token = localStorage.getItem('access_token');
-    var decoded = jwt_decode(token);
-    //var role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-    //localStorage.setItem('role', role);
-    var id = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-    localStorage.setItem('id', id);
+      var decoded = jwt_decode(token);
+      var rights = decoded['Rights'];
+      localStorage.setItem('rights', rights);
+      var id = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      localStorage.setItem('id', id);
     }))
   }
 
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id');
-    //localStorage.removeItem('role');
+    localStorage.removeItem('rights');
     window.location.href = 'login';
   }
   
@@ -45,6 +47,10 @@ export class JwtService {
 
   getToken(): string {
     return localStorage.getItem('access_token');
+  }
+
+  getRightsString(): string {
+    return localStorage.getItem('rights');
   }
 
   getTokenExpirationDate(token: string): Date {
@@ -66,13 +72,23 @@ export class JwtService {
     return !(date.valueOf() > new Date().valueOf());
   }
 
-  canActivate() {
-    if (!this.isTokenExpired) {
-      return true;
+  canActivate(route: ActivatedRouteSnapshot) {
+    if(this.isTokenExpired)
+    {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('id');
+      localStorage.removeItem('rights');
+      window.location.href = 'login';
+      return false;
     }
-
-    window.location.href = 'login';
+    const expectedRight = route.data.expectedRightPos;
+    if(expectedRight==-1)
+        return true;
+    var rights = this.getRightsString();
+    if (rights[expectedRight]=="1") {
+        return true;
+    }
+    this.toastr.error('Neturite teisės prieiti prie šių duomenų');
     return false;
   }
-
 }

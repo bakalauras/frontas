@@ -100,6 +100,14 @@ section {
     border-color: #c75757;
 }
 
+.delete2-btn {
+    width: 15%;
+    color: white;
+    background-color: #c75757;
+    border-color: #c75757;
+    
+}
+
 .delete-btn:hover {
     width:65px;
     height: 10 px;

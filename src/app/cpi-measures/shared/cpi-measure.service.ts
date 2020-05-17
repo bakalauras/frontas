@@ -11,6 +11,7 @@ export class CpiMeasureService {
   formData:CpiMeasure;
   readonly rootURL = environment.rootURL;
   list : CpiMeasure[];
+  listChart : CpiMeasure[];
   readonly apiName = '/CPIMeasures';
 
   constructor(private http:HttpClient) { }
@@ -25,6 +26,14 @@ export class CpiMeasureService {
 
   deleteRecord(id){
     return this.http.delete(this.rootURL+ this.apiName+'/'+id);
+  }
+
+  prepData()
+  {
+    this.list.forEach(element => {
+      var x = element.Date.toString();
+      element.Date = new Date(x);
+    });
   }
 
   refreshList(id, callBack)
