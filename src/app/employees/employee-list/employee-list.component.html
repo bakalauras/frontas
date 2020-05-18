@@ -28,7 +28,9 @@ filterable="menu"
 </kendo-grid-column>
 <kendo-grid-column field="Name" title="Vardas" minResizableWidth="50">
 </kendo-grid-column>
-<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50"> 
+<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50" *ngIf="!FkEmployeeId">
+</kendo-grid-column>
+<kendo-grid-column field="FkEmployeeId" title="Vadovas" minResizableWidth="50" *ngIf="FkEmployeeId"> 
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
         <a>{{this.service.getManager(dataItem.FkEmployeeId)}}</a>
         </ng-template>
