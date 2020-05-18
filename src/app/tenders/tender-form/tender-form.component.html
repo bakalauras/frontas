@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Pateikimo data</mat-label>
-                      <input matInput [matDatepicker]="myDatePicker" name="FillingDate" #Type="ngModel" [(ngModel)]="service.formData.FillingDate" required>
+                      <input matInput [matDatepicker]="myDatePicker" name="FillingDate" #Type="ngModel" [(ngModel)]="service.formData.FillingDate">
                       <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
                       <mat-datepicker #myDatePicker></mat-datepicker>
                       </mat-form-field>
