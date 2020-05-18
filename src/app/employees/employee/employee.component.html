@@ -23,7 +23,7 @@
             <div class="form-group">
               <mat-form-field class="full-width">
                   <mat-label>Vadovas </mat-label>
-                  <mat-select [(ngModel)]="service.formData.FkEmployeeId" name = "service.formData.FkEmployeeId" required>
+                  <mat-select [(ngModel)]="service.formData.FkEmployeeId" name = "service.formData.FkEmployeeId" >
                     <mat-option *ngFor="let emp of service.list" [value]="emp.EmployeeId">{{emp.Name +' ' + emp.Surname}}</mat-option>
                   </mat-select>
                 </mat-form-field>

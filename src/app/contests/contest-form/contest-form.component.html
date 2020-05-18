@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Paskelbimo data</mat-label>
-                      <input matInput [matDatepicker]="myDatePicker" name="PublicationDate" #Type="ngModel" [(ngModel)]="service.formData.PublicationDate" required>
+                      <input matInput [matDatepicker]="myDatePicker" name="PublicationDate" #Type="ngModel" [(ngModel)]="service.formData.PublicationDate" >
                       <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
                       <mat-datepicker #myDatePicker></mat-datepicker>
                       </mat-form-field>
@@ -30,7 +30,7 @@
                   <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Pateikimo data</mat-label>
-                      <input matInput [matDatepicker]="myDatePicker2" name="FillingDate" #Type="ngModel" [(ngModel)]="service.formData.FillingDate" required>
+                      <input matInput [matDatepicker]="myDatePicker2" name="FillingDate" #Type="ngModel" [(ngModel)]="service.formData.FillingDate" >
                       <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
                       <mat-datepicker #myDatePicker2></mat-datepicker>
                       </mat-form-field>
@@ -38,7 +38,7 @@
                 <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Kainų plėšimo data</mat-label>
-                      <input matInput [matDatepicker]="myDatePicker3" name="PriceRobbingDate" #Type="ngModel" [(ngModel)]="service.formData.PriceRobbingDate" required>
+                      <input matInput [matDatepicker]="myDatePicker3" name="PriceRobbingDate" #Type="ngModel" [(ngModel)]="service.formData.PriceRobbingDate" >
                       <mat-datepicker-toggle [for]="myDatePicker3" matSuffix></mat-datepicker-toggle>
                       <mat-datepicker #myDatePicker3></mat-datepicker>
                       </mat-form-field>
@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Pretenzijų pateikimo data</mat-label>
-                      <input matInput [matDatepicker]="myDatePicker4" name="ClaimsFillingDate" #Type="ngModel" [(ngModel)]="service.formData.ClaimsFillingDate" required>
+                      <input matInput [matDatepicker]="myDatePicker4" name="ClaimsFillingDate" #Type="ngModel" [(ngModel)]="service.formData.ClaimsFillingDate" >
                       <mat-datepicker-toggle [for]="myDatePicker4" matSuffix></mat-datepicker-toggle>
                       <mat-datepicker #myDatePicker4></mat-datepicker>
                       </mat-form-field>
