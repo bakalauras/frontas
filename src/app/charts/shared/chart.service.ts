@@ -35,12 +35,12 @@ export class ChartService {
   }
 
   getData(){
-    return this.http.get<ProjectStage[]>(this.rootURL + '/projects/1/projectStages');
+    return this.http.get<ProjectStage[]>(this.rootURL + '/projects/1/projectStagesGantt');
     
   }
 
   getDataa(form:NgForm){
-    return this.http.get<ProjectStage[]>(this.rootURL + '/projects/'+this.formData.ProjectId+'/projectStages');
+    return this.http.get<ProjectStage[]>(this.rootURL + '/projects/'+this.formData.ProjectId+'/projectStagesGantt');
     
   }
 

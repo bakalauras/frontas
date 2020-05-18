@@ -41,13 +41,16 @@ export class EmployeeService {
     if(active == true)
       return "Aktyvus";
     else return "Neaktyvus";
-    //return this.http.get(this.rootURL + '/Employees/'+ id+'/isActive').subscribe( res => this.param = res as string);;
   }
 
   getManager(id:number)
   {
-     //this.http.get(this.rootURL + '/Employees/'+ id+'/manager';
-    return this.list.find(x => x.EmployeeId == id).Name +" " + this.list.find(x => x.EmployeeId == id).Surname;
+     if(id != 0)
+     {
+      return this.list.find(x => x.EmployeeId == id).Name +" " + this.list.find(x => x.EmployeeId == id).Surname;
+     }
+     else return null;
+    
   }
 
   getRecord(id){
