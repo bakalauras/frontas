@@ -47,7 +47,7 @@ export class EmployeeComponent implements OnInit {
       EmployeeId: 0,
       Name : '',
       Surname: '',
-      IsActive: true,
+      IsActive: false,
       FkEmployeeId: null
     }
   }
