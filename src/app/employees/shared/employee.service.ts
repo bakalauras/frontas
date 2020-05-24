@@ -43,11 +43,11 @@ export class EmployeeService {
     else return "Neaktyvus";
   }
 
-  getManager(id:number)
+  getManager(formData:Employee)
   {
-     if(id != 0)
+     if(formData.FkEmployeeId != 0)
      {
-      return this.list.find(x => x.EmployeeId == id).Name +" " + this.list.find(x => x.EmployeeId == id).Surname;
+      return this.list.find(x => x.EmployeeId == formData.FkEmployeeId).Name +" " + this.list.find(x => x.EmployeeId == formData.FkEmployeeId).Surname;
      }
      else return null;
     
