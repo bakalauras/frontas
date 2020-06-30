@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ContestStatusService } from '../shared/contest-status.service';
-import { ToastrService } from 'ngx-toastr';
-import { ContestStatus } from '../shared/contest-status.model';
-import { KendoGridComponent } from 'src/app/kendo-grid/kendo-grid.component';
+import { KendoGridComponent } from '../kendo-grid/kendo-grid.component';
+import { CompetitorService } from './shared/competitor.service';
 import { NgForm } from '@angular/forms';
+import { Competitor } from './shared/competitor.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-contest-status-list',
-  templateUrl: './contest-status-list.component.html',
+  selector: 'app-competitors',
+  templateUrl: './competitors.component.html',
   styles: []
 })
-export class ContestStatusListComponent extends KendoGridComponent implements OnInit {
+export class CompetitorsComponent extends KendoGridComponent implements OnInit {
 
-  constructor(public service : ContestStatusService, private toastr: ToastrService) {
+  constructor(public service : CompetitorService, private toastr: ToastrService) { 
     super();
-   }
-
-  ngOnInit() {
+  }
+  ngOnInit(): void {
     this.service.refreshList(this.loadItems.bind(this));
     this.resetForm();
   }
 
-  populateForm(pd:ContestStatus)
+  populateForm(pd:Competitor)
   {
     this.service.formData = Object.assign({},pd);
     this.opened2 = true;
@@ -31,7 +30,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
   {
     this.opened = false;
     if(this.idToDelete!=0){
-      this.service.deleteStatus(this.idToDelete)
+    this.service.deleteRecord(this.idToDelete)
     .subscribe(
       res => {
         this.toastr.success('Įrašas sėkmingai ištrintas');
@@ -43,8 +42,6 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       }
     )
     }
-    
-
   }
 
   resetForm(form?: NgForm)
@@ -52,23 +49,23 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
     if(form != null)
       form.resetForm();
     this.service.formData = {
-      ContestStatusId : 0,
-      StatusName : '',
-      IsActive : true
+      CompetitorId : 0,
+      Name : '',
+      Adress : ''
     }
   }
 
   onSubmit(form:NgForm){
-    if(this.service.formData.ContestStatusId ==0)
-      this.insert(form);
-    else
-      this.update(form);
-    this.close();
+  if(this.service.formData.CompetitorId ==0)
+    this.insert(form);
+  else
+    this.update(form);
+  this.close();
   }
 
   insert(form:NgForm)
   {
-    this.service.postStatus().subscribe(
+    this.service.postRecord().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai pridėtas');
@@ -83,7 +80,7 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
 
   update(form:NgForm)
   {
-    this.service.putStatus().subscribe(
+    this.service.putRecord().subscribe(
       res => {
         this.resetForm(form);
         this.toastr.success('Įrašas sėkmingai atnaujintas');
@@ -95,5 +92,4 @@ export class ContestStatusListComponent extends KendoGridComponent implements On
       }
     )
   }
-
 }

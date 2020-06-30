@@ -33,4 +33,11 @@ export class ContestStatusService {
     toPromise()
     .then(res => {this.list = res as ContestStatus[], callBack(this)});
   }
+
+  getActiveParam(active:boolean)
+  {
+    if(active == true)
+      return "Aktyvus";
+    else return "Neaktyvus";
+  }
 }
