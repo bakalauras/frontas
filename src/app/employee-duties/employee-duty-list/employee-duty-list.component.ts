@@ -54,6 +54,7 @@ export class EmployeeDutyListComponent extends KendoGridComponent implements OnI
       EmployeeDutyId: 0,
       DateFrom: null,
       DateTo: null,
+      Staff: null,
       Duty: null,
       DutyId: null,
       Employee: null,

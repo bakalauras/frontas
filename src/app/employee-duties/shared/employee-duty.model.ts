@@ -5,6 +5,7 @@ export class EmployeeDuty {
     EmployeeDutyId: number;
     DateFrom: Date;
     DateTo: Date;
+    Staff: number;
     Duty: Duty;
     DutyId: number;
     Employee: Employee;

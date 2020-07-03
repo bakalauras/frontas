@@ -3,6 +3,8 @@ import { Employee } from './employee.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Group } from 'src/app/groups/shared/group.model';
+import { WorkingTimeRegister } from 'src/app/working-time-registers/shared/working-time-register.model';
+import { Department } from 'src/app/departments/shared/department.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ export class EmployeeService {
   list:Employee[];
   name:string;
   param:string;
-  groupsList:Group[]
+  groupsList:Group[];
+  listWork: WorkingTimeRegister[];
+  departmentsList: Department[];
 
   constructor(private http:HttpClient) { }
 
@@ -36,6 +40,17 @@ export class EmployeeService {
     .then(res =>{this.list = res as Employee[], callback(this)})
   }
 
+  refreshProjectsList(id, callback){
+    this.http.get(this.rootURL + '/Employees/'+ id + '/projects')
+    .toPromise()
+    .then(res =>{this.listWork = res as WorkingTimeRegister[], callback(this)})
+  }
+
+  getDataa(id){
+    return this.http.get<WorkingTimeRegister[]>(this.rootURL + '/Employees/'+ id +'/projects');
+    
+  }
+
   getActiveParam(active:boolean)
   {
     if(active == true)
@@ -53,6 +68,11 @@ export class EmployeeService {
     
   }
 
+  getEmployee(id:number)
+  {
+    return this.list.find(x => x.EmployeeId == id).Name +" " + this.list.find(x => x.EmployeeId == id).Surname;
+  }
+
   getRecord(id){
     if(id!=0)
     {
@@ -60,5 +80,12 @@ export class EmployeeService {
     toPromise()
     .then(res => this.formData = res as Employee);
     }
+  }
+
+  refreshDepartmentsList()
+  {
+    this.http.get(this.rootURL+'/Departments').
+    toPromise()
+    .then(res => this.departmentsList = res as Department[]);
   }
 }

@@ -119,6 +119,10 @@ import { AuthErrorHandler } from './auth-error-handler';
 import { GroupRightsComponent } from './group-rights/group-rights.component';
 import { GroupRightsListComponent } from './group-rights/group-rights-list/group-rights-list.component';
 import { HomeComponent } from './home/home.component';
+import { EmployeeProjectsComponent } from './employee-projects/employee-projects.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { DepartmentComponent } from './departments/department/department.component';
+import { CertificatesListComponent } from './employee-certificates/certificates-list/certificates-list.component';
 //import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
@@ -199,7 +203,11 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     GroupRightsComponent,
     GroupRightsListComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeeProjectsComponent,
+    DepartmentsComponent,
+    DepartmentComponent,
+    CertificatesListComponent
   ],
   imports: [
     BrowserModule,

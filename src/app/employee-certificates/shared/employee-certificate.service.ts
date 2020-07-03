@@ -14,6 +14,7 @@ export class EmployeeCertificateService {
   formData:EmployeeCertificate
   readonly rootURL = environment.rootURL;
   list:EmployeeCertificate[];
+  listAll:EmployeeCertificate[];
   certificatelist:Certificate[];
   employeeList:Employee[];
 
@@ -34,6 +35,17 @@ export class EmployeeCertificateService {
     this.http.get(this.rootURL + '/Employees/'+id+"/certificates")
     .toPromise()
     .then(res =>{this.list=res as EmployeeCertificate[], callBack(this)})
+  }
+
+  refreshAllList(callBack){
+    this.http.get(this.rootURL + '/EmployeeCertificates')
+    .toPromise()
+    .then(res =>{this.listAll=res as EmployeeCertificate[], callBack(this)})
+  }
+
+  getData(){
+    return this.http.get<EmployeeCertificate[]>(this.rootURL + '/EmployeeCertificates');
+    
   }
 
   downloadFile(data: any, filename: string) {
