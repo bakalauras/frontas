@@ -3,7 +3,7 @@
 [pageSize]="state.take"
 [skip]="state.skip"
 [filter] ="state.filter"
-[pageable]="{pageSizes: true}"
+[pageable]="{pageSizes: [10,20,25,50,100 ]}"
 [groupable]="true"
 [group]="state.group"
 [resizable]="true"
@@ -44,7 +44,7 @@ filterable="menu"
                 </div>
             </form>
             <kendo-dialog-actions>
-                <button kendoButton [disabled]="form.invalid" (click)="onSubmit(form)" primary="true"><i class="fas fa-plus"> </i>    Įrašyti</button>
+                <button kendoButton [disabled]="form.invalid" (click)="onSubmit(form)" primary="true"><i class="far fa-save"> </i>    Saugoti</button>
                 <button kendoButton (click)="close()"><i class="fas fa-arrow-left"></i> Atšaukti</button>
             </kendo-dialog-actions>
         </kendo-dialog>

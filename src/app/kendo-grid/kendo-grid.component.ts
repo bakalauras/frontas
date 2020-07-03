@@ -16,8 +16,9 @@ export class KendoGridComponent implements OnInit {
   public excelExport: ExcelExportData;
   public state: State = {
     skip: 0,
-    take: 10
+    take: 20
 };
+  public pageSizes = [5, 10, 20, 30];
   public opened = false;
   public opened2 = false;
   public idToDelete = 0;
