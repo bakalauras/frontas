@@ -32,6 +32,9 @@ import { LoginComponent } from './login/login.component';
 import { JwtService } from './jwt.service';
 import { GroupRightsComponent } from './group-rights/group-rights.component';
 import { HomeComponent } from './home/home.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { CertificateListComponent } from './certificates/certificate-list/certificate-list.component';
+import { CertificatesListComponent } from './employee-certificates/certificates-list/certificates-list.component';
 
 const routes: Routes = [
   {path: 'contestStatuses', component: ContestStatusesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
@@ -63,7 +66,9 @@ const routes: Routes = [
   {path: 'login', component : LoginComponent},
   {path: 'employee-duty', component : EmployeeDutiesComponent, canActivate: [JwtService], data: {expectedRightPos: 3}},
   {path: 'groupRights', component: GroupRightsComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
-  {path: '', component: HomeComponent, canActivate: [JwtService], data: {expectedRightPos: -1}}
+  {path: '', component: HomeComponent, canActivate: [JwtService], data: {expectedRightPos: -1}},
+  {path: 'departments', component : DepartmentsComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
+  {path: 'allCertificates', component : CertificatesListComponent, canActivate: [JwtService], data: {expectedRightPos: 0}}
 ];
 
 @NgModule({

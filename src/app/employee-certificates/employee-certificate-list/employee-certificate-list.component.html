@@ -32,6 +32,22 @@
                     </mat-select>
                   </mat-form-field>
                </div>
+               <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Galiojimo pradžios data</mat-label>
+                  <input matInput [matDatepicker]="myDatePicker" name="DateFrom" #Type="ngModel" [(ngModel)]="service.formData.DateFrom" required>
+                  <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker></mat-datepicker>
+                  </mat-form-field>
+            </div>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Galiojimo pabaigos data</mat-label>
+                  <input matInput [matDatepicker]="myDatePicker2" name="DateTo" #Type="ngModel" [(ngModel)]="service.formData.DateTo" required >
+                  <mat-datepicker-toggle [for]="myDatePicker2" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #myDatePicker2></mat-datepicker>
+                  </mat-form-field>
+            </div>
               <app-upload></app-upload>
         </form>
         <kendo-dialog-actions>
@@ -42,6 +58,16 @@
 </div>
 </ng-template>
 <kendo-grid-column field="Certificate.Title" title="Sertifikatas"   minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="DateFrom" title="Galioja nuo" minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
+    </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="DateTo" title="Galioja iki" minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.DateTo | date: 'yyyy-MM-dd'}}
+    </ng-template>
 </kendo-grid-column>
     <kendo-grid-column width="90"  minResizableWidth="90">
         <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">

@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EmployeeComponent implements OnInit {
 
+  vardas = "Vardas";
   id = null;
   public opened = false;
   constructor(public service:EmployeeService, private toastr: ToastrService,
@@ -23,7 +24,7 @@ export class EmployeeComponent implements OnInit {
     }
 
   ngOnInit() {
-    //this.service.refreshList();
+    this.service.refreshDepartmentsList();
     this.resetForm();
   }
 
@@ -48,7 +49,9 @@ export class EmployeeComponent implements OnInit {
       Name : '',
       Surname: '',
       IsActive: false,
-      FkEmployeeId: null
+      FkEmployeeId: null,
+      Department:null,
+      DepartmentId:null
     }
   }
 
