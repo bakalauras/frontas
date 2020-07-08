@@ -121,7 +121,10 @@ import { GroupRightsListComponent } from './group-rights/group-rights-list/group
 import { HomeComponent } from './home/home.component';
 import { CompetitorsComponent } from './competitors/competitors.component';
 import { ContestCompetitorsComponent } from './contest-competitors/contest-competitors.component';
-//import '@Progress/kendo-ui/js/kendo.gantt'
+import { EmployeeProjectsComponent } from './employee-projects/employee-projects.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { DepartmentComponent } from './departments/department/department.component';
+import { CertificatesListComponent } from './employee-certificates/certificates-list/certificates-list.component';
 
 @NgModule({
   declarations: [
@@ -203,7 +206,11 @@ import { ContestCompetitorsComponent } from './contest-competitors/contest-compe
     GroupRightsListComponent,
     HomeComponent,
     CompetitorsComponent,
-    ContestCompetitorsComponent
+    ContestCompetitorsComponent,
+    EmployeeProjectsComponent,
+    DepartmentsComponent,
+    DepartmentComponent,
+    CertificatesListComponent
   ],
   imports: [
     BrowserModule,

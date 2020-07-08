@@ -1,0 +1,41 @@
+<div class="jumbtron">
+    <h1 class="display-4 text-center">Sertifikatai</h1>
+    <hr>
+</div>
+<kendo-grid
+    [data]="list"
+    [pageSize]="state.take"
+    [skip]="state.skip"
+    [filter] ="state.filter"
+    [pageable]="{pageSizes: [10,20,25,50,100 ]}"
+    [groupable]="true"
+    [group]="state.group"
+    [resizable]="true"
+    filterable="menu"
+    [sortable]="true"
+    [sort]="state.sort"
+    (dataStateChange)="dataStateChange($event, this.service)"
+    (pageChange)="pageChange($event, this.service)">
+    <app-kendo-grid></app-kendo-grid>
+    <kendo-grid-messages
+            groupPanelEmpty="Vilkite stulpelio antraštę ir įdėkite ją čia, kad grupuotumėte pagal tą stulpelį."
+>
+</kendo-grid-messages>
+<kendo-grid-column field="Certificate.Title" title="Sertifikatas"   minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="Certificate.Code" title="Kodas"   minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="DateFrom" title="Galioja nuo" minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
+    </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="DateTo" title="Galioja iki" minResizableWidth="50">
+    <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.DateTo | date: 'yyyy-MM-dd'}}
+    </ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="Employee.Name" title="Vardas" minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="Employee.Surname" title="Pavardė" minResizableWidth="50">
+</kendo-grid-column>

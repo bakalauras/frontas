@@ -3,7 +3,7 @@
     [pageSize]="state.take"
     [skip]="state.skip"
     [filter] ="state.filter"
-    [pageable]="{pageSizes: true}"
+    [pageable]="{pageSizes: [10,20,25,50,100 ]}"
     [groupable]="true"
     [group]="state.group"
     [resizable]="true"
@@ -24,6 +24,12 @@
         <kendo-dialog title="Darbuotojo pareigos informacija" *ngIf="opened2" (close)="close()" [minWidth]="250" [width]="450">
             <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
                 <input type="hidden" name="EmployeeDutyId" [value]="service.formData.EmployeeDutyId">
+                <div class="form-group">
+                    <mat-form-field class="full-width">
+                        <mat-label>Etatas</mat-label>
+                        <input matInput type="text" name="Staff" #Type="ngModel" [(ngModel)]="service.formData.Staff" placeholder="Įveskite etatą" required maxlength="4">
+                      </mat-form-field>
+                </div>
                 <div class="form-group">
                     <mat-form-field class="full-width">
                       <mat-label>Pradžios data</mat-label>
@@ -57,6 +63,8 @@
 </div>
 </ng-template>
 <kendo-grid-column field="Duty.Title" title="Pareigos"   minResizableWidth="50">
+</kendo-grid-column>
+<kendo-grid-column field="Staff" title="Etatas" minResizableWidth="50" filter="numeric">
 </kendo-grid-column>
     <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem>

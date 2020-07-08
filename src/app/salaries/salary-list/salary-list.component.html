@@ -3,7 +3,7 @@
     [pageSize]="state.take"
     [skip]="state.skip"
     [filter] ="state.filter"
-    [pageable]="{pageSizes: true}"
+    [pageable]="{pageSizes: [10,20,25,50,100 ]}"
     [groupable]="true"
     [group]="state.group"
     [resizable]="true"
@@ -64,7 +64,7 @@
     </kendo-grid-column>
     <kendo-grid-column field="EmployeeSalary" title="Atlyginimas" minResizableWidth="50" filter="numeric" >
     </kendo-grid-column>
-    <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50" filter="date" format="{0:yyyy-MM-dd}">
+    <kendo-grid-column field="DateFrom" title="Pradžios data" minResizableWidth="50">
         <ng-template kendoGridCellTemplate let-dataItem>
             {{dataItem.DateFrom | date: 'yyyy-MM-dd'}}
         </ng-template>

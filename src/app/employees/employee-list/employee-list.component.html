@@ -3,7 +3,7 @@
 [pageSize]="state.take"
 [skip]="state.skip"
 [filter] ="state.filter"
-[pageable]="{pageSizes: true}"
+[pageable]="{pageSizes: [10,20,25,50,100 ]}"
 [groupable]="true"
 [group]="state.group"
 [resizable]="true"
@@ -33,5 +33,7 @@ filterable="menu"
             <a>{{this.service.getActiveParam(dataItem.IsActive)}}</a>
             </ng-template>
     </kendo-grid-column>
+<kendo-grid-column field="Department.Title" title="Padalinys" minResizableWidth="50">
+</kendo-grid-column>
 <kendo-grid-excel fileName="Darbuotojai.xlsx"></kendo-grid-excel>
 </kendo-grid>
