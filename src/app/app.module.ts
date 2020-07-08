@@ -119,11 +119,12 @@ import { AuthErrorHandler } from './auth-error-handler';
 import { GroupRightsComponent } from './group-rights/group-rights.component';
 import { GroupRightsListComponent } from './group-rights/group-rights-list/group-rights-list.component';
 import { HomeComponent } from './home/home.component';
+import { CompetitorsComponent } from './competitors/competitors.component';
+import { ContestCompetitorsComponent } from './contest-competitors/contest-competitors.component';
 import { EmployeeProjectsComponent } from './employee-projects/employee-projects.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { DepartmentComponent } from './departments/department/department.component';
 import { CertificatesListComponent } from './employee-certificates/certificates-list/certificates-list.component';
-//import '@Progress/kendo-ui/js/kendo.gantt'
 
 @NgModule({
   declarations: [
@@ -204,6 +205,8 @@ import { CertificatesListComponent } from './employee-certificates/certificates-
     GroupRightsComponent,
     GroupRightsListComponent,
     HomeComponent,
+    CompetitorsComponent,
+    ContestCompetitorsComponent,
     EmployeeProjectsComponent,
     DepartmentsComponent,
     DepartmentComponent,

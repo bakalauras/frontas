@@ -32,12 +32,14 @@ import { LoginComponent } from './login/login.component';
 import { JwtService } from './jwt.service';
 import { GroupRightsComponent } from './group-rights/group-rights.component';
 import { HomeComponent } from './home/home.component';
+import { CompetitorsComponent } from './competitors/competitors.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { CertificateListComponent } from './certificates/certificate-list/certificate-list.component';
 import { CertificatesListComponent } from './employee-certificates/certificates-list/certificates-list.component';
 
 const routes: Routes = [
   {path: 'contestStatuses', component: ContestStatusesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
+  {path: 'competitors', component: CompetitorsComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'projectStageNames', component: ProjectStageNamesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'tenderStates', component: TenderStatesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},
   {path: 'customerTypes', component: CustomerTypesComponent, canActivate: [JwtService], data: {expectedRightPos: 0}},

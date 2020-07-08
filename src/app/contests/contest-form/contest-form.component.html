@@ -91,5 +91,9 @@
             <hr>
             <app-contest-certificates></app-contest-certificates>
         </mat-tab>
+        <mat-tab label="Dalyviai" *ngIf="this.id!=0">
+            <hr>
+            <app-contest-competitors></app-contest-competitors>
+        </mat-tab>
       </mat-tab-group>
 </div>
